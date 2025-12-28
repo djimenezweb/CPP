@@ -25,11 +25,11 @@ void	trunc_str(std::string str)
 
 void	display_contact(Contact c)
 {
-	std::cout << FIRS_LBL << c.first_name << std::endl
-		<< LAST_LBL << c.last_name << std::endl
-		<< NICK_LBL << c.nick_name << std::endl
-		<< PHON_LBL << c.phone_number << std::endl
-		<< DARK_LBL << c.darkest_secret << std::endl;
+	std::cout << FIRS_LBL << c.get_first_name() << std::endl
+		<< LAST_LBL << c.get_last_name() << std::endl
+		<< NICK_LBL << c.get_nick_name() << std::endl
+		<< PHON_LBL << c.get_phone_number() << std::endl
+		<< DARK_LBL << c.get_darkest_secret() << std::endl;
 }
 
 Phonebook::Phonebook(void) : i(0), size(0) {}
@@ -62,12 +62,13 @@ std::string	Phonebook::set_number(std::string label)
 
 void	Phonebook::add(void)
 {
-	contacts[i].first_name = set_string(FIRS_LBL);
-	contacts[i].last_name = set_string(LAST_LBL);
-	contacts[i].nick_name = set_string(NICK_LBL);
-	contacts[i].phone_number = set_number(PHON_LBL);
-	contacts[i].darkest_secret = set_string(DARK_LBL);
-	std::cout << "Contact " << contacts[i].first_name
+	//contacts[i].first_name = set_string(FIRS_LBL);
+	contacts[i].set_first_name(set_string(FIRS_LBL));
+	contacts[i].set_last_name(set_string(LAST_LBL));
+	contacts[i].set_nick_name(set_string(NICK_LBL));
+	contacts[i].set_phone_number(set_number(PHON_LBL));
+	contacts[i].set_darkest_secret(set_string(DARK_LBL));
+	std::cout << "Contact " << contacts[i].get_first_name()
 			<< " added to phonebook (" << i + 1 << ")" << std::endl;
 	i = (i + 1) % MAXSIZE;
 	if (size < MAXSIZE)
@@ -97,9 +98,9 @@ void	Phonebook::search()
 		std::cout << "|";
 		std::cout << std::setw(COLWIDTH);
 		std::cout << j + 1 << "|";
-		trunc_str(contacts[j].first_name);
-		trunc_str(contacts[j].last_name);
-		trunc_str(contacts[j].nick_name);
+		trunc_str(contacts[j].get_first_name());
+		trunc_str(contacts[j].get_last_name());
+		trunc_str(contacts[j].get_nick_name());
 		std::cout << std::endl;
 	}
 

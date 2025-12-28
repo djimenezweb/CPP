@@ -22,11 +22,11 @@ class	Phonebook
 		Contact		contacts[MAXSIZE];
 		std::string	set_string(std::string label);
 		std::string	set_number(std::string label);
+		Phonebook();
 
 	public:
-		Phonebook(void);
-		void		add(void);
-		void		search(void);
+		void		add();
+		void		search();
 };
 
 #endif
