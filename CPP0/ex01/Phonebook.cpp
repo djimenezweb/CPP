@@ -33,24 +33,18 @@ void	Phonebook::search()
 		std::cout << "No contacts to display" << std::endl;
 		return ;
 	}
-	std::cout << "|";
-	std::cout << std::setw(COLWIDTH) << "#";
-	std::cout << "|";
-	std::cout << std::setw(COLWIDTH) << "FIRST NAME";
-	std::cout << "|";
-	std::cout << std::setw(COLWIDTH) << "LAST NAME";
-	std::cout << "|";
-	std::cout << std::setw(COLWIDTH) << "NICKNAME";
-	std::cout << "|" << std::endl;
+	std::cout	<< "|" << std::setw(COLWIDTH) << "#"
+				<< "|" << std::setw(COLWIDTH) << "FIRST NAME"
+				<< "|" << std::setw(COLWIDTH) << "LAST NAME"
+				<< "|" << std::setw(COLWIDTH) << "NICKNAME"
+				<< "|" << std::endl;
 	for (int j = 0; j < size; j++)
 	{
-		std::cout << "|";
-		std::cout << std::setw(COLWIDTH);
-		std::cout << j + 1 << "|";
-		std::cout << std::setw(COLWIDTH) << trunc_str(contacts[j].get_first_name()) << "|";
-		std::cout << std::setw(COLWIDTH) << trunc_str(contacts[j].get_last_name()) << "|";
-		std::cout << std::setw(COLWIDTH) << trunc_str(contacts[j].get_nick_name()) << "|";
-		std::cout << std::endl;
+		std::cout	<< "|" << std::setw(COLWIDTH) << j + 1
+					<< "|" << std::setw(COLWIDTH) << trunc_str(contacts[j].get_first_name())
+					<< "|" << std::setw(COLWIDTH) << trunc_str(contacts[j].get_last_name())
+					<< "|" << std::setw(COLWIDTH) << trunc_str(contacts[j].get_nick_name())
+					<< "|" << std::endl;
 	}
 
 	while (!std::cin.eof())
