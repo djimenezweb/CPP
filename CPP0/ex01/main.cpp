@@ -4,19 +4,19 @@
 int	main(void)
 {
 	Phonebook	phonebook;
-	std::string	prompt;
+	std::string	input;
 
 	while (!std::cin.eof())
 	{
 		std::cout << "Enter ADD, SEARCH or EXIT: ";
-		std::getline(std::cin, prompt);
-		if (prompt == "EXIT")
+		std::getline(std::cin, input);
+		if (input == "EXIT")
 			return (0);
-		else if (prompt == "ADD")
+		else if (input == "ADD")
 			phonebook.add();
-		else if (prompt == "SEARCH")
+		else if (input == "SEARCH")
 			phonebook.search();
-		prompt.clear();
+		input.clear();
 	}
 	
 	return (0);

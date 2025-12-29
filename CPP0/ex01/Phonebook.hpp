@@ -12,13 +12,14 @@
 class	Phonebook
 {
 	private:
-		int			i;
-		int			size;
-		Contact		contacts[MAXSIZE];
+		int		i;
+		int		size;
+		Contact	contacts[MAXSIZE];
 
 	public:
-		void		add();
-		void		search();
+		void	add();
+		void	search();
+		void	display_all();
 		Phonebook();
 };
 

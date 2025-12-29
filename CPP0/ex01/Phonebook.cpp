@@ -24,10 +24,8 @@ std::string	trunc_str(std::string str)
 		return (str);
 }
 
-void	Phonebook::search()
+void	Phonebook::display_all()
 {
-	std::string	prompt;
-
 	if (size == 0)
 	{
 		std::cout << "No contacts to display" << std::endl;
@@ -46,20 +44,27 @@ void	Phonebook::search()
 					<< "|" << std::setw(COLWIDTH) << trunc_str(contacts[j].get_nick_name())
 					<< "|" << std::endl;
 	}
+}
+
+void	Phonebook::search()
+{
+	std::string	input;
+
+	display_all();
 
 	while (!std::cin.eof())
 	{
 		int	index;
 
 		std::cout << "Select contact (1-" << size << ") : ";
-		std::getline(std::cin, prompt);
-		index = std::atoi(prompt.data());
+		std::getline(std::cin, input);
+		index = std::atoi(input.data());
 		if (index >= 1 && index <= size)
 		{
 			contacts[index - 1].display_contact();
 			break ;
 		}
 		else
-			prompt.clear();
+			input.clear();
 	}
 }

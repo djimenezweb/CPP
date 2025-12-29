@@ -78,10 +78,7 @@ std::string	Contact::get_input(std::string label)
 		std::cout << label;
 		std::getline(std::cin, input);
 		if (std::cin.eof())
-		{
-			input.clear();
-			break ;
-		}
+			return ("");
 		if (label == PHON_LBL && !is_valid_phone(input))
 			input.clear();
 	}
