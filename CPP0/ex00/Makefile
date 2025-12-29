@@ -1,23 +1,27 @@
 NAME		= megaphone
-SRC			= megaphone.cpp
-OBJ			= $(SRC:.cpp=.o)
+SRCS		= megaphone.cpp
+BUILD		= build
+OBJS		= $(addprefix $(BUILD)/, $(SRCS:.cpp=.o))
 CXX			= c++
-CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
+CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -MMD -MP
 
 all : $(NAME)
 
-$(NAME) : $(OBJ)
-	$(CXX) $(OBJ) -o $@
+$(NAME) : $(OBJS)
+	$(CXX) $(OBJS) -o $@
 
-%.o : %.cpp
+$(BUILD)/%.o : %.cpp
+	mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean :
-	rm -f $(OBJ)
+	rm -rf $(BUILD)
 
 fclean : clean
 	rm -f $(NAME)
 
 re : fclean all
+
+-include $(OBJS:.o=.d)
 
 .PHONY : all clean fclean re

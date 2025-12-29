@@ -22,9 +22,6 @@ fclean : clean
 
 re : fclean all
 
-run : all
-	./$(NAME)
-
 -include $(OBJS:.o=.d)
 
-.PHONY : all clean fclean re run
+.PHONY : all clean fclean re
