@@ -3,6 +3,12 @@
 
 # include <iostream>
 
+# define FRST_LBL " First name     : "
+# define LAST_LBL " Last name      : "
+# define NICK_LBL " Nickname       : "
+# define PHON_LBL " Phone          : "
+# define DARK_LBL " Darkest secret : "
+
 class	Contact
 {
 	private:
@@ -23,6 +29,8 @@ class	Contact
 		std::string	get_nick_name();
 		std::string	get_phone_number();
 		std::string	get_darkest_secret();
+		std::string	get_input(std::string label);
+		void		display_contact();
 };
 
 #endif
