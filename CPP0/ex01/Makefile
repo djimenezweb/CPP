@@ -1,5 +1,5 @@
 NAME		= phonebook
-SRCS		= main.cpp Contact.cpp Phonebook.cpp
+SRCS		= main.cpp Contact.cpp Phonebook.cpp utils.cpp
 BUILD		= build
 OBJS		= $(addprefix $(BUILD)/, $(SRCS:.cpp=.o))
 CXX			= c++

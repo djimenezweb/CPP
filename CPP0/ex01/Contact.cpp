@@ -1,5 +1,8 @@
 #include "Contact.hpp"
 
+std::string trim(std::string& str);
+bool is_valid_phone(std::string str);
+
 // getters
 
 std::string	Contact::get_first_name()
@@ -56,19 +59,6 @@ void	Contact::set_darkest_secret(std::string str)
 
 // Auxiliary functions
 
-bool	is_valid_phone(std::string str)
-{
-	size_t	start = 0;
-	if (str[start] == '+')
-		start++;
-	for (size_t i = start; i < str.length(); i++)
-	{
-		if (!isdigit(str[i]))
-			return (false);
-	}
-	return (true);
-}
-
 std::string	Contact::get_input(std::string label)
 {
 	std::string	input;
@@ -82,7 +72,7 @@ std::string	Contact::get_input(std::string label)
 		if (label == PHON_LBL && !is_valid_phone(input))
 			input.clear();
 	}
-	return (input);
+	return (trim(input));
 }
 
 void	Contact::display_contact()
