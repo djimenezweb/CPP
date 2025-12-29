@@ -3,3 +3,5 @@
 *.d
 build
 CPP0/ex00/megaphone
+CPP0/ex01/phonebook
+CPP0/ex02/account
