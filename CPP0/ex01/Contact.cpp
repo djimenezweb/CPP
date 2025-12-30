@@ -5,6 +5,11 @@ bool is_valid_phone(std::string str);
 
 // getters
 
+int	Contact::get_id()
+{
+	return (this->id);
+}
+
 std::string	Contact::get_first_name()
 {
 	return (this->first_name);
@@ -31,6 +36,11 @@ std::string	Contact::get_darkest_secret()
 }
 
 // setters
+
+void	Contact::set_id(int id)
+{
+	this->id = id;
+}
 
 void	Contact::set_first_name(std::string str)
 {

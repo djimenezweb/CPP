@@ -1,6 +1,7 @@
 #include "Phonebook.hpp"
 
-Phonebook::Phonebook() : i(0), size(0) {}
+int Phonebook::i = 0;
+int Phonebook::size = 0;
 
 void	Phonebook::add()
 {
@@ -11,9 +12,19 @@ void	Phonebook::add()
 	contacts[i].set_darkest_secret(contacts[i].get_input(DARK_LBL));
 	std::cout << "Contact " << contacts[i].get_first_name()
 			<< " added to phonebook (" << i + 1 << ")" << std::endl;
-	i = (i + 1) % MAXSIZE;
-	if (size < MAXSIZE)
-		size++;
+	increment_i();
+	increment_size();
+}
+
+void	Phonebook::increment_i()
+{
+	Phonebook::i = (Phonebook::i + 1) % MAXSIZE;
+}
+
+void	Phonebook::increment_size()
+{
+	if (Phonebook::size < MAXSIZE)
+		Phonebook::size++;
 }
 
 std::string	trunc_str(std::string str)
