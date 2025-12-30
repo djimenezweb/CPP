@@ -20,6 +20,7 @@ class	Contact
 		std::string	darkest_secret;
 
 	public :
+		Contact();
 		void		set_id(int id);
 		void		set_first_name(std::string str);
 		void		set_last_name(std::string str);

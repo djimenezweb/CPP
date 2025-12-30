@@ -5,6 +5,7 @@ int Phonebook::size = 0;
 
 void	Phonebook::add()
 {
+	contacts[i].set_id(Phonebook::i + 1);
 	contacts[i].set_first_name(contacts[i].get_input(FRST_LBL));
 	contacts[i].set_last_name(contacts[i].get_input(LAST_LBL));
 	contacts[i].set_nick_name(contacts[i].get_input(NICK_LBL));
@@ -37,7 +38,7 @@ std::string	trunc_str(std::string str)
 
 void	Phonebook::display_all()
 {
-	if (size == 0)
+	if (Phonebook::size == 0)
 	{
 		std::cout << "No contacts to display" << std::endl;
 		return ;
@@ -47,9 +48,9 @@ void	Phonebook::display_all()
 				<< "|" << std::setw(COLWIDTH) << "LAST NAME"
 				<< "|" << std::setw(COLWIDTH) << "NICKNAME"
 				<< "|" << std::endl;
-	for (int j = 0; j < size; j++)
+	for (int j = 0; j < Phonebook::size; j++)
 	{
-		std::cout	<< "|" << std::setw(COLWIDTH) << j + 1
+		std::cout	<< "|" << std::setw(COLWIDTH) << contacts[j].get_id()
 					<< "|" << std::setw(COLWIDTH) << trunc_str(contacts[j].get_first_name())
 					<< "|" << std::setw(COLWIDTH) << trunc_str(contacts[j].get_last_name())
 					<< "|" << std::setw(COLWIDTH) << trunc_str(contacts[j].get_nick_name())

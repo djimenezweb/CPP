@@ -3,6 +3,12 @@
 std::string trim(std::string& str);
 bool is_valid_phone(std::string str);
 
+// constructor
+Contact::Contact()
+{
+	Contact::set_id(0);
+}
+
 // getters
 
 int	Contact::get_id()
