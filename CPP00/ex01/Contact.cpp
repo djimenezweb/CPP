@@ -3,18 +3,7 @@
 std::string trim(std::string& str);
 bool is_valid_phone(std::string str);
 
-// constructor
-Contact::Contact()
-{
-	Contact::set_id(0);
-}
-
 // getters
-
-int	Contact::get_id()
-{
-	return (this->id);
-}
 
 std::string	Contact::get_first_name()
 {
@@ -43,34 +32,29 @@ std::string	Contact::get_darkest_secret()
 
 // setters
 
-void	Contact::set_id(int id)
+void	Contact::set_first_name()
 {
-	this->id = id;
+	this->first_name = get_input(FRST_LBL);
 }
 
-void	Contact::set_first_name(std::string str)
+void	Contact::set_last_name()
 {
-	this->first_name = str;
+	this->last_name = get_input(LAST_LBL);
 }
 
-void	Contact::set_last_name(std::string str)
+void	Contact::set_nick_name()
 {
-	this->last_name = str;
+	this->nick_name = get_input(NICK_LBL);
 }
 
-void	Contact::set_nick_name(std::string str)
+void	Contact::set_phone_number()
 {
-	this->nick_name = str;
+	this->phone_number = get_input(PHON_LBL);
 }
 
-void	Contact::set_phone_number(std::string str)
+void	Contact::set_darkest_secret()
 {
-	this->phone_number = str;
-}
-
-void	Contact::set_darkest_secret(std::string str)
-{
-	this->darkest_secret = str;
+	this->darkest_secret = get_input(DARK_LBL);
 }
 
 // Auxiliary functions
@@ -79,7 +63,7 @@ std::string	Contact::get_input(std::string label)
 {
 	std::string	input;
 
-	while (input.empty())
+	while (trim(input).empty())
 	{
 		std::cout << label;
 		std::getline(std::cin, input);

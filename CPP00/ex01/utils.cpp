@@ -1,5 +1,13 @@
 # include <string>
 
+std::string	trunc_str(std::string str, int max_size)
+{
+	if (str.length() > (size_t)max_size)
+		return (str.substr(0, max_size - 1).append("."));
+	else
+		return (str);
+}
+
 std::string trim(std::string& str)
 {
 	std::size_t	start;

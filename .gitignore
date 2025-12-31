@@ -2,6 +2,6 @@
 *.o
 *.d
 build
-CPP0/ex00/megaphone
-CPP0/ex01/phonebook
-CPP0/ex02/account
+CPP00/ex00/megaphone
+CPP00/ex01/phonebook
+CPP00/ex02/account
