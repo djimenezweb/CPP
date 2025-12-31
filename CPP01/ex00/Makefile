@@ -1,5 +1,5 @@
-NAME		= *** TO DO ***
-SRCS		= *** TO DO ***
+NAME		= ex00
+SRCS		= main.cpp newZombie.cpp randomChump.cpp Zombie.cpp
 BUILD		= build
 OBJS		= $(addprefix $(BUILD)/, $(SRCS:.cpp=.o))
 CXX			= c++
