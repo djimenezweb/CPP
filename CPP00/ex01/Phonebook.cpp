@@ -1,6 +1,5 @@
 #include "Phonebook.hpp"
-
-std::string	trunc_str(std::string str, int max_size);
+#include "utils.hpp"
 
 int Phonebook::i = 0;
 int Phonebook::size = 0;
