@@ -1,4 +1,4 @@
-# include <string>
+# include "utils.hpp"
 
 std::string	trunc_str(std::string str, int max_size)
 {

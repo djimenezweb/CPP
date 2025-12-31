@@ -1,7 +1,5 @@
 #include "Contact.hpp"
-
-std::string trim(std::string& str);
-bool is_valid_phone(std::string str);
+#include "utils.hpp"
 
 // getters
 
