@@ -1,13 +1,17 @@
 #include "Zombie.hpp"
-#include <array>
-#include <vector>
+#include <sstream>
 
 Zombie* zombieHorde( int N, std::string name )
 {
 	if (N <= 0)
-		return (nullptr);
+		return (NULL);
 
 	Zombie *arr = new Zombie[N];
+
+	for (int i = 0; i < N; i++)
+	{
+		arr[i].set_name(name);
+	}
 
 	return (arr);
 }

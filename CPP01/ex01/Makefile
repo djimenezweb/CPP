@@ -1,5 +1,5 @@
-NAME		= *** TO DO ***
-SRCS		= *** TO DO ***
+NAME		= horde
+SRCS		= main.cpp Zombie.cpp zombieHorde.cpp
 BUILD		= build
 OBJS		= $(addprefix $(BUILD)/, $(SRCS:.cpp=.o))
 CXX			= c++
