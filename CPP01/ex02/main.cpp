@@ -3,6 +3,7 @@
 int main()
 {
 	std::string	var = "HI THIS IS BRAIN";
+	std::string	vargar = "HI THIS IS BRAINSIS";
 	std::string	*ptr = &var;
 	std::string	&ref = var;
 
