@@ -1,5 +1,5 @@
-NAME		= *** TO DO ***
-SRCS		= *** TO DO ***
+NAME		= brain
+SRCS		= main.cpp
 BUILD		= build
 OBJS		= $(addprefix $(BUILD)/, $(SRCS:.cpp=.o))
 CXX			= c++
