@@ -11,19 +11,8 @@ class HumanA
 		Weapon		weapon;
 
 	public:
-		HumanA(std::string n, Weapon w)
-		{
-			this->name = n;
-			this->weapon = w;
-		}
-
-		void	attack()
-		{
-			std::cout	<< this->name
-						<< " attacks with their "
-						<< this->weapon.getType()
-						<< std::endl;
-		}
+		HumanA(std::string n, Weapon w);
+		void	attack();
 };
 
 #endif
