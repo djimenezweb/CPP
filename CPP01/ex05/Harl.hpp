@@ -14,7 +14,7 @@
 
 class Harl
 {
-//typedef void(Harl::*f_ptr)();
+typedef void(Harl::*f_ptr)();
 
 private:
 	void	debug(void);
