@@ -8,22 +8,17 @@ void	file_err(std::string name)
 
 std::string	replace(std::string line, std::string s1, std::string s2)
 {
-	int			i;
-	std::string	str;
+	std::string::size_type	i;
 
 	if (s1.empty())
 		return (line);
-	str = line;
 	i = line.find(s1);
-	while (i >= 0)
+	while (i != std::string::npos)
 	{
-		//std::cout << i << str << std::endl;
-		//str = str.substr(0, i) + s2 + str.substr(i + s1.length());
-		//i += s2.length();
-		//std::cout << i << str << std::endl;
-		//i = str.find(&s1[i]);
+		line = line.substr(0, i) + s2 + line.substr(i + s1.length());
+		i = line.find(s1, i + s2.length());
 	}
-	return (str);
+	return (line);
 }
 
 int	main(int argc, char *argv[])
@@ -48,8 +43,8 @@ int	main(int argc, char *argv[])
 
 	while (!istream.eof())
 	{
-		getline(istream, line);
-		ostream << replace(line, argv[2], argv[3]) << std::endl;
+		getline(istream, line, '\0');
+		ostream << replace(line, argv[2], argv[3]);
 	}
 
 	istream.close();
