@@ -2,17 +2,12 @@
 
 Weapon::Weapon(std::string type)
 {
-	this->setType(type);
-}
-
-Weapon::Weapon()
-{
-	this->setType("nothing");
+	this->type = type;
 }
 
 const std::string	&Weapon::getType() const
 {
-	return (this->type);
+	return (type);
 }
 
 void	Weapon::setType(std::string type)

@@ -3,7 +3,7 @@ SRCS		= main.cpp Harl.cpp
 BUILD		= build
 OBJS		= $(addprefix $(BUILD)/, $(SRCS:.cpp=.o))
 CXX			= c++
-CXXFLAGS	= -Wall -Wextra -Werror -Wno-implicit-fallthrough -std=c++98 -MMD -MP
+CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -MMD -MP
 
 all : $(NAME)
 

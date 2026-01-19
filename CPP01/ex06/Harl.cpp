@@ -42,17 +42,17 @@ void	Harl::complain(std::string level)
 
 	switch (index)
 	{
-	case 0:
-		this->debug();
-	case 1:
-		this->info();
-	case 2:
-		this->warning();
-	case 3:
-		this->error();
-		break;
-	default:
-		std::cout << DEFAULT_MSG << std::endl;
-		break;
+		case 0:
+			this->debug();
+		case 1:
+			this->info();
+		case 2:
+			this->warning();
+		case 3:
+			this->error();
+			break;
+		default:
+			std::cout << DEFAULT_MSG << std::endl;
+			break;
 	}
 }
