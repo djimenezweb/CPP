@@ -11,12 +11,17 @@ std::string	replace(std::string line, std::string s1, std::string s2)
 	int			i;
 	std::string	str;
 
+	if (s1.empty())
+		return (line);
 	str = line;
 	i = line.find(s1);
-	while (!s1.empty() && i >= 0)
+	while (i >= 0)
 	{
-		str = str.substr(0, i) + s2 + str.substr(i + s1.length());
-		i = str.find(s1);
+		//std::cout << i << str << std::endl;
+		//str = str.substr(0, i) + s2 + str.substr(i + s1.length());
+		//i += s2.length();
+		//std::cout << i << str << std::endl;
+		//i = str.find(&s1[i]);
 	}
 	return (str);
 }
