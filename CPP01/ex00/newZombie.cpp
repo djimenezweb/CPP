@@ -6,8 +6,8 @@ Zombie* newZombie( std::string name )
 	
 	z = new Zombie(name);
 
-	if (z == nullptr)
-		return (nullptr);
+	if (z == NULL)
+		return (NULL);
 
 	z->announce();
 	return (z);
