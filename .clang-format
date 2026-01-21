@@ -1,0 +1,55 @@
+BasedOnStyle: LLVM
+
+# ---- Line length -------------------------
+ColumnLimit: 80
+
+# ---- Indentation -------------------------
+IndentWidth: 4
+TabWidth: 4
+UseTab: Always
+
+# ---- Braces ------------------------------
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterFunction: true
+  AfterControlStatement: true
+  AfterStruct: true
+  AfterEnum: true
+  AfterUnion: true
+  BeforeElse: true
+
+# ---- Control structures ------------------
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+AllowShortBlocksOnASingleLine: Never
+AllowShortFunctionsOnASingleLine: None
+
+# ---- Parentheses & spacing ---------------
+SpaceBeforeParens: ControlStatements
+SpacesInParentheses: false
+SpacesInSquareBrackets: false
+
+# ---- Function calls & declarations -------
+BinPackArguments: false
+BinPackParameters: false
+AlignAfterOpenBracket: Align
+
+# ---- Pointers & references ---------------
+PointerAlignment: Left
+ReferenceAlignment: Left
+SpaceAfterCStyleCast: false
+
+# ---- Alignment ---------------------------
+AlignOperands: true
+AlignConsecutiveAssignments: false
+AlignConsecutiveDeclarations: false
+
+# ---- Includes ----------------------------
+SortIncludes: false
+
+# ---- Comments ----------------------------
+ReflowComments: false
+
+# ---- Misc --------------------------------
+KeepEmptyLinesAtTheStartOfBlocks: false
+MaxEmptyLinesToKeep: 1
