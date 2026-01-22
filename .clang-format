@@ -7,10 +7,12 @@ ColumnLimit: 80
 IndentWidth: 4
 TabWidth: 4
 UseTab: Always
+AccessModifierOffset: -4
 
 # ---- Braces ------------------------------
 BreakBeforeBraces: Custom
 BraceWrapping:
+  AfterClass: true
   AfterFunction: true
   AfterControlStatement: true
   AfterStruct: true
