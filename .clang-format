@@ -37,8 +37,8 @@ BinPackParameters: false
 AlignAfterOpenBracket: Align
 
 # ---- Pointers & references ---------------
-PointerAlignment: Left
-ReferenceAlignment: Left
+PointerAlignment: Right
+ReferenceAlignment: Right
 SpaceAfterCStyleCast: false
 
 # ---- Alignment ---------------------------
