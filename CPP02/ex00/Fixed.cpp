@@ -36,15 +36,6 @@ Fixed::Fixed(const Fixed &other)
 }
 
 // Copy assignment operator overload
-/* void Fixed::operator=(const Fixed& other)
-{
-	std::cout << CPY_ASSIGN << std::endl;
-	if (this == &other)
-		return;
-	value = other.getRawBits();
-} */
-
-// Copy assignment operator overload
 Fixed &Fixed::operator=(const Fixed &other)
 {
 	std::cout << CPY_ASSIGN << std::endl;

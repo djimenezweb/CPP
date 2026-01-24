@@ -2,6 +2,7 @@
 #define FIXED_H
 
 #include <iostream>
+#include <math.h>
 
 #define DEF_CONSTR "Default constructor called"
 #define INT_CONSTR "Int constructor called"
@@ -19,12 +20,13 @@ private:
 
 public:
 	Fixed(); // default constructor
-	Fixed(const int value);
+	Fixed(const int v);
+	Fixed(const float v);
 	Fixed(const Fixed &other); // copy constructor
 	//void operator=(const Fixed &other); // copy assignment operator overload
-	Fixed &operator=(const Fixed &other);  // copy assignment operator overload
-	Fixed &operator<<(const Fixed &other); // copy insertion operator overload
-	~Fixed();							   // destructor
+	Fixed &operator=(const Fixed &other); // copy assignment operator overload
+										  // insertion operator overload
+	~Fixed();							  // destructor
 
 	int getRawBits(void) const;
 	void setRawBits(int const raw);
