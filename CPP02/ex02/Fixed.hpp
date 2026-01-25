@@ -19,28 +19,33 @@ private:
 	static const int fr_bits;
 
 public:
-	Fixed(); // default constructor
+	Fixed();
 	Fixed(const int v);
 	Fixed(const float v);
-	Fixed(const Fixed &other); // copy constructor
-	//void operator=(const Fixed &other); // copy assignment operator overload
-	Fixed &operator=(const Fixed &other); // copy assignment operator overload
-	//std::ostream &operator<<(std::ostream &output, const Fixed &other);  // insertion operator overload
-	//std::ostream &operator<<(const Fixed &other);  // insertion operator overload
-	~Fixed();							  // destructor
-
+	Fixed(const Fixed &other);
+	~Fixed();
+	
 	int getRawBits(void) const;
 	void setRawBits(int const raw);
-
+	
 	float toFloat(void) const;
 	int toInt(void) const;
+
+	Fixed &operator=(const Fixed &other);
+
+	bool operator>(const Fixed &right);
+	bool operator>=(const Fixed &right);
+	bool operator<(const Fixed &right);
+	bool operator<=(const Fixed &right);
+	bool operator==(const Fixed &right);
+	bool operator!=(const Fixed &right);
+
+	int operator+(const Fixed &right);
+	Fixed &operator-(const Fixed &right);
+	Fixed &operator*(const Fixed &right);
+	Fixed &operator/(const Fixed &right);
 };
 
 std::ostream &operator<<(std::ostream &output, const Fixed &other);
-
-/*
-int getRawBits(void) const	-> It will be called on const objets. It will NOT modify the objet
-int getRawBits(void)		-> Cannot be called on const objects. It may modify the object
-*/
 
 #endif
