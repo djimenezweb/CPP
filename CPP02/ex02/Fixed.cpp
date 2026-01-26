@@ -164,6 +164,7 @@ Fixed Fixed::operator/(const Fixed &right)
 // pre ++a
 Fixed &Fixed::operator++()
 {
+	std::cout << "pre" << std::endl;
 	value = this->toFloat() + 1.0;
 	return (*this);
 }
@@ -171,12 +172,13 @@ Fixed &Fixed::operator++()
 // post a++
 Fixed Fixed::operator++(int)
 {
+	std::cout << "post" << std::endl;
 	float result;
 	//float result2;
 
-	result = this->toFloat();
+	result = this->toFloat() + 1.0;
 	//result2 = this->toFloat() + 1.0;
-	value = this->toFloat() + 1.0;
+	//value = this->toFloat() + 1.0;
 	return (Fixed(result));
 }
 
