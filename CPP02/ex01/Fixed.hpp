@@ -2,7 +2,8 @@
 #define FIXED_H
 
 #include <iostream>
-#include <math.h>
+//#include <math.h>
+#include <cmath>
 
 #define DEF_CONSTR "Default constructor called"
 #define INT_CONSTR "Int constructor called"

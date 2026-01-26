@@ -2,15 +2,16 @@
 #define FIXED_H
 
 #include <iostream>
-#include <math.h>
+//#include <math.h>
+#include <cmath>
 
-#define DEF_CONSTR "Default constructor called"
-#define INT_CONSTR "Int constructor called"
-#define FLT_CONSTR "Float constructor called"
-#define DESTRUCTOR "Destructor called"
-#define CPY_CONSTR "Copy constructor called"
-#define CPY_ASSIGN "Copy assignment operator called"
-#define GETRAWBITS "getRawBits member function called"
+#define DEF_CONSTR "" //"Default constructor called"
+#define INT_CONSTR "" //"Int constructor called"
+#define FLT_CONSTR "" //"Float constructor called"
+#define DESTRUCTOR "" //"Destructor called"
+#define CPY_CONSTR "" //"Copy constructor called"
+#define CPY_ASSIGN "" //"Copy assignment operator called"
+#define GETRAWBITS "" //"getRawBits member function called"
 
 class Fixed
 {
@@ -40,10 +41,21 @@ public:
 	bool operator==(const Fixed &right);
 	bool operator!=(const Fixed &right);
 
-	int operator+(const Fixed &right);
-	Fixed &operator-(const Fixed &right);
-	Fixed &operator*(const Fixed &right);
-	Fixed &operator/(const Fixed &right);
+	Fixed operator+(const Fixed &right);
+	Fixed operator-(const Fixed &right);
+	Fixed operator*(const Fixed &right);
+	Fixed operator/(const Fixed &right);
+
+	Fixed &operator++();
+	Fixed operator++(int);
+	//Fixed &operator--();
+	//Fixed operator--(int);
+
+	static Fixed &min(Fixed &left, Fixed &right);
+	static Fixed &min(const Fixed &left, const Fixed &right);
+	static Fixed &max(Fixed &left, Fixed &right);
+	static Fixed &max(const Fixed &left, const Fixed &right);
+
 };
 
 std::ostream &operator<<(std::ostream &output, const Fixed &other);

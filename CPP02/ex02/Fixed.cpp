@@ -129,19 +129,83 @@ bool Fixed::operator!=(const Fixed &right)
 	return (false);
 }
 
-int Fixed::operator+(const Fixed &right)
+Fixed Fixed::operator+(const Fixed &right)
 {
-	return (0);
+	float result;
+
+	result = this->toFloat() + right.toFloat();
+	return (Fixed(result));
 }
-Fixed &operator-(const Fixed &right)
+
+Fixed Fixed::operator-(const Fixed &right)
 {
-	return (Fixed())
+	float result;
+
+	result = this->toFloat() - right.toFloat();
+	return (Fixed(result));
 }
-Fixed &operator*(const Fixed &right)
+
+Fixed Fixed::operator*(const Fixed &right)
 {
-	return (Fixed())
+	float result;
+
+	result = this->toFloat() * right.toFloat();
+	return (Fixed(result));
 }
-Fixed &operator/(const Fixed &right)
+
+Fixed Fixed::operator/(const Fixed &right)
 {
-	return (Fixed())
+	float result;
+
+	result = this->toFloat() / right.toFloat();
+	return (Fixed(result));
+}
+
+// pre ++a
+Fixed &Fixed::operator++()
+{
+	value = this->toFloat() + 1.0;
+	return (*this);
+}
+
+// post a++
+Fixed Fixed::operator++(int)
+{
+	float result;
+	//float result2;
+
+	result = this->toFloat();
+	//result2 = this->toFloat() + 1.0;
+	value = this->toFloat() + 1.0;
+	return (Fixed(result));
+}
+
+Fixed &Fixed::min(Fixed &left, Fixed &right)
+{
+	if (left.toFloat() < right.toFloat())
+		return (left);
+	return (right);
+}
+
+Fixed &Fixed::min(const Fixed &left, const Fixed &right)
+{
+	if (left.toFloat() < right.toFloat())
+		return (left);
+	return (right);
+
+}
+
+static Fixed &max(Fixed &left, Fixed &right)
+{
+	if (left.toFloat() > right.toFloat())
+		return (left);
+	return (right);
+}
+
+static const Fixed &max(const Fixed &left, const Fixed &right)
+{
+	if (left.toFloat() > right.toFloat())
+		return (left);
+	return (right);
+
 }
