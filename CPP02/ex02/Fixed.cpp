@@ -187,7 +187,7 @@ Fixed &Fixed::min(Fixed &left, Fixed &right)
 	return (right);
 }
 
-Fixed &Fixed::min(const Fixed &left, const Fixed &right)
+Fixed Fixed::min(const Fixed &left, const Fixed &right)
 {
 	if (left.toFloat() < right.toFloat())
 		return (left);
@@ -195,14 +195,14 @@ Fixed &Fixed::min(const Fixed &left, const Fixed &right)
 
 }
 
-static Fixed &max(Fixed &left, Fixed &right)
+Fixed &Fixed::max(Fixed &left, Fixed &right)
 {
 	if (left.toFloat() > right.toFloat())
 		return (left);
 	return (right);
 }
 
-static const Fixed &max(const Fixed &left, const Fixed &right)
+Fixed Fixed::max(const Fixed &left, const Fixed &right)
 {
 	if (left.toFloat() > right.toFloat())
 		return (left);

@@ -52,9 +52,9 @@ public:
 	//Fixed operator--(int);
 
 	static Fixed &min(Fixed &left, Fixed &right);
-	static Fixed &min(const Fixed &left, const Fixed &right);
+	static Fixed min(const Fixed &left, const Fixed &right);
 	static Fixed &max(Fixed &left, Fixed &right);
-	static Fixed &max(const Fixed &left, const Fixed &right);
+	static Fixed max(const Fixed &left, const Fixed &right);
 
 };
 
