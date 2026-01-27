@@ -3,35 +3,30 @@
 // Default constructor
 Fixed::Fixed()
 {
-	std::cout << DEF_CONSTR << std::endl;
 	value = 0;
 }
 
 // Constructor (int)
 Fixed::Fixed(const int set_value)
 {
-	//std::cout << INT_CONSTR << std::endl;
 	value = set_value << Fixed::fr_bits;
 }
 
 // Constructor (float)
 Fixed::Fixed(const float set_value)
 {
-	//std::cout << FLT_CONSTR << std::endl;
 	value = static_cast<int>(roundf(set_value * (1 << Fixed::fr_bits)));
 }
 
 // Copy constructor
 Fixed::Fixed(const Fixed &other)
 {
-	//std::cout << CPY_CONSTR << std::endl;
 	*this = other;
 }
 
 // Copy assignment operator overload
 Fixed &Fixed::operator=(const Fixed &other)
 {
-	//std::cout << CPY_ASSIGN << std::endl;
 	if (this != &other)
 	{
 		value = other.value;
@@ -42,14 +37,12 @@ Fixed &Fixed::operator=(const Fixed &other)
 // Destructor
 Fixed::~Fixed()
 {
-	//std::cout << DESTRUCTOR << std::endl;
 	value = 0;
 }
 
 // Getter
 int Fixed::getRawBits(void) const
 {
-	//std::cout << GETRAWBITS << std::endl;
 	return (value);
 }
 
@@ -218,4 +211,11 @@ Fixed Fixed::max(const Fixed &left, const Fixed &right)
 	if (left.toFloat() > right.toFloat())
 		return (left);
 	return (right);
+}
+
+Fixed Fixed::abs(const Fixed &other)
+{
+	if (other.toFloat() < 0.0)
+		return (Fixed(other) * Fixed(-1));
+	return (other);
 }
