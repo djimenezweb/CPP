@@ -14,4 +14,20 @@ int main(void)
 		std::cout << "inside" << std::endl;
 	else
 		std::cout << "outside" << std::endl;
+
+	if (bsp(Point((float)1.5, (float)2.5),
+			Point((float)3.5, (float)4.5),
+			Point((float)5.5, (float)2.5),
+			Point((float)3.5, (float)3.5)))
+		std::cout << "inside" << std::endl;
+	else
+		std::cout << "outside" << std::endl;
+
+	if (bsp(Point((float)1.5, (float)2.5),
+			Point((float)3.5, (float)4.5),
+			Point((float)5.5, (float)2.5),
+			Point((float)5.5, (float)5.5)))
+		std::cout << "inside" << std::endl;
+	else
+		std::cout << "outside" << std::endl;
 }
