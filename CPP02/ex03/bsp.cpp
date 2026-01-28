@@ -19,7 +19,7 @@ bool bsp(Point const a, Point const b, Point const c, Point const point)
 	total_area = triangle_area(a, b, c);
 	sub_areas = triangle_area(a, b, point) + triangle_area(a, c, point) +
 				triangle_area(b, c, point);
-	if (sub_areas != total_area)
-		return (false);
-	return (true);
+	if (sub_areas == total_area)
+		return (true);
+	return (false);
 }
