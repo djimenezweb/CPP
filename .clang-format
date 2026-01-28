@@ -8,6 +8,8 @@ IndentWidth: 4
 TabWidth: 4
 UseTab: Always
 AccessModifierOffset: -4
+IndentPPDirectives: None
+SortIncludes: false
 
 # ---- Braces ------------------------------
 BreakBeforeBraces: Custom
@@ -55,3 +57,4 @@ ReflowComments: false
 # ---- Misc --------------------------------
 KeepEmptyLinesAtTheStartOfBlocks: false
 MaxEmptyLinesToKeep: 1
+InsertNewlineAtEOF: true

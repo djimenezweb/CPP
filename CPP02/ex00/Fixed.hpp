@@ -1,33 +1,27 @@
 #ifndef FIXED_H
-#define FIXED_H
+# define FIXED_H
 
-#include <iostream>
+# include <iostream>
 
-#define DEF_CONSTR "Default constructor called"
-#define DESTRUCTOR "Destructor called"
-#define CPY_CONSTR "Copy constructor called"
-#define CPY_ASSIGN "Copy assignment operator called"
-#define GETRAWBITS "getRawBits member function called"
+# define DEF_CONSTR "Default constructor called"
+# define DESTRUCTOR "Destructor called"
+# define CPY_CONSTR "Copy constructor called"
+# define CPY_ASSIGN "Copy assignment operator called"
+# define GETRAWBITS "getRawBits member function called"
 
 class Fixed
 {
 private:
 	int value;
-	static const int fr_bits;
+	static const int fr_bits = 8;
 
 public:
-	Fixed();				   // default constructor
-	Fixed(const Fixed &other); // copy constructor
-	//void operator=(const Fixed &other); // copy assignment operator overload
-	Fixed &operator=(const Fixed &other); // copy assignment operator overload
-	~Fixed();							  // destructor
+	Fixed();
+	Fixed(const Fixed &other);
+	Fixed &operator=(const Fixed &other);
+	~Fixed();
 	int getRawBits(void) const;
 	void setRawBits(int const raw);
 };
-
-/*
-int getRawBits(void) const	-> It will be called on const objets. It will NOT modify the objet
-int getRawBits(void)		-> Cannot be called on const objects. It may modify the object
-*/
 
 #endif

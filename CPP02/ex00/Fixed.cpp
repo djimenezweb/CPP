@@ -1,41 +1,20 @@
-/* From now on, all your classes must be designed in the Orthodox Canonical Form,
-unless explicitly stated otherwise. They will then implement the four required member
-functions below:
-
-• Default constructor
-• Copy constructor
-• Copy assignment operator
-• Destructor
-
-fixed-point numbers:
-http://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html
-http://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_representation.html
-http://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_printing.html
-
-https://web.archive.org/web/20231224143018/https://inst.eecs.berkeley.edu/~cs61c/sp06/handout/fixedpt.html
-
-*/
-
 #include "Fixed.hpp"
 
-const int Fixed::fr_bits = 8;
-
 // Default constructor
-Fixed::Fixed()
+Fixed::Fixed() : value(0)
 {
 	std::cout << DEF_CONSTR << std::endl;
-	value = 0;
 }
 
 // Copy constructor
 Fixed::Fixed(const Fixed &other)
 {
 	std::cout << CPY_CONSTR << std::endl;
-	//*this = other;
+	//*this = other; // Works by calling copy assignment operator
 	value = other.getRawBits();
 }
 
-// Copy assignment operator overload
+// Copy assignment operator overload `=`
 Fixed &Fixed::operator=(const Fixed &other)
 {
 	std::cout << CPY_ASSIGN << std::endl;
@@ -50,15 +29,16 @@ Fixed &Fixed::operator=(const Fixed &other)
 Fixed::~Fixed()
 {
 	std::cout << DESTRUCTOR << std::endl;
-	value = 0;
 }
 
+// Get `value` as integer
 int Fixed::getRawBits(void) const
 {
 	std::cout << GETRAWBITS << std::endl;
 	return (value);
 }
 
+// Set `value`
 void Fixed::setRawBits(int const raw)
 {
 	value = raw;

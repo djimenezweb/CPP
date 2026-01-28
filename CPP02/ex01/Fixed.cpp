@@ -1,12 +1,9 @@
 #include "Fixed.hpp"
 
-const int Fixed::fr_bits = 8;
-
 // Default constructor
-Fixed::Fixed()
+Fixed::Fixed() : value(0)
 {
 	std::cout << DEF_CONSTR << std::endl;
-	value = 0;
 }
 
 // Constructor (int)
@@ -31,7 +28,7 @@ Fixed::Fixed(const Fixed &other)
 	//value = other.value;
 }
 
-// Copy assignment operator overload
+// Copy assignment operator overload `=`
 Fixed &Fixed::operator=(const Fixed &other)
 {
 	std::cout << CPY_ASSIGN << std::endl;
@@ -42,7 +39,7 @@ Fixed &Fixed::operator=(const Fixed &other)
 	return (*this);
 }
 
-// Insertion operator overload
+// Insertion operator overload `<<`
 std::ostream &operator<<(std::ostream &output, const Fixed &other)
 {
 	output << other.toFloat();
@@ -56,26 +53,26 @@ Fixed::~Fixed()
 	value = 0;
 }
 
-// Getter
+// Get `value` as integer
 int Fixed::getRawBits(void) const
 {
 	std::cout << GETRAWBITS << std::endl;
 	return (value);
 }
 
-// Setter
+// Set `value`
 void Fixed::setRawBits(int const raw)
 {
 	value = raw;
 }
 
-// Convert integer to float
+// Return `value` as a float number
 float Fixed::toFloat(void) const
 {
 	return (static_cast<float>(value) / (1 << Fixed::fr_bits));
 }
 
-// Convert float to integer
+// Return `value` as an integer ommitting decimal part
 int Fixed::toInt(void) const
 {
 	return (value >> Fixed::fr_bits);
