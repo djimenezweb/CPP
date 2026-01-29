@@ -7,17 +7,24 @@ Fixed::Fixed() : value(0)
 }
 
 // Constructor (int)
-Fixed::Fixed(const int set_value)
+Fixed::Fixed(const int int_value)
 {
 	std::cout << INT_CONSTR << std::endl;
-	value = set_value << Fixed::fr_bits;
+	value = int_value << Fixed::fr_bits;
 }
 
 // Constructor (float)
-Fixed::Fixed(const float set_value)
+// Take a float number and save it as fixed point
+Fixed::Fixed(const float float_value)
 {
 	std::cout << FLT_CONSTR << std::endl;
-	value = static_cast<int>(roundf(set_value * (1 << Fixed::fr_bits)));
+
+	int	int_part = static_cast<int>(roundf(float_value));
+	int	fractional_part = roundf((float_value - int_part) * 8);
+	std::cout << "int_part of float_value: " << int_part << std::endl;
+	std::cout << "fr_part of float_value: " << fractional_part << std::endl;
+
+	value = static_cast<int>(roundf(float_value * (1 << Fixed::fr_bits)));
 }
 
 // Copy constructor

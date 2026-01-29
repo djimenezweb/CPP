@@ -20,8 +20,8 @@ private:
 
 public:
 	Fixed();
-	Fixed(const int v);
-	Fixed(const float v);
+	Fixed(const int int_value);
+	Fixed(const float float_value);
 	Fixed(const Fixed &other);
 	Fixed &operator=(const Fixed &other);
 	~Fixed();
