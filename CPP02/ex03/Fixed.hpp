@@ -1,9 +1,8 @@
 #ifndef FIXED_H
-#define FIXED_H
+# define FIXED_H
 
-#include <iostream>
-//#include <math.h>
-#include <cmath>
+# include <iostream>
+# include <cmath>
 
 class Fixed
 {

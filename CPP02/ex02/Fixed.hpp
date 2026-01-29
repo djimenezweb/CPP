@@ -1,17 +1,16 @@
 #ifndef FIXED_H
-#define FIXED_H
+# define FIXED_H
 
-#include <iostream>
-//#include <math.h>
-#include <cmath>
+# include <iostream>
+# include <cmath>
 
-#define DEF_CONSTR "Default constructor called"
-#define INT_CONSTR "Int constructor called"
-#define FLT_CONSTR "Float constructor called"
-#define DESTRUCTOR "Destructor called"
-#define CPY_CONSTR "Copy constructor called"
-#define CPY_ASSIGN "Copy assignment operator called"
-#define GETRAWBITS "getRawBits member function called"
+# define DEF_CONSTR "Default constructor called"
+# define INT_CONSTR "Int constructor called"
+# define FLT_CONSTR "Float constructor called"
+# define DESTRUCTOR "Destructor called"
+# define CPY_CONSTR "Copy constructor called"
+# define CPY_ASSIGN "Copy assignment operator called"
+# define GETRAWBITS "getRawBits member function called"
 
 class Fixed
 {

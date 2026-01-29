@@ -1,30 +1,20 @@
 #include "Fixed.hpp"
 
+// ex00
+
 // Default constructor
 Fixed::Fixed()
 {
 	value = 0;
 }
 
-// Constructor (int)
-Fixed::Fixed(const int set_value)
-{
-	value = set_value << Fixed::fr_bits;
-}
-
-// Constructor (float)
-Fixed::Fixed(const float set_value)
-{
-	value = static_cast<int>(roundf(set_value * (1 << Fixed::fr_bits)));
-}
-
 // Copy constructor
 Fixed::Fixed(const Fixed &other)
 {
-	*this = other;
+	value = other.value;
 }
 
-// Copy assignment operator overload
+// Copy assignment operator overload `=`
 Fixed &Fixed::operator=(const Fixed &other)
 {
 	if (this != &other)
@@ -35,41 +25,57 @@ Fixed &Fixed::operator=(const Fixed &other)
 }
 
 // Destructor
-Fixed::~Fixed()
-{
-	value = 0;
-}
+Fixed::~Fixed() {}
 
-// Getter
+// Get `value` as integer
 int Fixed::getRawBits(void) const
 {
 	return (value);
 }
 
-// Setter
+// Set `value`
 void Fixed::setRawBits(int const raw)
 {
 	value = raw;
 }
 
-// Convert integer to float
-float Fixed::toFloat(void) const
+// ex01
+
+// Constructor (int)
+Fixed::Fixed(const int int_value)
 {
-	return (static_cast<float>(value) / (1 << Fixed::fr_bits));
+	value = int_value << Fixed::fr_bits;
 }
 
-// Convert float to integer
-int Fixed::toInt(void) const
+// Constructor (float)
+// Take a float number and save it as fixed point
+Fixed::Fixed(const float float_value)
 {
-	return (value >> Fixed::fr_bits);
+	int factor = (1 << Fixed::fr_bits);
+	value = static_cast<int>(roundf(float_value * factor));
 }
 
-// Insertion operator overload
+// Insertion operator overload `<<`
 std::ostream &operator<<(std::ostream &output, const Fixed &other)
 {
 	output << other.toFloat();
 	return (output);
 }
+
+// Return `value` as a float number
+float Fixed::toFloat(void) const
+{
+	float factor = (1 << Fixed::fr_bits);
+	return (value / factor);
+}
+
+// Return integer part of `value` only (ommitting fractional part)
+int Fixed::toInt(void) const
+{
+	return (value >> Fixed::fr_bits);
+}
+
+// ex02
 
 // Greater than operator overload
 bool Fixed::operator>(const Fixed &right)
@@ -212,6 +218,8 @@ Fixed Fixed::max(const Fixed &left, const Fixed &right)
 		return (left);
 	return (right);
 }
+
+// ex03
 
 Fixed Fixed::abs(const Fixed &other)
 {

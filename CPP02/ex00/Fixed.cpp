@@ -11,7 +11,6 @@ Fixed::Fixed()
 Fixed::Fixed(const Fixed &other)
 {
 	std::cout << CPY_CONSTR << std::endl;
-	//*this = other; // Works by calling copy assignment operator
 	value = other.value;
 }
 

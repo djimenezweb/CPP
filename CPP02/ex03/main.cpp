@@ -4,34 +4,29 @@
 Fixed triangle_area(Point const a, Point const b, Point const c);
 bool bsp(Point const a, Point const b, Point const c, Point const point);
 
-int main(void)
+Point	enter_point(std::string label)
 {
 	float x = 0.0;
 	float y = 0.0;
 
-	std::cout << "Enter the coordinates of the three ABC vertices "
-				 "separated by a space, e.g.: Point A: 1.5 4"
-			  << std::endl;
-	std::cout << "Point A: ";
-	std::cin >> x >> y;
-	Point a(x, y);
-	std::cin.ignore(100, '\n');
-	std::cout << "Point B: ";
-	std::cin >> x >> y;
-	Point b(x, y);
-	std::cin.ignore(100, '\n');
-	std::cout << "Point C: ";
-	std::cin >> x >> y;
-	Point c(x, y);
-	std::cin.ignore(100, '\n');
-	std::cout << "Enter the coordinates of a point P to "
-				 "check if it's inside of the triangle"
-			  << std::endl
-			  << "Point P: ";
+	std::cout << "Point " << label << ": ";
 	std::cin >> x >> y;
 	Point p(x, y);
 	std::cin.ignore(100, '\n');
-	std::cout << std::endl;
+	return (p);
+}
+
+int main(void)
+{
+	std::cout << "Enter the coordinates of the three ABC vertices "
+				 "separated by a space, e.g.: Point A: 1.5 4"
+			  << std::endl;
+	Point a(enter_point("A"));
+	Point b(enter_point("B"));
+	Point c(enter_point("C"));
+	std::cout << "Enter the coordinates of a point P to check "
+				"if it's inside of the triangle" << std::endl;
+	Point p(enter_point("P"));
 
 	if (triangle_area(a, b, c) == 0)
 	{
