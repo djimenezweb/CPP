@@ -27,7 +27,6 @@ Fixed::Fixed(const float float_value)
 Fixed::Fixed(const Fixed &other)
 {
 	std::cout << CPY_CONSTR << std::endl;
-	//*this = other; // Works by calling copy assignment operator
 	value = other.value;
 }
 
@@ -36,9 +35,7 @@ Fixed &Fixed::operator=(const Fixed &other)
 {
 	std::cout << CPY_ASSIGN << std::endl;
 	if (this != &other)
-	{
 		value = other.value;
-	}
 	return (*this);
 }
 
@@ -72,10 +69,11 @@ void Fixed::setRawBits(int const raw)
 // Return `value` as a float number
 float Fixed::toFloat(void) const
 {
-	return (static_cast<float>(value) / (1 << Fixed::fr_bits));
+	float factor = (1 << Fixed::fr_bits);
+	return (value / factor);
 }
 
-// Return `value` as an integer ommitting decimal part
+// Return integer part of `value` only (ommitting fractional part)
 int Fixed::toInt(void) const
 {
 	return (value >> Fixed::fr_bits);

@@ -1,9 +1,10 @@
 #include "Fixed.hpp"
 
 // Default constructor
-Fixed::Fixed() : value(0)
+Fixed::Fixed()
 {
 	std::cout << DEF_CONSTR << std::endl;
+	value = 0;
 }
 
 // Copy constructor
@@ -11,7 +12,7 @@ Fixed::Fixed(const Fixed &other)
 {
 	std::cout << CPY_CONSTR << std::endl;
 	//*this = other; // Works by calling copy assignment operator
-	value = other.getRawBits();
+	value = other.value;
 }
 
 // Copy assignment operator overload `=`
@@ -20,7 +21,7 @@ Fixed &Fixed::operator=(const Fixed &other)
 	std::cout << CPY_ASSIGN << std::endl;
 	if (this != &other)
 	{
-		value = other.getRawBits();
+		value = other.value;
 	}
 	return (*this);
 }
