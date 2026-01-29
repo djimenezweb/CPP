@@ -1,9 +1,10 @@
 #include "Fixed.hpp"
 
 // Default constructor
-Fixed::Fixed() : value(0)
+Fixed::Fixed()
 {
 	std::cout << DEF_CONSTR << std::endl;
+	value = 0;
 }
 
 // Constructor (int)
@@ -18,21 +19,16 @@ Fixed::Fixed(const int int_value)
 Fixed::Fixed(const float float_value)
 {
 	std::cout << FLT_CONSTR << std::endl;
-
-	int	int_part = static_cast<int>(roundf(float_value));
-	int	fractional_part = roundf((float_value - int_part) * 8);
-	std::cout << "int_part of float_value: " << int_part << std::endl;
-	std::cout << "fr_part of float_value: " << fractional_part << std::endl;
-
-	value = static_cast<int>(roundf(float_value * (1 << Fixed::fr_bits)));
+	int factor = (1 << Fixed::fr_bits);
+	value = static_cast<int>(roundf(float_value * factor));
 }
 
 // Copy constructor
 Fixed::Fixed(const Fixed &other)
 {
 	std::cout << CPY_CONSTR << std::endl;
-	*this = other;
-	//value = other.value;
+	//*this = other; // Works by calling copy assignment operator
+	value = other.value;
 }
 
 // Copy assignment operator overload `=`
