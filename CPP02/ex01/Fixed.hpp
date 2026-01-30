@@ -15,16 +15,16 @@
 class Fixed
 {
 private:
-	int value;
-	static const int fr_bits = 8;
+	int					value;
+	static const int	fr_bits = 8;
 
 public:
 	Fixed();
+	~Fixed();
 	Fixed(const int int_value);
 	Fixed(const float float_value);
 	Fixed(const Fixed &other);
 	Fixed &operator=(const Fixed &other);
-	~Fixed();
 
 	int getRawBits(void) const;
 	void setRawBits(int const raw);

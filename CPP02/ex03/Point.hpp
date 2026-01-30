@@ -11,10 +11,11 @@ private:
 
 public:
 	Point();
-	Point(const Fixed set_x, const Fixed set_y);
 	~Point();
+	Point(const Fixed set_x, const Fixed set_y);
 	Point(const Point &other);
 	Point &operator=(const Point &other);
+
 	Fixed get_x() const;
 	Fixed get_y() const;
 };

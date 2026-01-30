@@ -7,23 +7,22 @@
 class Fixed
 {
 private:
-	int value;
-	static const int fr_bits = 8;
+	int					value;
+	static const int	fr_bits = 8;
 
 public:
 	Fixed();
-	Fixed(const int v);
-	Fixed(const float v);
-	Fixed(const Fixed &other);
 	~Fixed();
-
+	Fixed(const int int_value);
+	Fixed(const float float_value);
+	Fixed(const Fixed &other);
+	Fixed &operator=(const Fixed &other);
+	
 	int getRawBits(void) const;
 	void setRawBits(int const raw);
-
+	
 	float toFloat(void) const;
 	int toInt(void) const;
-
-	Fixed &operator=(const Fixed &other);
 
 	bool operator>(const Fixed &right);
 	bool operator>=(const Fixed &right);
