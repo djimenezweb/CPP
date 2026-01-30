@@ -24,26 +24,26 @@ public:
 	float toFloat(void) const;
 	int toInt(void) const;
 
-	bool operator>(const Fixed &right);
-	bool operator>=(const Fixed &right);
-	bool operator<(const Fixed &right);
-	bool operator<=(const Fixed &right);
-	bool operator==(const Fixed &right);
-	bool operator!=(const Fixed &right);
+	bool operator>(const Fixed &other);
+	bool operator<(const Fixed &other);
+	bool operator>=(const Fixed &other);
+	bool operator<=(const Fixed &other);
+	bool operator==(const Fixed &other);
+	bool operator!=(const Fixed &other);
 
-	Fixed operator+(const Fixed &right);
-	Fixed operator-(const Fixed &right);
-	Fixed operator*(const Fixed &right);
-	Fixed operator/(const Fixed &right);
+	Fixed operator+(const Fixed &other);
+	Fixed operator-(const Fixed &other);
+	Fixed operator*(const Fixed &other);
+	Fixed operator/(const Fixed &other);
 
 	Fixed &operator++();
-	Fixed operator++(int);
 	Fixed &operator--();
+	Fixed operator++(int);
 	Fixed operator--(int);
 
 	static Fixed &min(Fixed &left, Fixed &right);
-	static Fixed min(const Fixed &left, const Fixed &right);
 	static Fixed &max(Fixed &left, Fixed &right);
+	static Fixed min(const Fixed &left, const Fixed &right);
 	static Fixed max(const Fixed &left, const Fixed &right);
 
 	static Fixed abs(const Fixed &other);
