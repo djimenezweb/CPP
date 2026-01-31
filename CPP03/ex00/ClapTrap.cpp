@@ -24,7 +24,7 @@ ClapTrap::ClapTrap(std::string set_name)
 ClapTrap::ClapTrap(const ClapTrap &other)
 {
 	*this = other;
-	std::cout << "ClapTrap " << name << " copied" << std::endl;
+	std::cout << "ClapTrap " << name << " copied via Copy constructor" << std::endl;
 }
 
 // Copy assignment operator overload `=`
@@ -37,7 +37,7 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &other)
 		energy_points = other.getEnergyPoints();
 		attack_damage = other.getAttackDamage();
 	}
-	std::cout << "ClapTrap " << name << " copied" << std::endl;
+	std::cout << "ClapTrap " << name << " copied via Copy assignment operator" << std::endl;
 	return (*this);
 }
 
@@ -46,6 +46,8 @@ ClapTrap::~ClapTrap()
 {
 	std::cout << "ClapTrap " << name << " destroyed" << std::endl;
 }
+
+// Getters
 
 std::string	ClapTrap::getName() const
 {
@@ -67,6 +69,8 @@ unsigned int	ClapTrap::getAttackDamage() const
 	return (attack_damage);
 }
 
+// Setters
+
 void	ClapTrap::setName(std::string set_name)
 {
 	name = set_name;
@@ -87,12 +91,14 @@ void	ClapTrap::setAttackDamage(unsigned int value)
 	attack_damage = value;
 }
 
+// Actions
+
 void ClapTrap::attack(const std::string &target)
 {
-	if (getEnergyPoints() == 0)
-	{
-		std::cout << "ClapTrap " << name << " is unable to attack " << target << " and doesn't cause any damage" << std::endl;
-	}
+	if (getHitPoints() == 0)
+		std::cout << "ClapTrap " << name << " is dead and doesn't attack" << std::endl;
+	else if (getEnergyPoints() == 0)
+		std::cout << "ClapTrap " << name << " has no energy to attack " << target << " and doesn't cause any damage" << std::endl;
 	else
 	{
 		setEnergyPoints(getEnergyPoints() - 1);
@@ -102,23 +108,29 @@ void ClapTrap::attack(const std::string &target)
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-	if (amount > getHitPoints())
+	if (getHitPoints() == 0)
+		std::cout << "ClapTrap " << name << " is dead and can't take any more damage" << std::endl;
+	else if (amount >= getHitPoints())
+	{
 		setHitPoints(0);
+		std::cout << "ClapTrap " << name << " is dead after taking " << amount << " points of damage" << std::endl;
+	}
 	else
+	{
 		setHitPoints(getHitPoints() - amount);
-	std::cout << "ClapTrap " << name << " takes " << amount << " points of damage" << std::endl;
+		std::cout << "ClapTrap " << name << " takes " << amount << " points of damage" << std::endl;
+	}
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-	if (getEnergyPoints() == 0)
-	{
-		std::cout << "ClapTrap " << name << " is unable to repair itself" << std::endl;
-	}
+	if (getHitPoints() == 0)
+		std::cout << "ClapTrap " << name << " is dead and can't repair itself" << std::endl;
+	else if (getEnergyPoints() == 0)
+		std::cout << "ClapTrap " << name << " has no energy to repair itself" << std::endl;
 	else
 	{
-		setHitPoints(getHitPoints() + 1);
+		setHitPoints(getHitPoints() + amount);
 		std::cout << "ClapTrap " << name << " gains " << amount << " hit points" << std::endl;
 	}
 }
-
