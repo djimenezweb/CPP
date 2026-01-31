@@ -30,7 +30,7 @@ $class_name::$class_name()
 // Copy constructor
 $class_name::$class_name(const $class_name &other)
 {
-	// Copy values
+	*this = other;
 }
 
 // Copy assignment operator overload \`=\`
