@@ -22,16 +22,10 @@ cat <<EOF > "$class_name.cpp"
 #include "$class_name.hpp"
 
 // Default constructor
-$class_name::$class_name()
-{
-	// Initialize values
-}
+$class_name::$class_name() {}
 
 // Copy constructor
-$class_name::$class_name(const $class_name &other)
-{
-	*this = other;
-}
+$class_name::$class_name(const $class_name &other) {}
 
 // Copy assignment operator overload \`=\`
 $class_name &$class_name::operator=(const $class_name &other)
