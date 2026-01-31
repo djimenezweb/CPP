@@ -59,7 +59,8 @@ cat << EOF > "$class_name.hpp"
 class $class_name
 {
 	private:
-	
+		// private member variable
+
 	public:
 		$class_name();
 		~$class_name();
