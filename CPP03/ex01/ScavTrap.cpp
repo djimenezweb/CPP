@@ -2,29 +2,20 @@
 #include "ClapTrap.hpp"
 
 // Default constructor
-ScavTrap::ScavTrap()
+ScavTrap::ScavTrap() : ClapTrap()
 {
-	name = "undefined";
-	hit_points = 100;
-	energy_points = 50;
-	attack_damage = 20;
 	std::cout << "Unnamed ScavTrap created" << std::endl;
 }
 
 // Parameterized constructor
 ScavTrap::ScavTrap(std::string set_name) : ClapTrap(set_name)
 {
-	name = set_name;
-	hit_points = 100;
-	energy_points = 50;
-	attack_damage = 20;
 	std::cout << "ScavTrap " << name << " created" << std::endl;
 }
 
 // Copy constructor
 ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other)
 {
-	*this = other;
 	std::cout << "ScavTrap " << name << " copied via Copy constructor" << std::endl;
 }
 
@@ -33,10 +24,10 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &other)
 {
 	if (this != &other)
 	{
-		name = other.getName();
-		hit_points = other.getHitPoints();
-		energy_points = other.getEnergyPoints();
-		attack_damage = other.getAttackDamage();
+		name = other.name;
+		hit_points = other.hit_points;
+		energy_points = other.energy_points;
+		attack_damage = other.attack_damage;
 	}
 	std::cout << "ScavTrap " << name << " copied via Copy assignment operator" << std::endl;
 	return (*this);
