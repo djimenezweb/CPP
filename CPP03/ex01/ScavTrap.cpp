@@ -4,12 +4,18 @@
 // Default constructor
 ScavTrap::ScavTrap() : ClapTrap()
 {
+	hit_points = 100;
+	energy_points = 50;
+	attack_damage = 20;
 	std::cout << "Unnamed ScavTrap created" << std::endl;
 }
 
 // Parameterized constructor
 ScavTrap::ScavTrap(std::string set_name) : ClapTrap(set_name)
 {
+	hit_points = 100;
+	energy_points = 50;
+	attack_damage = 20;
 	std::cout << "ScavTrap " << name << " created" << std::endl;
 }
 
