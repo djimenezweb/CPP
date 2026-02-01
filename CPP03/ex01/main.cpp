@@ -3,11 +3,11 @@
 
 int main(void)
 {
-	ScavTrap	albricius("Albricius");
+	ScavTrap	scav("Scavolini");
 
-	std::cout << "     Attack (20): " << albricius.getAttackDamage() << std::endl
-			  << "     Energy (50): " << albricius.getEnergyPoints() << std::endl
-			  << "Hit points (100): " << albricius.getHitPoints() << std::endl;
+	std::cout << "     Attack (20): " << scav.getAttackDamage() << std::endl
+			  << "     Energy (50): " << scav.getEnergyPoints() << std::endl
+			  << "Hit points (100): " << scav.getHitPoints() << std::endl;
 
 	//albricius.guardGate();
 	//albricius.attack("Brutus");
