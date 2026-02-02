@@ -3,6 +3,10 @@
 
 # include <iostream>
 
+# define CLAP_HITPTS 10
+# define CLAP_ENERGY 10
+# define CLAP_ATTACK 0
+
 class ClapTrap
 {
 	protected:
