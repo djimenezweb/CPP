@@ -3,9 +3,7 @@
 // Default constructor
 DiamondTrap::DiamondTrap() : ClapTrap()
 {
-	hit_points = FRAG_HITPTS;
 	energy_points = SCAV_ENERGY;
-	attack_damage = FRAG_ATTACK;
 	std::cout << "Unnamed DiamondTrap created" << std::endl;
 }
 
@@ -13,9 +11,7 @@ DiamondTrap::DiamondTrap() : ClapTrap()
 DiamondTrap::DiamondTrap(std::string set_name) : ClapTrap(set_name + "_clap_name")
 {
 	name = set_name;
-	hit_points = FRAG_HITPTS;
 	energy_points = SCAV_ENERGY;
-	attack_damage = FRAG_ATTACK;
 	std::cout << "DiamondTrap " << name << " created" << std::endl;
 }
 
