@@ -1,24 +1,25 @@
-#include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
-#include "FragTrap.hpp"
 #include "DiamondTrap.hpp"
 
 int main(void)
 {
-	//ClapTrap	clap("Claudius");
-	//ScavTrap	scav("Scavolini");
-	//FragTrap	frag("Frank");
-	DiamondTrap	dianne("Dianne");
+	std::cout << "CONSTRUCTORS" << std::endl;
+	DiamondTrap	diamond("Dianne");
+	std::cout << std::endl;
 
+	std::cout << "            Name: " << diamond.getName() << std::endl
+			  << "Hit points (100): " << diamond.getHitPoints() << std::endl
+			  << "     Energy (50): " << diamond.getEnergyPoints() << std::endl
+			  << "     Attack (30): " << diamond.getAttackDamage() << std::endl;
 
-	std::cout << "Hit points (100): " << dianne.getHitPoints() << std::endl
-			  << "     Energy (50): " << dianne.getEnergyPoints() << std::endl
-			  << "     Attack (30): " << dianne.getAttackDamage() << std::endl;
-	
-	dianne.whoAmI();
-	dianne.attack("Frank");
-	dianne.guardGate();
-	dianne.highFivesGuys();
+	std::cout << std::endl << "WHO AM I" << std::endl;
+	diamond.whoAmI();
+	std::cout << std::endl;
+
+	diamond.attack("Brutus");
+	diamond.guardGate();
+	diamond.highFivesGuys();
+
+	std::cout << std::endl << "DESTRUCTORS" << std::endl;
 
 	return (0);
 }
