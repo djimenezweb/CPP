@@ -1,19 +1,30 @@
 #include "ClapTrap.hpp"
 
 // Default constructor
-ClapTrap::ClapTrap() : hit_points(CLAP_HITPTS), energy_points(CLAP_ENERGY), attack_damage(CLAP_ATTACK)
+ClapTrap::ClapTrap() :
+	hit_points(CLAP_HITPTS),
+	energy_points(CLAP_ENERGY),
+	attack_damage(CLAP_ATTACK)
 {
 	std::cout << "Unnamed ClapTrap created" << std::endl;
 }
 
 // Parameterized constructor
-ClapTrap::ClapTrap(std::string set_name) : name(set_name), hit_points(CLAP_HITPTS), energy_points(CLAP_ENERGY), attack_damage(CLAP_ATTACK)
+ClapTrap::ClapTrap(std::string set_name) :
+	name(set_name),
+	hit_points(CLAP_HITPTS),
+	energy_points(CLAP_ENERGY),
+	attack_damage(CLAP_ATTACK)
 {
 	std::cout << "ClapTrap " << name << " created" << std::endl;
 }
 
 // Copy constructor
-ClapTrap::ClapTrap(const ClapTrap &other) : name(other.name), hit_points(other.hit_points), energy_points(other.energy_points), attack_damage(other.attack_damage)
+ClapTrap::ClapTrap(const ClapTrap &other) :
+	name(other.name),
+	hit_points(other.hit_points),
+	energy_points(other.energy_points),
+	attack_damage(other.attack_damage)
 {
 	std::cout << "ClapTrap " << name << " copied via Copy constructor" << std::endl;
 }

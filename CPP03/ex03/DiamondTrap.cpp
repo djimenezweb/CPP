@@ -1,14 +1,20 @@
 #include "DiamondTrap.hpp"
 
 // Default constructor
-DiamondTrap::DiamondTrap() : ClapTrap(), ScavTrap(), FragTrap()
+DiamondTrap::DiamondTrap() :
+	ClapTrap(),
+	ScavTrap(),
+	FragTrap()
 {
 	energy_points = SCAV_ENERGY;
 	std::cout << "Unnamed DiamondTrap created" << std::endl;
 }
 
 // Parameterized constructor
-DiamondTrap::DiamondTrap(std::string set_name) : ClapTrap(set_name + "_clap_name"), ScavTrap(set_name + "_clap_name"), FragTrap(set_name + "_clap_name")
+DiamondTrap::DiamondTrap(std::string set_name) :
+	ClapTrap(set_name + "_clap_name"),
+	ScavTrap(set_name + "_clap_name"),
+	FragTrap(set_name + "_clap_name")
 {
 	name = set_name;
 	energy_points = SCAV_ENERGY;
@@ -16,7 +22,10 @@ DiamondTrap::DiamondTrap(std::string set_name) : ClapTrap(set_name + "_clap_name
 }
 
 // Copy constructor
-DiamondTrap::DiamondTrap(const DiamondTrap &other) : ClapTrap(other), ScavTrap(other), FragTrap(other)
+DiamondTrap::DiamondTrap(const DiamondTrap &other) :
+	ClapTrap(other),
+	ScavTrap(other),
+	FragTrap(other)
 {
 	std::cout << "DiamondTrap " << name << " copied via Copy constructor" << std::endl;
 }
