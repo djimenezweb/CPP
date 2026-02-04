@@ -2,17 +2,18 @@
 # define ICE_H
 
 # include <iostream>
+# include "Materia.hpp"
 
-class Ice
+class Ice : public AMateria
 {
-	private:
-		// private member variable
-
 	public:
 		Ice();
 		~Ice();
 		Ice(const Ice &other);
 		Ice &operator=(const Ice &other);
+
+		AMateria* clone() const;
+		void use(ICharacter& target);
 };
 
 #endif
