@@ -3,16 +3,11 @@
 
 int main()
 {
-
-	// TO DO: Poner ejemplo para demostrar que los punteros son distintos
-/* 	Cat basic;
-	{
-		Cat tmp = basic;
-	} */
-
 	std::cout << "CONSTRUCTORS" << std::endl;
 	size_t size = 2;
 	Animal *arr[size];
+
+	//Animal animal;
 
 	for (size_t i = 0; i < size; i++)
 	{
