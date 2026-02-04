@@ -26,7 +26,8 @@ class Character : public ICharacter
 	public:
 		Character();
 		Character(std::string name);
-		virtual ~Character() {};
+		virtual ~Character() {}; //???
+		//~Character(); 			//???
 		Character(const Character &other);
 		Character &operator=(const Character &other);
 	
