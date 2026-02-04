@@ -7,6 +7,7 @@ Character::Character()
 	{
 		inventory[i] = NULL;
 	}
+	used[0] = NULL;
 }
 
 // Parameterized constructor
@@ -16,10 +17,15 @@ Character::Character(std::string name) : name(name)
 	{
 		inventory[i] = NULL;
 	}
+	used[0] = NULL;
 }
 
 // Copy constructor
 Character::Character(const Character &other) {}
+
+/* Any copy (using copy constructor or copy assignment operator)
+of a Character must be deep. During copy, the Materias of a Character
+must be deleted before the new ones are added to their inventory. */
 
 // Copy assignment operator overload `=`
 Character &Character::operator=(const Character &other)
@@ -34,7 +40,7 @@ Character &Character::operator=(const Character &other)
 // Destructor
 Character::~Character()
 {
-	// Delete allocated memory
+	/* The Materias must be deleted when a Character is destroyed. */
 }
 
 // Getter
@@ -57,11 +63,25 @@ void Character::equip(AMateria* m)
 // Unequip
 void Character::unequip(int idx)
 {
-	if (idx >= 0 && idx <= INV_SIZE && !inventory[idx])
+	if (idx < 0 && idx > INV_SIZE && !inventory[idx])
+		return ;
+
+	size_t	arr_size = 0;
+	while (used[arr_size])
+		arr_size++;
+
+	AMateria **new_arr = new AMateria*[arr_size + 1];
+
+	for (size_t i = 0; i < arr_size; i++)
 	{
-		// SAVE address before calling unequip
-		inventory[idx] = NULL; //????
+		new_arr[i] = used[i];
 	}
+	
+	new_arr[arr_size - 1] = inventory[idx];
+	new_arr[arr_size] = NULL;
+	delete[] used; // ???
+	used = new_arr;
+	inventory[idx] = NULL;
 }
 
 // Use
