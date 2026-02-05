@@ -53,17 +53,6 @@ void MateriaSource::learnMateria(AMateria *m)
 
 AMateria* MateriaSource::createMateria(std::string const &type)
 {
-	size_t j = 0;
-	while (j < INV_SIZE)
-	{
-		if (memory[j] == NULL)
-			std::cout << "| NULL ";
-		else
-			std::cout << "| " << memory[j]->getType() << " ";
-		j++;
-	}
-	std::cout << "|" << std::endl;
-
 	std::cout << "Creating Materia " << type << std::endl;
 	/* Returns a new Materia. The latter is a copy of the Materia previously
 	learned by the MateriaSource whose type equals the one passed as parameter.
@@ -78,4 +67,23 @@ AMateria* MateriaSource::createMateria(std::string const &type)
 		i++;
 	}
 	return (0);
+}
+
+// Display memory
+void MateriaSource::print_memory()
+{
+	size_t i = 0;
+	std::cout << "╔════╦════╦════╦════╗" << std::endl;
+	while (i < INV_SIZE)
+	{
+		if (memory[i] == NULL)
+			std::cout << "║    ";
+		else if (memory[i]->getType() == "ice")
+			std::cout << "║ 🧊 ";
+		else if (memory[i]->getType() == "cure")
+			std::cout << "║ 💊 ";
+		i++;
+	}
+	std::cout << "║" << std::endl;
+	std::cout << "╚════╩════╩════╩════╝" << std::endl;
 }

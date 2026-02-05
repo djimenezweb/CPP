@@ -66,12 +66,13 @@ void Character::equip(AMateria* m)
 		if (inventory[i] == NULL)
 		{
 			inventory[i] = m;
-			std::cout << "Equiped " << m->getType() << " in slot " << i << std::endl;
+			std::cout << "Equiped " << m->getType() << " in inventary slot " << i << std::endl;
 			break;
 		}
 		else
 			i++;
 	}
+	print_inventory();
 }
 
 // Unequip
@@ -105,4 +106,23 @@ void Character::use(int idx, ICharacter &target)
 	{
 		inventory[idx]->use(target);
 	}
+}
+
+// Display inventory
+void Character::print_inventory()
+{
+	size_t i = 0;
+	std::cout << "╔════╦════╦════╦════╗" << std::endl;
+	while (i < INV_SIZE)
+	{
+		if (inventory[i] == NULL)
+			std::cout << "║    ";
+		else if (inventory[i]->getType() == "ice")
+			std::cout << "║ 🧊 ";
+		else if (inventory[i]->getType() == "cure")
+			std::cout << "║ 💊 ";
+		i++;
+	}
+	std::cout << "║" << std::endl;
+	std::cout << "╚════╩════╩════╩════╝" << std::endl;
 }
