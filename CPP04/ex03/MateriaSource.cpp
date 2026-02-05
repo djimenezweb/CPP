@@ -52,7 +52,7 @@ AMateria* MateriaSource::createMateria(std::string const &type)
 	Returns 0 if the type is unknown. */
 	for (size_t i = 0; i < INV_SIZE; i++)
 	{
-		if (memory[i]->getType() == type)
+		if (memory[i] && memory[i]->getType() == type)
 			return (memory[i]->clone());
 	}
 	return (0);

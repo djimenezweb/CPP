@@ -7,6 +7,7 @@ Character::Character()
 	{
 		inventory[i] = NULL;
 	}
+	AMateria *used[1];
 	used[0] = NULL;
 }
 
@@ -17,6 +18,7 @@ Character::Character(std::string name) : name(name)
 	{
 		inventory[i] = NULL;
 	}
+	AMateria *used[1];
 	used[0] = NULL;
 }
 
@@ -91,6 +93,7 @@ void Character::unequip(int idx)
 // Use
 void Character::use(int idx, ICharacter &target)
 {
-	if (idx >= 0 && idx <= INV_SIZE && !inventory[idx])
+	std::cout << "Character use " << idx << " " << target.getName() << std::endl;
+	if (idx >= 0 && idx <= INV_SIZE && inventory[idx])
 		inventory[idx]->use(target);
 }

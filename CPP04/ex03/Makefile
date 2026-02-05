@@ -22,6 +22,9 @@ fclean : clean
 
 re : fclean all
 
+debug :
+	$(MAKE) re CXXFLAGS="$(CXXFLAGS) -g3 -O0"
+
 -include $(OBJS:.o=.d)
 
-.PHONY : all clean fclean re
+.PHONY : all clean fclean re debug
