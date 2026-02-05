@@ -29,7 +29,7 @@ Cure::~Cure()
 // Clone
 AMateria* Cure::clone() const
 {
-	Cure	*p = new Cure();
+	Cure *p = new Cure();
 	return (p);
 }
 

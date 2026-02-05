@@ -29,7 +29,7 @@ Ice::~Ice()
 // Clone
 AMateria* Ice::clone() const
 {
-	Ice	*p = new Ice();
+	Ice *p = new Ice();
 	return (p);
 }
 

@@ -9,6 +9,7 @@ Character::Character()
 	}
 	AMateria *used[1];
 	used[0] = NULL;
+	std::cout << "Created unnamed Character" << std::endl;
 }
 
 // Parameterized constructor
@@ -20,6 +21,7 @@ Character::Character(std::string name) : name(name)
 	}
 	AMateria *used[1];
 	used[0] = NULL;
+	std::cout << "Created Character " << name << std::endl;
 }
 
 // Copy constructor
@@ -58,11 +60,17 @@ std::string const &Character::getName() const
 // Equip
 void Character::equip(AMateria* m)
 {
-	for (size_t i = 0; i < INV_SIZE; i++)
+	size_t i = 0;
+	while (i < INV_SIZE)
 	{
-		if (!inventory[i])
-			continue;
-		inventory[i] = m;
+		if (inventory[i] == NULL)
+		{
+			inventory[i] = m;
+			std::cout << "Equiped " << m->getType() << " in slot " << i << std::endl;
+			break;
+		}
+		else
+			i++;
 	}
 }
 
@@ -93,10 +101,8 @@ void Character::unequip(int idx)
 // Use
 void Character::use(int idx, ICharacter &target)
 {
-	std::cout << "Character use " << idx << " " << target.getName() << std::endl;
 	if (idx >= 0 && idx <= INV_SIZE && inventory[idx])
 	{
-		std::cout << inventory[idx]->getType() << std::endl;
 		inventory[idx]->use(target);
 	}
 }
