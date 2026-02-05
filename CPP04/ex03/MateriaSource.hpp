@@ -15,7 +15,7 @@ class IMateriaSource
 class MateriaSource : public IMateriaSource
 {
 	private:
-		// private member variable
+		AMateria	*memory[INV_SIZE];
 
 	public:
 		MateriaSource();
@@ -23,7 +23,7 @@ class MateriaSource : public IMateriaSource
 		MateriaSource(const MateriaSource &other);
 		MateriaSource &operator=(const MateriaSource &other);
 
-		void learnMateria(AMateria*);
+		void learnMateria(AMateria *m);
 		AMateria* createMateria(std::string const &type);
 };
 

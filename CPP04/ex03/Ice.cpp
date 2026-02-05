@@ -4,7 +4,11 @@
 Ice::Ice() : AMateria("ice") {}
 
 // Copy constructor
-Ice::Ice(const Ice &other) {}
+Ice::Ice(const Ice &other)
+{
+	// TO DO !!!
+	(void)other;
+}
 
 // Copy assignment operator overload `=`
 Ice &Ice::operator=(const Ice &other)

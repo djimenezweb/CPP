@@ -21,7 +21,11 @@ Character::Character(std::string name) : name(name)
 }
 
 // Copy constructor
-Character::Character(const Character &other) {}
+Character::Character(const Character &other)
+{
+	// TO DO !!!
+	(void)other;
+}
 
 /* Any copy (using copy constructor or copy assignment operator)
 of a Character must be deep. During copy, the Materias of a Character

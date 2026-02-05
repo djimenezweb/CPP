@@ -2,17 +2,18 @@
 # define CURE_H
 
 # include <iostream>
+# include "Materia.hpp"
 
-class Cure
+class Cure : public AMateria
 {
-	private:
-		// private member variable
-
 	public:
 		Cure();
 		~Cure();
 		Cure(const Cure &other);
 		Cure &operator=(const Cure &other);
+
+		AMateria* clone() const;
+		void use(ICharacter& target);
 };
 
 #endif

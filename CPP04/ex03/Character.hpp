@@ -6,6 +6,8 @@
 
 # define INV_SIZE 4
 
+class AMateria;
+
 class ICharacter
 {
 	public:
@@ -26,8 +28,8 @@ class Character : public ICharacter
 	public:
 		Character();
 		Character(std::string name);
-		virtual ~Character() {}; //???
-		//~Character(); 			//???
+		//virtual ~Character() {}; //???
+		~Character(); 			//???
 		Character(const Character &other);
 		Character &operator=(const Character &other);
 	

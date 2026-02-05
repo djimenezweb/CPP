@@ -1,10 +1,14 @@
 #include "Cure.hpp"
 
 // Default constructor
-Cure::Cure() {}
+Cure::Cure() : AMateria("cure") {}
 
 // Copy constructor
-Cure::Cure(const Cure &other) {}
+Cure::Cure(const Cure &other)
+{
+	// TO DO !!!
+	(void)other;
+}
 
 // Copy assignment operator overload `=`
 Cure &Cure::operator=(const Cure &other)
@@ -20,4 +24,17 @@ Cure &Cure::operator=(const Cure &other)
 Cure::~Cure()
 {
 	// Delete allocated memory
+}
+
+// Clone
+AMateria* Cure::clone() const
+{
+	Cure	*p = new Cure();
+	return (p);
+}
+
+// Use
+void Cure::use(ICharacter& target)
+{
+	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
 }
