@@ -37,12 +37,20 @@ void MateriaSource::learnMateria(AMateria *m)
 	/* Copies the Materia passed as a parameter and stores it in memory so it can
 	be cloned later. Like the Character, the MateriaSource can know at most 4 Materias.
 	They are not necessarily unique */
-	for (size_t i = 0; i < INV_SIZE; i++)
+	size_t i = 0;
+	while (memory[i] && i < INV_SIZE)
+		i++;
+	memory[i] = m;
+	std::cout << &m << std::endl;
+	std::cout << memory[i] << std::endl;
+/* 	for (size_t i = 0; i < INV_SIZE; i++)
 	{
-		if (!memory[i])
+		if (memory[i])
 			continue;
 		memory[i] = m;
-	}
+		std::cout << &m << std::endl;
+		std::cout << &memory[i] << std::endl;
+	} */
 }
 
 AMateria* MateriaSource::createMateria(std::string const &type)

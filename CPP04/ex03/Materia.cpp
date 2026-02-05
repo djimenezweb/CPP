@@ -37,5 +37,6 @@ std::string const &AMateria::getType() const
 // TO DO: ¿Qué hacemos con este método?
 void AMateria::use(ICharacter& target)
 {
-	std::cout << "* AMateria::use " << target.getName() << " *" << std::endl;
+	(void)target;
+	//std::cout << "* AMateria::use " << target.getName() << " *" << std::endl;
 }

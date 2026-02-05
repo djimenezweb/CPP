@@ -95,5 +95,8 @@ void Character::use(int idx, ICharacter &target)
 {
 	std::cout << "Character use " << idx << " " << target.getName() << std::endl;
 	if (idx >= 0 && idx <= INV_SIZE && inventory[idx])
+	{
+		std::cout << inventory[idx]->getType() << std::endl;
 		inventory[idx]->use(target);
+	}
 }
