@@ -18,7 +18,20 @@ int main()
 	tmp = src->createMateria("cure");
 	me->equip(tmp);
 	me->unequip(0);
-	me->unequip(1);
+	//me->unequip(1);
+
+	std::cout << "Copy character me2" << std::endl;
+	ICharacter* me2(me);
+	//Character *me2(me);
+	std::cout << "Copy character me2" << std::endl;
+
+	AMateria* tmp2;
+	tmp2 = src->createMateria("cure");
+	me2->equip(tmp2);
+	tmp2 = src->createMateria("ice");
+	me2->equip(tmp2);
+	me2->unequip(0);
+	//me2->unequip(1);
 
 	ICharacter* bob = new Character("bob");
 	me->use(0, *bob);
@@ -26,6 +39,7 @@ int main()
 
 	delete bob;
 	delete me;
+	//delete me2;
 	delete src;
 
 	return (0);

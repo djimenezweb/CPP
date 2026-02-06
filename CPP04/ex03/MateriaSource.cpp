@@ -12,8 +12,10 @@ MateriaSource::MateriaSource()
 // Copy constructor
 MateriaSource::MateriaSource(const MateriaSource &other)
 {
-	// TO DO !!!!!
-	(void)other;
+	for (size_t i = 0; i < INV_SIZE; i++)
+	{
+		memory[i] = other.memory[i];
+	}
 }
 
 // Copy assignment operator overload `=`
@@ -21,7 +23,10 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &other)
 {
 	if (this != &other)
 	{
-		// TO DO !!! Copy values
+		for (size_t i = 0; i < INV_SIZE; i++)
+		{
+			memory[i] = other.memory[i];
+		}
 	}
 	return (*this);
 }

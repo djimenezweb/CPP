@@ -12,10 +12,11 @@ class ICharacter
 {
 	public:
 		virtual ~ICharacter() {};
-		virtual std::string const &getName() const = 0;
-		virtual void equip(AMateria* m) = 0;
-		virtual void unequip(int idx) = 0;
-		virtual void use(int idx, ICharacter &target) = 0;
+
+		virtual std::string const	&getName() const = 0;
+		virtual void				equip(AMateria* m) = 0;
+		virtual void				unequip(int idx) = 0;
+		virtual void				use(int idx, ICharacter &target) = 0;
 };
 
 class Character : public ICharacter
@@ -24,21 +25,22 @@ class Character : public ICharacter
 		std::string	name;
 		AMateria	*inventory[INV_SIZE];
 		AMateria	**used;
+		void		delete_inventory();
+		void		delete_used();
 
 	public:
 		Character();
 		Character(std::string name);
-		//virtual ~Character() {}; //???
-		~Character(); 			//???
+		~Character();
 		Character(const Character &other);
 		Character &operator=(const Character &other);
 	
-		std::string const &getName() const;
-		void equip(AMateria* m);
-		void unequip(int idx);
-		void use(int idx, ICharacter &target);
+		std::string const	&getName() const;
+		void				equip(AMateria* m);
+		void				unequip(int idx);
+		void				use(int idx, ICharacter &target);
 
-		void print_inventory();
+		void	print_inventory();
 };
 
 #endif

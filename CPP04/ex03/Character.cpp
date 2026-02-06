@@ -3,6 +3,7 @@
 // Default constructor
 Character::Character()
 {
+	std::cout << "Character default constr." << std::endl;
 	for (size_t i = 0; i < INV_SIZE; i++)
 	{
 		inventory[i] = NULL;
@@ -14,6 +15,7 @@ Character::Character()
 // Parameterized constructor
 Character::Character(std::string name) : name(name)
 {
+	std::cout << "Character param constr.: " << name << std::endl;
 	for (size_t i = 0; i < INV_SIZE; i++)
 	{
 		inventory[i] = NULL;
@@ -25,28 +27,67 @@ Character::Character(std::string name) : name(name)
 // Copy constructor
 Character::Character(const Character &other)
 {
-	// TO DO !!!
-	(void)other;
+	std::cout << "Character copy constr." << std::endl;
+	name = other.name;
+	delete_inventory();
+	delete_used();
+	for (size_t i = 0; i < INV_SIZE; i++)
+	{
+		inventory[i] = other.inventory[i]->clone();
+	}
+	size_t	used_size = 0;
+	while (other.used[used_size] != NULL)
+		used_size++;
+	used = new AMateria*[used_size + 1];
+	for (size_t i = 0; i < used_size; i++)
+	{
+		used[i] = other.used[i]->clone();
+	}
+	used[used_size + 1] = NULL;
 }
-
-/* Any copy (using copy constructor or copy assignment operator)
-of a Character must be deep. During copy, the Materias of a Character
-must be deleted before the new ones are added to their inventory. */
 
 // Copy assignment operator overload `=`
 Character &Character::operator=(const Character &other)
 {
+	std::cout << "Character copy assignment" << std::endl;
 	if (this != &other)
 	{
-		// TO DO !!! Copy values
+		name = other.name;
+		delete_inventory();
+		delete_used();
+		for (size_t i = 0; i < INV_SIZE; i++)
+		{
+			inventory[i] = other.inventory[i]->clone();
+		}
+		size_t	used_size = 0;
+		while (other.used[used_size] != NULL)
+			used_size++;
+		used = new AMateria*[used_size + 1];
+		for (size_t i = 0; i < used_size; i++)
+		{
+			used[i] = other.used[i]->clone();
+		}
+		used[used_size + 1] = NULL;
 	}
 	return (*this);
 }
 
-// Destructor
-Character::~Character()
+// Delete inventory
+void Character::delete_inventory()
 {
-	// Delete used materias
+	for (size_t i = 0; i < INV_SIZE; i++)
+	{
+		if (inventory[i] != NULL)
+		{
+			delete inventory[i];
+			inventory[i] = NULL;
+		}
+	}
+}
+
+// Delete used materias
+void Character::delete_used()
+{
 	size_t	used_size = 0;
 	while (used[used_size] != NULL)
 		used_size++;
@@ -54,15 +95,16 @@ Character::~Character()
 	{
 		std::cout << "Deleting pointer: " << used[i] << std::endl;
 		delete used[i];
+		used[i] = NULL;
 	}
 	delete[] used;
+}
 
-	// Delete inventory
-	for (size_t i = 0; i < INV_SIZE; i++)
-	{
-		if (inventory[i] != NULL)
-			delete inventory[i];
-	}
+// Destructor
+Character::~Character()
+{
+	delete_used();
+	delete_inventory();
 }
 
 // Getter
