@@ -6,17 +6,13 @@ Ice::Ice() : AMateria("ice") {}
 // Copy constructor
 Ice::Ice(const Ice &other) : AMateria("ice")
 {
-	// TO DO !!!
 	(void)other;
 }
 
 // Copy assignment operator overload `=`
 Ice &Ice::operator=(const Ice &other)
 {
-	if (this != &other)
-	{
-		// TO DO !!! Copy values
-	}
+	(void)other;
 	return (*this);
 }
 

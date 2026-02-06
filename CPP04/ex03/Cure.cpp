@@ -6,17 +6,13 @@ Cure::Cure() : AMateria("cure") {}
 // Copy constructor
 Cure::Cure(const Cure &other) : AMateria("cure")
 {
-	// TO DO !!!
 	(void)other;
 }
 
 // Copy assignment operator overload `=`
 Cure &Cure::operator=(const Cure &other)
 {
-	if (this != &other)
-	{
-		// TO DO !!! Copy values
-	}
+	(void)other;
 	return (*this);
 }
 

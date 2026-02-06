@@ -3,7 +3,6 @@
 // Default constructor
 Character::Character()
 {
-	std::cout << "Character default constr." << std::endl;
 	for (size_t i = 0; i < INV_SIZE; i++)
 	{
 		inventory[i] = NULL;
@@ -15,7 +14,6 @@ Character::Character()
 // Parameterized constructor
 Character::Character(std::string name) : name(name)
 {
-	std::cout << "Character param constr.: " << name << std::endl;
 	for (size_t i = 0; i < INV_SIZE; i++)
 	{
 		inventory[i] = NULL;
@@ -27,7 +25,6 @@ Character::Character(std::string name) : name(name)
 // Copy constructor
 Character::Character(const Character &other) : name(other.name)
 {
-	std::cout << "Character copy constr." << std::endl;
 	// Copy inventory
 	for (size_t i = 0; i < INV_SIZE; i++)
 	{
@@ -36,6 +33,8 @@ Character::Character(const Character &other) : name(other.name)
 		else
 			inventory[i] = NULL;
 	}
+
+	// Init array of used materias
 	used = new AMateria*[1];
 	used[0] = NULL;
 }
@@ -43,12 +42,13 @@ Character::Character(const Character &other) : name(other.name)
 // Copy assignment operator overload `=`
 Character &Character::operator=(const Character &other)
 {
-	std::cout << "Character copy assignment" << std::endl;
 	if (this != &other)
 	{
 		name = other.name;
 		delete_inventory();
 		delete_used();
+
+		// Copy inventory
 		for (size_t i = 0; i < INV_SIZE; i++)
 		{
 			if (other.inventory[i] != NULL)
@@ -56,15 +56,10 @@ Character &Character::operator=(const Character &other)
 			else
 				inventory[i] = NULL;
 		}
-		size_t	used_size = 0;
-		while (other.used[used_size] != NULL)
-			used_size++;
-		used = new AMateria*[used_size + 1];
-		for (size_t i = 0; i < used_size; i++)
-		{
-			used[i] = other.used[i]->clone();
-		}
-		used[used_size] = NULL;
+
+		// Init array of used materias
+		used = new AMateria*[1];
+		used[0] = NULL;
 	}
 	return (*this);
 }
@@ -133,17 +128,20 @@ void Character::unequip(int idx)
 	std::cout << "Unequip " << inventory[idx]->getType() << " from slot " << idx
 			  << ". Pointer to be deleted: " << inventory[idx] << std::endl;
 
+	// Create new array
 	size_t	used_size = 0;
 	while (used[used_size])
 		used_size++;
 	AMateria **new_arr = new AMateria*[used_size + 2];
+
+	// Copy old array to new array
 	for (size_t i = 0; i < used_size + 1; i++)
 	{
 		new_arr[i] = used[i];
 	}
 	new_arr[used_size] = inventory[idx];
 	new_arr[used_size + 1] = NULL;
-	delete[] used; // ???
+	delete[] used;
 	used = new_arr;
 	inventory[idx] = NULL;
 	print_inventory();
