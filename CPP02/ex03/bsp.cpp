@@ -16,6 +16,13 @@ bool bsp(Point const a, Point const b, Point const c, Point const point)
 	Fixed total_area;
 	Fixed sub_areas;
 
+	if (a.get_x() == point.get_x() && a.get_y() == point.get_y())
+		return (false);
+	if (b.get_x() == point.get_x() && b.get_y() == point.get_y())
+		return (false);
+	if (c.get_x() == point.get_x() && c.get_y() == point.get_y())
+		return (false);
+
 	total_area = triangle_area(a, b, c);
 	sub_areas = triangle_area(a, b, point) + triangle_area(a, c, point) +
 				triangle_area(b, c, point);
