@@ -3,6 +3,7 @@
 // Default constructor
 MateriaSource::MateriaSource()
 {
+	std::cout << "MateriaSource default constructor" << std::endl;
 	for (size_t i = 0; i < INV_SIZE; i++)
 	{
 		memory[i] = NULL;
@@ -12,6 +13,7 @@ MateriaSource::MateriaSource()
 // Copy constructor
 MateriaSource::MateriaSource(const MateriaSource &other)
 {
+	std::cout << "MateriaSource copy constructor" << std::endl;
 	for (size_t i = 0; i < INV_SIZE; i++)
 	{
 		memory[i] = other.memory[i];
@@ -21,6 +23,7 @@ MateriaSource::MateriaSource(const MateriaSource &other)
 // Copy assignment operator overload `=`
 MateriaSource &MateriaSource::operator=(const MateriaSource &other)
 {
+	std::cout << "MateriaSource copy assignment" << std::endl;
 	if (this != &other)
 	{
 		for (size_t i = 0; i < INV_SIZE; i++)
@@ -34,6 +37,7 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &other)
 // Destructor
 MateriaSource::~MateriaSource()
 {
+	std::cout << "MateriaSource destructor" << std::endl;
 	for (size_t i = 0; i < INV_SIZE; i++)
 	{
 		if (memory[i] != NULL)

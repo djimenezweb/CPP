@@ -3,6 +3,7 @@
 // Default constructor
 Character::Character()
 {
+	std::cout << "Character default constructor" << std::endl;
 	for (size_t i = 0; i < INV_SIZE; i++)
 	{
 		inventory[i] = NULL;
@@ -14,6 +15,7 @@ Character::Character()
 // Parameterized constructor
 Character::Character(std::string name) : name(name)
 {
+	std::cout << "Character parameterized constructor: " << name << std::endl;
 	for (size_t i = 0; i < INV_SIZE; i++)
 	{
 		inventory[i] = NULL;
@@ -25,6 +27,7 @@ Character::Character(std::string name) : name(name)
 // Copy constructor
 Character::Character(const Character &other) : name(other.name)
 {
+	std::cout << "Character copy constructor" << std::endl;
 	// Copy inventory
 	for (size_t i = 0; i < INV_SIZE; i++)
 	{
@@ -42,6 +45,7 @@ Character::Character(const Character &other) : name(other.name)
 // Copy assignment operator overload `=`
 Character &Character::operator=(const Character &other)
 {
+	std::cout << "Character copy assignment" << std::endl;
 	if (this != &other)
 	{
 		name = other.name;
@@ -62,6 +66,14 @@ Character &Character::operator=(const Character &other)
 		used[0] = NULL;
 	}
 	return (*this);
+}
+
+// Destructor
+Character::~Character()
+{
+	std::cout << "Character destructor" << std::endl;
+	delete_used();
+	delete_inventory();
 }
 
 // Delete inventory
@@ -87,13 +99,6 @@ void Character::delete_used()
 		used[i] = NULL;
 	}
 	delete[] used;
-}
-
-// Destructor
-Character::~Character()
-{
-	delete_used();
-	delete_inventory();
 }
 
 // Getter

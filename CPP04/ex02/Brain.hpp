@@ -3,12 +3,12 @@
 
 # include <iostream>
 
-# define IDEA_SIZE 100
+# define IDEAS_SIZE 100
 
 class Brain
 {
 	private:
-		std::string ideas[IDEA_SIZE];
+		std::string ideas[IDEAS_SIZE];
 
 	public:
 		Brain();
