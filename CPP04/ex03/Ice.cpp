@@ -4,7 +4,7 @@
 Ice::Ice() : AMateria("ice") {}
 
 // Copy constructor
-Ice::Ice(const Ice &other)
+Ice::Ice(const Ice &other) : AMateria("ice")
 {
 	// TO DO !!!
 	(void)other;

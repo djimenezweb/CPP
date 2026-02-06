@@ -4,7 +4,7 @@
 Cure::Cure() : AMateria("cure") {}
 
 // Copy constructor
-Cure::Cure(const Cure &other)
+Cure::Cure(const Cure &other) : AMateria("cure")
 {
 	// TO DO !!!
 	(void)other;
