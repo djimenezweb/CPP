@@ -43,32 +43,24 @@ MateriaSource::~MateriaSource()
 
 void MateriaSource::learnMateria(AMateria *m)
 {
-	size_t i = 0;
-	while (i < INV_SIZE)
+	for (size_t i = 0; i < INV_SIZE; i++)
 	{
 		if (memory[i] == NULL)
 		{
 			memory[i] = m;
 			break;
 		}
-		else
-			i++;
 	}
 }
 
 AMateria* MateriaSource::createMateria(std::string const &type)
 {
-	size_t i = 0;
-	while (i < INV_SIZE)
+	for (size_t i = 0; i < INV_SIZE; i++)
 	{
 		if (memory[i] == NULL)
-		{
-			i++;
 			continue;
-		}
-		else if (memory[i]->getType() == type)
+		if (memory[i]->getType() == type)
 			return (memory[i]->clone());
-		i++;
 	}
 	return (0);
 }

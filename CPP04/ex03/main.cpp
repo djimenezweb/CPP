@@ -27,11 +27,9 @@ int main()
 		delete bob;
 		delete me;
 		delete src;
-
-		return 0;
 	}
 
-	/* {
+	/*{
 		IMateriaSource* src = new MateriaSource();
 		src->learnMateria(new Ice());
 		src->learnMateria(new Cure());
@@ -67,7 +65,7 @@ int main()
 		delete me2;
 		delete me3;
 		delete src;
-	} */
+	}*/
 
 	return (0);
 }
