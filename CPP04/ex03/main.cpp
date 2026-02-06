@@ -29,23 +29,23 @@ int main()
 	*me3 = *static_cast<Character*>(me);
 	std::cout << "END Copy assignment me3" << std::endl;
 
-	(void)me2;
-	(void)me3;
-	//AMateria* tmp2;
-	//tmp2 = src->createMateria("cure");
-	//me2->equip(tmp2);
-	//tmp2 = src->createMateria("ice");
-	//me2->equip(tmp2);
-	//me2->unequip(0);
-	//me2->unequip(1);
 
-	//ICharacter* bob = new Character("bob");
-	//me->use(0, *bob);
-	//me->use(1, *bob);
+	AMateria* tmp2;
+	tmp2 = src->createMateria("cure");
+	me2->equip(tmp2);
+	tmp2 = src->createMateria("ice");
+	me2->equip(tmp2);
+	me2->unequip(0);
+	me2->unequip(1);
 
-	//delete bob;
+	ICharacter* bob = new Character("bob");
+	me->use(0, *bob);
+	me->use(1, *bob);
+
+	delete bob;
 	delete me;
-	//delete me2;
+	delete me2;
+	delete me3;
 	delete src;
 
 	return (0);

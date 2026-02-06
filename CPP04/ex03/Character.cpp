@@ -33,18 +33,11 @@ Character::Character(const Character &other) : name(other.name)
 	{
 		if (other.inventory[i] != NULL)
 			inventory[i] = other.inventory[i]->clone();
+		else
+			inventory[i] = NULL;
 	}
-
-	// Copy used <- NECESSARY??
-	//size_t	used_size = 0;
-	//while (other.used[used_size] != NULL)
-	//	used_size++;
-	//used = new AMateria*[used_size + 1];
-	//for (size_t i = 0; i < used_size; i++)
-	//{
-	//	used[i] = other.used[i]->clone();
-	//}
-	//used[used_size + 1] = NULL;
+	used = new AMateria*[1];
+	used[0] = NULL;
 }
 
 // Copy assignment operator overload `=`
@@ -58,7 +51,10 @@ Character &Character::operator=(const Character &other)
 		delete_used();
 		for (size_t i = 0; i < INV_SIZE; i++)
 		{
-			inventory[i] = other.inventory[i]->clone();
+			if (other.inventory[i] != NULL)
+				inventory[i] = other.inventory[i]->clone();
+			else
+				inventory[i] = NULL;
 		}
 		size_t	used_size = 0;
 		while (other.used[used_size] != NULL)
@@ -68,7 +64,7 @@ Character &Character::operator=(const Character &other)
 		{
 			used[i] = other.used[i]->clone();
 		}
-		used[used_size + 1] = NULL;
+		used[used_size] = NULL;
 	}
 	return (*this);
 }
@@ -78,11 +74,8 @@ void Character::delete_inventory()
 {
 	for (size_t i = 0; i < INV_SIZE; i++)
 	{
-		if (inventory[i] != NULL)
-		{
-			delete inventory[i];
-			inventory[i] = NULL;
-		}
+		delete inventory[i];
+		inventory[i] = NULL;
 	}
 }
 
