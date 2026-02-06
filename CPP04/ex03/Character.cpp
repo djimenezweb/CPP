@@ -7,9 +7,8 @@ Character::Character()
 	{
 		inventory[i] = NULL;
 	}
-	AMateria *used[1];
+	used = new AMateria*[1];
 	used[0] = NULL;
-	std::cout << "Created unnamed Character" << std::endl;
 }
 
 // Parameterized constructor
@@ -19,9 +18,8 @@ Character::Character(std::string name) : name(name)
 	{
 		inventory[i] = NULL;
 	}
-	AMateria *used[1];
+	used = new AMateria*[1];
 	used[0] = NULL;
-	std::cout << "Created Character " << name << std::endl;
 }
 
 // Copy constructor
@@ -40,7 +38,7 @@ Character &Character::operator=(const Character &other)
 {
 	if (this != &other)
 	{
-		// Copy values
+		// TO DO !!! Copy values
 	}
 	return (*this);
 }
@@ -48,7 +46,23 @@ Character &Character::operator=(const Character &other)
 // Destructor
 Character::~Character()
 {
-	/* The Materias must be deleted when a Character is destroyed. */
+	// Delete used materias
+	size_t	used_size = 0;
+	while (used[used_size] != NULL)
+		used_size++;
+	for (size_t i = 0; i < used_size; i++)
+	{
+		std::cout << "Deleting pointer: " << used[i] << std::endl;
+		delete used[i];
+	}
+	delete[] used;
+
+	// Delete inventory
+	for (size_t i = 0; i < INV_SIZE; i++)
+	{
+		if (inventory[i] != NULL)
+			delete inventory[i];
+	}
 }
 
 // Getter
@@ -66,7 +80,7 @@ void Character::equip(AMateria* m)
 		if (inventory[i] == NULL)
 		{
 			inventory[i] = m;
-			std::cout << "Equiped " << m->getType() << " in inventary slot " << i << std::endl;
+			std::cout << "Equip " << m->getType() << " in inventory slot " << i << std::endl;
 			break;
 		}
 		else
@@ -80,23 +94,23 @@ void Character::unequip(int idx)
 {
 	if (idx < 0 && idx > INV_SIZE && !inventory[idx])
 		return ;
+	std::cout << "Unequip " << inventory[idx]->getType() << " from slot " << idx
+			  << ". Pointer to be deleted: " << inventory[idx] << std::endl;
 
-	size_t	arr_size = 0;
-	while (used[arr_size])
-		arr_size++;
-
-	AMateria **new_arr = new AMateria*[arr_size + 1];
-
-	for (size_t i = 0; i < arr_size; i++)
+	size_t	used_size = 0;
+	while (used[used_size])
+		used_size++;
+	AMateria **new_arr = new AMateria*[used_size + 2];
+	for (size_t i = 0; i < used_size + 1; i++)
 	{
 		new_arr[i] = used[i];
 	}
-	
-	new_arr[arr_size - 1] = inventory[idx];
-	new_arr[arr_size] = NULL;
+	new_arr[used_size] = inventory[idx];
+	new_arr[used_size + 1] = NULL;
 	delete[] used; // ???
 	used = new_arr;
 	inventory[idx] = NULL;
+	print_inventory();
 }
 
 // Use
@@ -112,7 +126,9 @@ void Character::use(int idx, ICharacter &target)
 void Character::print_inventory()
 {
 	size_t i = 0;
-	std::cout << "╔════╦════╦════╦════╗" << std::endl;
+	std::cout << "╔═══════════════════╗" << std::endl;
+	std::cout << "║ I N V E N T O R Y ║" << std::endl;
+	std::cout << "╠════╦════╦════╦════╣" << std::endl;
 	while (i < INV_SIZE)
 	{
 		if (inventory[i] == NULL)

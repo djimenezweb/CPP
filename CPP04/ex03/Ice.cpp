@@ -15,16 +15,13 @@ Ice &Ice::operator=(const Ice &other)
 {
 	if (this != &other)
 	{
-		// Copy values
+		// TO DO !!! Copy values
 	}
 	return (*this);
 }
 
 // Destructor
-Ice::~Ice()
-{
-	// Delete allocated memory
-}
+Ice::~Ice() {}
 
 // Clone
 AMateria* Ice::clone() const

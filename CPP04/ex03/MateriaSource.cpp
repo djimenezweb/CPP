@@ -21,7 +21,7 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &other)
 {
 	if (this != &other)
 	{
-		// Copy values
+		// TO DO !!! Copy values
 	}
 	return (*this);
 }
@@ -29,15 +29,15 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &other)
 // Destructor
 MateriaSource::~MateriaSource()
 {
-	// Delete allocated memory
+	for (size_t i = 0; i < INV_SIZE; i++)
+	{
+		if (memory[i] != NULL)
+			delete memory[i];
+	}
 }
 
 void MateriaSource::learnMateria(AMateria *m)
 {
-	std::cout << "Learning Materia " << m->getType() << std::endl;
-	/* Copies the Materia passed as a parameter and stores it in memory so it can
-	be cloned later. Like the Character, the MateriaSource can know at most 4 Materias.
-	They are not necessarily unique */
 	size_t i = 0;
 	while (i < INV_SIZE)
 	{
@@ -53,37 +53,17 @@ void MateriaSource::learnMateria(AMateria *m)
 
 AMateria* MateriaSource::createMateria(std::string const &type)
 {
-	std::cout << "Creating Materia " << type << std::endl;
-	/* Returns a new Materia. The latter is a copy of the Materia previously
-	learned by the MateriaSource whose type equals the one passed as parameter.
-	Returns 0 if the type is unknown. */
 	size_t i = 0;
 	while (i < INV_SIZE)
 	{
 		if (memory[i] == NULL)
-			return (0);
+		{
+			i++;
+			continue;
+		}
 		else if (memory[i]->getType() == type)
 			return (memory[i]->clone());
 		i++;
 	}
 	return (0);
-}
-
-// Display memory
-void MateriaSource::print_memory()
-{
-	size_t i = 0;
-	std::cout << "╔════╦════╦════╦════╗" << std::endl;
-	while (i < INV_SIZE)
-	{
-		if (memory[i] == NULL)
-			std::cout << "║    ";
-		else if (memory[i]->getType() == "ice")
-			std::cout << "║ 🧊 ";
-		else if (memory[i]->getType() == "cure")
-			std::cout << "║ 💊 ";
-		i++;
-	}
-	std::cout << "║" << std::endl;
-	std::cout << "╚════╩════╩════╩════╝" << std::endl;
 }

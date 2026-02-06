@@ -15,16 +15,13 @@ Cure &Cure::operator=(const Cure &other)
 {
 	if (this != &other)
 	{
-		// Copy values
+		// TO DO !!! Copy values
 	}
 	return (*this);
 }
 
 // Destructor
-Cure::~Cure()
-{
-	// Delete allocated memory
-}
+Cure::~Cure() {}
 
 // Clone
 AMateria* Cure::clone() const

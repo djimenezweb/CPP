@@ -25,8 +25,6 @@ class MateriaSource : public IMateriaSource
 
 		void learnMateria(AMateria *m);
 		AMateria* createMateria(std::string const &type);
-
-		void print_memory();
 };
 
 #endif

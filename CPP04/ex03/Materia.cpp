@@ -23,10 +23,7 @@ AMateria &AMateria::operator=(const AMateria &other)
 }
 
 // Destructor
-AMateria::~AMateria()
-{
-	// Delete allocated memory
-}
+AMateria::~AMateria() {}
 
 // Getter
 std::string const &AMateria::getType() const
@@ -34,9 +31,7 @@ std::string const &AMateria::getType() const
 	return (type);
 }
 
-// TO DO: ¿Qué hacemos con este método?
 void AMateria::use(ICharacter& target)
 {
 	(void)target;
-	//std::cout << "* AMateria::use " << target.getName() << " *" << std::endl;
 }
