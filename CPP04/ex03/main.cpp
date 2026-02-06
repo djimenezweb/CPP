@@ -18,26 +18,32 @@ int main()
 	tmp = src->createMateria("cure");
 	me->equip(tmp);
 	me->unequip(0);
-	//me->unequip(1);
+	me->unequip(1);
 
-	std::cout << "Copy character me2" << std::endl;
-	ICharacter* me2(me);
-	//Character *me2(me);
-	std::cout << "Copy character me2" << std::endl;
+	std::cout << "START Copy me2" << std::endl;
+	ICharacter* me2 = new Character(*static_cast<Character*>(me));
+	std::cout << "END Copy me2" << std::endl;
 
-	AMateria* tmp2;
-	tmp2 = src->createMateria("cure");
-	me2->equip(tmp2);
-	tmp2 = src->createMateria("ice");
-	me2->equip(tmp2);
-	me2->unequip(0);
+	std::cout << "START Copy assignment me3" << std::endl;
+	Character* me3 = new Character("me3");
+	*me3 = *static_cast<Character*>(me);
+	std::cout << "END Copy assignment me3" << std::endl;
+
+	(void)me2;
+	(void)me3;
+	//AMateria* tmp2;
+	//tmp2 = src->createMateria("cure");
+	//me2->equip(tmp2);
+	//tmp2 = src->createMateria("ice");
+	//me2->equip(tmp2);
+	//me2->unequip(0);
 	//me2->unequip(1);
 
-	ICharacter* bob = new Character("bob");
-	me->use(0, *bob);
-	me->use(1, *bob);
+	//ICharacter* bob = new Character("bob");
+	//me->use(0, *bob);
+	//me->use(1, *bob);
 
-	delete bob;
+	//delete bob;
 	delete me;
 	//delete me2;
 	delete src;

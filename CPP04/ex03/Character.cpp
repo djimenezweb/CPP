@@ -25,25 +25,26 @@ Character::Character(std::string name) : name(name)
 }
 
 // Copy constructor
-Character::Character(const Character &other)
+Character::Character(const Character &other) : name(other.name)
 {
 	std::cout << "Character copy constr." << std::endl;
-	name = other.name;
-	delete_inventory();
-	delete_used();
+	// Copy inventory
 	for (size_t i = 0; i < INV_SIZE; i++)
 	{
-		inventory[i] = other.inventory[i]->clone();
+		if (other.inventory[i] != NULL)
+			inventory[i] = other.inventory[i]->clone();
 	}
-	size_t	used_size = 0;
-	while (other.used[used_size] != NULL)
-		used_size++;
-	used = new AMateria*[used_size + 1];
-	for (size_t i = 0; i < used_size; i++)
-	{
-		used[i] = other.used[i]->clone();
-	}
-	used[used_size + 1] = NULL;
+
+	// Copy used <- NECESSARY??
+	//size_t	used_size = 0;
+	//while (other.used[used_size] != NULL)
+	//	used_size++;
+	//used = new AMateria*[used_size + 1];
+	//for (size_t i = 0; i < used_size; i++)
+	//{
+	//	used[i] = other.used[i]->clone();
+	//}
+	//used[used_size + 1] = NULL;
 }
 
 // Copy assignment operator overload `=`
@@ -168,9 +169,9 @@ void Character::use(int idx, ICharacter &target)
 void Character::print_inventory()
 {
 	size_t i = 0;
-	std::cout << "╔═══════════════════╗" << std::endl;
-	std::cout << "║ I N V E N T O R Y ║" << std::endl;
-	std::cout << "╠════╦════╦════╦════╣" << std::endl;
+	std::cout << "╔═══════════════════╗" << std::endl
+			  << "║ I N V E N T O R Y ║" << std::endl
+			  << "╠════╦════╦════╦════╣" << std::endl;
 	while (i < INV_SIZE)
 	{
 		if (inventory[i] == NULL)
@@ -181,6 +182,6 @@ void Character::print_inventory()
 			std::cout << "║ 💊 ";
 		i++;
 	}
-	std::cout << "║" << std::endl;
-	std::cout << "╚════╩════╩════╩════╝" << std::endl;
+	std::cout << "║" << std::endl
+			  << "╚════╩════╩════╩════╝" << std::endl;
 }
