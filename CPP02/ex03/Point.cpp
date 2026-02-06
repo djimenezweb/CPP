@@ -10,20 +10,12 @@ Point::Point(const Fixed set_x, const Fixed set_y) : x(set_x), y(set_y) {}
 Point::~Point() {}
 
 // Copy constructor
-Point::Point(const Point &other)
-{
-	x = other.x;
-	y = other.y;
-}
+Point::Point(const Point &other) : x(other.x), y(other.y) {}
 
 // Copy asignment operator overload `=`
 Point &Point::operator=(const Point &other)
 {
-	if (this != &other)
-	{
-		x = other.x;
-		y = other.y;
-	}
+	(void)other;
 	return (*this);
 }
 
