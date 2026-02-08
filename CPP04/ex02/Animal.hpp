@@ -13,12 +13,11 @@ class Animal
 		Animal(std::string set_type);
 		Animal(const Animal &other);
 		Animal &operator=(const Animal &other);
+		virtual ~Animal();
 		
 		std::string		getType() const;
 		void			setType(std::string set_type);
-		
 		virtual void	makeSound() const = 0;
-		virtual			~Animal();
 };
 
 #endif

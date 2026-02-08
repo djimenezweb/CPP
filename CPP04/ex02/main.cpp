@@ -4,7 +4,7 @@
 int main()
 {
 	std::cout << "CONSTRUCTORS" << std::endl;
-	size_t size = 2;
+	size_t size = 4;
 	Animal *arr[size];
 
 	//Animal animal;
