@@ -8,9 +8,9 @@
 class Brain
 {
 	private:
+		std::string ideas[IDEAS_SIZE];
 	
 	public:
-		std::string ideas[IDEAS_SIZE];
 		Brain();
 		~Brain();
 		Brain(const Brain &other);

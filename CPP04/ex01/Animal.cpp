@@ -29,6 +29,12 @@ Animal &Animal::operator=(const Animal &other)
 	return (*this);
 }
 
+// Destructor
+Animal::~Animal()
+{
+	std::cout << "🐾 Animal destroyed" << std::endl;
+}
+
 // Getter
 std::string Animal::getType() const
 {
@@ -39,12 +45,6 @@ std::string Animal::getType() const
 void Animal::setType(std::string set_type)
 {
 	type = set_type;
-}
-
-// Destructor
-Animal::~Animal()
-{
-	std::cout << "🐾 Animal destroyed" << std::endl;
 }
 
 // Make sound

@@ -19,8 +19,7 @@ Cat &Cat::operator=(const Cat &other)
 	if (this != &other)
 	{
 		type = other.type;
-		brain = new Brain(*other.brain);
-		//*brain = *other.brain; // reuse Brain's copy assignment
+		*brain = *other.brain;
 	}
 	std::cout << "🐱 Cat copied via Copy assignment operator" << std::endl;
 	return (*this);
@@ -37,4 +36,10 @@ Cat::~Cat()
 void Cat::makeSound() const
 {
 	std::cout << "🐱 Meow!" << std::endl;
+}
+
+// Output brain address
+void Cat::printBrainAddress()
+{
+	std::cout << &brain << std::endl;
 }
