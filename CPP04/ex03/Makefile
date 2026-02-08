@@ -1,4 +1,4 @@
-NAME		= abstract
+NAME		= materia
 SRCS		= main.cpp Character.cpp Cure.cpp Ice.cpp Materia.cpp MateriaSource.cpp
 BUILD		= build
 OBJS		= $(addprefix $(BUILD)/, $(SRCS:.cpp=.o))

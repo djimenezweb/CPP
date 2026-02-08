@@ -22,14 +22,14 @@ int main()
 		ICharacter* bob = new Character("bob");
 
 		me->use(0, *bob);
-
 		me->use(1, *bob);
+
 		delete bob;
 		delete me;
 		delete src;
 	}
-
-	/*{
+	std::cout << std::endl;
+	{
 		IMateriaSource* src = new MateriaSource();
 		src->learnMateria(new Ice());
 		src->learnMateria(new Cure());
@@ -54,7 +54,6 @@ int main()
 		// Copy assignment operator
 		Character* me3 = new Character("me3");
 		*me3 = *static_cast<Character*>(me);
-		std::cout << "END Copy assignment me3" << std::endl;
 
 		ICharacter* bob = new Character("bob");
 		me->use(0, *bob);
@@ -65,7 +64,7 @@ int main()
 		delete me2;
 		delete me3;
 		delete src;
-	}*/
+	}
 
 	return (0);
 }
