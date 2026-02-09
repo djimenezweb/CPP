@@ -128,7 +128,7 @@ void Character::equip(AMateria* m)
 // Unequip
 void Character::unequip(int idx)
 {
-	if (idx < 0 && idx > INV_SIZE && !inventory[idx])
+	if (idx < 0 || idx > INV_SIZE || !inventory[idx])
 		return ;
 	std::cout << "Unequip " << inventory[idx]->getType() << " from slot " << idx
 			  << ". Pointer to be deleted: " << inventory[idx] << std::endl;
@@ -155,7 +155,7 @@ void Character::unequip(int idx)
 // Use
 void Character::use(int idx, ICharacter &target)
 {
-	if (idx >= 0 && idx <= INV_SIZE && inventory[idx])
+	if (idx >= 0 || idx <= INV_SIZE || inventory[idx])
 	{
 		inventory[idx]->use(target);
 	}
