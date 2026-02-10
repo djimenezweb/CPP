@@ -8,9 +8,9 @@ Bureaucrat::Bureaucrat() : name("undefined"), grade(GRADE_MIN) {}
 Bureaucrat::Bureaucrat(std::string set_name, int set_grade) : name(set_name)
 {
 	if (set_grade < GRADE_MAX)
-		GradeTooHighException();
+		throw GradeTooHighException();
 	else if (set_grade > GRADE_MIN)
-		GradeTooLowException();
+		throw GradeTooLowException();
 	grade = set_grade;
 }
 
@@ -63,4 +63,14 @@ std::ostream &operator<<(std::ostream &output, const Bureaucrat &other)
 {
 	output << other.getName() << ", bureaucrat grade " << other.getGrade() << std::endl;
 	return (output);
+}
+
+const char* Bureaucrat::GradeTooHighException::what() const throw()
+{
+	return ("Grade too high");
+}
+
+const char* Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return ("Grade too low");
 }
