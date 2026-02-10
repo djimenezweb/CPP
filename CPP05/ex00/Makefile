@@ -1,4 +1,4 @@
-NAME		= bureau
+NAME		= bureaucrat
 SRCS		= main.cpp Bureaucrat.cpp
 BUILD		= build
 OBJS		= $(addprefix $(BUILD)/, $(SRCS:.cpp=.o))

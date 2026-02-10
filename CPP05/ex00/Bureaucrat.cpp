@@ -2,7 +2,7 @@
 #include <exception>
 
 // Default constructor
-Bureaucrat::Bureaucrat() {}
+Bureaucrat::Bureaucrat() : name("undefined"), grade(GRADE_MIN) {}
 
 // Parameterized constructor
 Bureaucrat::Bureaucrat(std::string set_name, int set_grade) : name(set_name)

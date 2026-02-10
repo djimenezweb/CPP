@@ -21,7 +21,7 @@ int main()
 	{
 		try
 		{
-			Bureaucrat ok = Bureaucrat("OK", 44);
+			Bureaucrat ok = Bureaucrat();
 			std::cout << ok;
 			Bureaucrat wrong = Bureaucrat("Wrong", -8);
 			std::cout << wrong;
