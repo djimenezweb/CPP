@@ -2,6 +2,7 @@
 # define BUREAUCRAT_H
 
 # include <iostream>
+# include <exception>
 
 # define GRADE_MAX 1
 # define GRADE_MIN 150

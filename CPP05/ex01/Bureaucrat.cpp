@@ -1,5 +1,4 @@
 #include "Bureaucrat.hpp"
-#include <exception>
 
 // Default constructor
 Bureaucrat::Bureaucrat() : name("undefined"), grade(GRADE_MIN) {}
@@ -58,10 +57,30 @@ void Bureaucrat::decrementGrade()
 	grade++;
 }
 
+// Sign form
+void Bureaucrat::signForm(Form &form)
+{
+	if (form.getIsSigned())
+	{
+		std::cout << "Form " << form.getName() << " is already signed" << std::endl;
+		return;
+	}
+	try
+	{
+		form.beSigned(*this);
+		std::cout << name << " signed form " << form.getName() << std::endl;
+	}
+	catch(const std::exception &e)
+	{
+		std::cerr << name << " couldn't sign form " << form.getName()
+				  << " because " << e.what() << std::endl;
+	}
+}
+
 // Insertion operator overload
 std::ostream &operator<<(std::ostream &output, const Bureaucrat &other)
 {
-	output << other.getName() << ", bureaucrat grade " << other.getGrade() << std::endl;
+	output << other.getName() << ", bureaucrat grade " << other.getGrade();
 	return (output);
 }
 

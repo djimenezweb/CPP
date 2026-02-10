@@ -1,5 +1,4 @@
 #include "Bureaucrat.hpp"
-#include <exception>
 
 // Default constructor
 Bureaucrat::Bureaucrat() : name("undefined"), grade(GRADE_MIN) {}
@@ -61,7 +60,7 @@ void Bureaucrat::decrementGrade()
 // Insertion operator overload
 std::ostream &operator<<(std::ostream &output, const Bureaucrat &other)
 {
-	output << other.getName() << ", bureaucrat grade " << other.getGrade() << std::endl;
+	output << other.getName() << ", bureaucrat grade " << other.getGrade();
 	return (output);
 }
 
