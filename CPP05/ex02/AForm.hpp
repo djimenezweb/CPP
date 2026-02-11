@@ -6,6 +6,8 @@
 
 class Bureaucrat;
 
+/* ESTA CLASE TODAVÍA NO ES ABSTRACTA, hay que asignar algún método virtual a 0... ¿CUÁL? */
+
 class AForm
 {
 	private:
@@ -26,7 +28,7 @@ class AForm
 		int			getReqGradeSign() const;
 		int			getReqGradeExec() const;
 		void		beSigned(Bureaucrat const &bureaucrat);
-		void		execute(Bureaucrat const &executor) const;
+		virtual void	execute(Bureaucrat const &executor) const;
 
 		class GradeTooHighException : public std::exception
 		{

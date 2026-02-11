@@ -66,8 +66,9 @@ void AForm::execute(Bureaucrat const &executor) const
 {
 	if (!is_signed)
 		throw NotSignedException();
-	if (executor.getGrade() > req_grade_exec)
+	else if (executor.getGrade() > req_grade_exec)
 		throw GradeTooLowException();
+	// std::cout << executor.getName() << " executed " << name << std::endl;
 }
 
 // Insertion operator overload
