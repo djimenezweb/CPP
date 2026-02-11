@@ -30,4 +30,4 @@ run : all
 
 -include $(OBJS:.o=.d)
 
-.PHONY : all clean fclean re debug
+.PHONY : all clean fclean re debug run
