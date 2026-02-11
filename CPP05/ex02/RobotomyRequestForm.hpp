@@ -2,17 +2,24 @@
 # define ROBOTOMYREQUESTFORM_H
 
 # include <iostream>
+# include "AForm.hpp"
 
-class RobotomyRequestForm
+# define ROBOT_SIGN 72
+# define ROBOT_EXEC 45
+
+class RobotomyRequestForm : public AForm
 {
 	private:
-		// private member variable
+		std::string	target;
 
 	public:
 		RobotomyRequestForm();
+		RobotomyRequestForm(std::string target);
 		~RobotomyRequestForm();
 		RobotomyRequestForm(const RobotomyRequestForm &other);
 		RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
+
+		void	execute(Bureaucrat const &executor) const;
 };
 
 #endif

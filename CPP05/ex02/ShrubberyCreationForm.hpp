@@ -4,6 +4,10 @@
 # include <iostream>
 # include <fstream>
 # include "AForm.hpp"
+# include "Tree.hpp"
+
+# define SHRUB_SIGN 145
+# define SHRUB_EXEC 137
 
 class ShrubberyCreationForm : public AForm
 {
