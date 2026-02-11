@@ -38,9 +38,13 @@ void RobotomyRequestForm::execute(Bureaucrat const & executor) const
 	try
 	{
 		AForm::execute(executor);
-		std::cout << "TAC TAC TAC TAC" << std::endl;
-		/* Makes some drilling noises, then informs that <target> has been robotomized
-		successfully 50% of the time. Otherwise, it informs that the robotomy failed. */
+		std::cout << "TAC ⚙ TAC ⚙ TAC ⚙ TAC" << std::endl;
+		srand(time(0));
+		int random_number = rand();
+		if (random_number % 2 == 0)
+			std::cout << target << "has been robotomized" << std::endl;
+		else
+			std::cout << "Robotomy has failed" << std::endl;
 	}
 	catch(const std::exception& e)
 	{

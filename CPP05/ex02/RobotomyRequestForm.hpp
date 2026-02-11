@@ -2,6 +2,7 @@
 # define ROBOTOMYREQUESTFORM_H
 
 # include <iostream>
+# include <cstdlib>
 # include "AForm.hpp"
 
 # define ROBOT_SIGN 72
