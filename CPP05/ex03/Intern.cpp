@@ -25,21 +25,30 @@ Intern::~Intern()
 	// Delete allocated memory
 }
 
-AForm *cloneShrubbery(std::string t)
+AForm *cloneShrubbery(std::string target)
 {
-	return (new ShrubberyCreationForm(t));
+	return (new ShrubberyCreationForm(target));
 }
 
-AForm *cloneRobotomy(std::string t)
+AForm *cloneRobotomy(std::string target)
 {
-	return (new RobotomyRequestForm(t));
+	return (new RobotomyRequestForm(target));
 }
 
-AForm *clonePresidential(std::string t)
+AForm *clonePresidential(std::string target)
 {
-	return (new PresidentialPardonForm(t));
+	return (new PresidentialPardonForm(target));
 }
 
+// String to lower case auxiliary function
+std::string strtolower(std::string str)
+{
+	for (size_t i = 0; i < str.length(); i++)
+		str[i] = tolower(str[i]);
+	return (str);
+}
+
+// Return a pointer to a new form that matches `form_name`
 AForm *Intern::makeForm(std::string form_name, std::string target)
 {
 	Entry arr[] = {
@@ -50,7 +59,7 @@ AForm *Intern::makeForm(std::string form_name, std::string target)
 
 	for (size_t i = 0; i < 3; i++)
 	{
-		if (form_name == arr[i].name)
+		if (strtolower(form_name) == arr[i].name)
 			return (arr[i].func(target));
 	}
 	return (NULL);
