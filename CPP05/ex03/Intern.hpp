@@ -7,6 +7,11 @@
 # include "RobotomyRequestForm.hpp"
 # include "ShrubberyCreationForm.hpp"
 
+struct Entry {
+	std::string name;
+	AForm* (*func)(std::string);
+};
+
 class Intern
 {
 	public:

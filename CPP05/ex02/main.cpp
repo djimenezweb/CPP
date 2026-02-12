@@ -8,7 +8,7 @@ int main()
 {
 	Bureaucrat fidelio = Bureaucrat("Fidelio", 2);
 	Bureaucrat simplicio = Bureaucrat("Simplicio", 71);
-	Bureaucrat perfidio = Bureaucrat("Fidelio", 147);
+	Bureaucrat perfidio = Bureaucrat("Perfidio", 147);
 
 	ShrubberyCreationForm shrub_form = ShrubberyCreationForm("target1");
 	RobotomyRequestForm rob_form = RobotomyRequestForm("target2");

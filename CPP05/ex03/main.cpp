@@ -13,6 +13,15 @@ int main()
 	rrf = someRandomIntern.makeForm("presidential pardon", "Bender");
 	std::cout << *rrf << std::endl;
 
+	rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+	std::cout << *rrf << std::endl;
+
+	rrf = someRandomIntern.makeForm("shrubbery creation", "Bender");
+	std::cout << *rrf << std::endl;
+
+	rrf = someRandomIntern.makeForm("unfathomable distortion", "Bender");
+	std::cout << rrf << std::endl;
+
 	delete rrf;
 	return (0);
 }

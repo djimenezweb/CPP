@@ -25,30 +25,33 @@ Intern::~Intern()
 	// Delete allocated memory
 }
 
-AForm *createA(std::string t)
+AForm *cloneShrubbery(std::string t)
 {
 	return (new ShrubberyCreationForm(t));
 }
 
-AForm *createB(std::string t)
+AForm *cloneRobotomy(std::string t)
 {
 	return (new RobotomyRequestForm(t));
 }
 
-AForm *createC(std::string t)
+AForm *clonePresidential(std::string t)
 {
 	return (new PresidentialPardonForm(t));
 }
 
 AForm *Intern::makeForm(std::string form_name, std::string target)
 {
-	std::string name_arr[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
-	AForm*(*forms[3])(std::string) = { &createA, &createB, &createC };
+	Entry arr[] = {
+		{ "shrubbery creation", cloneShrubbery },
+		{ "robotomy request", cloneRobotomy },
+		{ "presidential pardon", clonePresidential }
+	};
 
 	for (size_t i = 0; i < 3; i++)
 	{
-		if (form_name == name_arr[i])
-			return (forms[i](target));
+		if (form_name == arr[i].name)
+			return (arr[i].func(target));
 	}
 	return (NULL);
 }

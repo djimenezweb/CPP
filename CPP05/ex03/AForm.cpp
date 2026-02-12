@@ -80,7 +80,7 @@ void AForm::execute(Bureaucrat const &executor) const
 	std::cout << executor.getName() << " executed " << name << std::endl;
 }
 
-// Insertion operator overload
+// Insertion operator overload (reference)
 std::ostream &operator<<(std::ostream &output, const AForm &form)
 {
 	output << "Form " << form.getName() << " "
@@ -88,6 +88,14 @@ std::ostream &operator<<(std::ostream &output, const AForm &form)
 		   << ". Required grades: " << form.getReqGradeSign() << " (sign), "
 		   << form.getReqGradeExec() << " (exec)";
 	return (output);
+}
+
+// Insertion operator overload (pointer)
+std::ostream &operator<<(std::ostream &output, const AForm *form)
+{
+	if (!form)
+		return (output << "nullptr");
+	return (output << *form);
 }
 
 const char* AForm::GradeTooHighException::what() const throw()
