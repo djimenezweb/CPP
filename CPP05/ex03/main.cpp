@@ -14,15 +14,15 @@ int main()
 	std::cout << *rrf << std::endl;
 	delete rrf;
 
-	rrf = someRandomIntern.makeForm("Robotomy Request", "Bender");
+	rrf = someRandomIntern.makeForm("Robotomy Request", "Robocop");
 	std::cout << *rrf << std::endl;
 	delete rrf;
 
-	rrf = someRandomIntern.makeForm("shrubbery creation", "Bender");
+	rrf = someRandomIntern.makeForm("shrubbery creation", "Terminator");
 	std::cout << *rrf << std::endl;
 	delete rrf;
 
-	rrf = someRandomIntern.makeForm("unfathomable distortion", "Bender");
+	rrf = someRandomIntern.makeForm("unfathomable distortion", "Wall-E");
 	std::cout << rrf << std::endl;
 	delete rrf;
 
