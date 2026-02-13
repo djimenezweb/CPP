@@ -19,7 +19,7 @@ int main()
 	delete rrf;
 
 	rrf = someRandomIntern.makeForm("shrubbery creation", "Terminator");
-	std::cout << *rrf << std::endl;
+	std::cout << rrf << std::endl;
 	delete rrf;
 
 	rrf = someRandomIntern.makeForm("unfathomable distortion", "Wall-E");
