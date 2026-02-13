@@ -33,21 +33,21 @@ RobotomyRequestForm::~RobotomyRequestForm()
 {}
 
 // Execute
-void RobotomyRequestForm::execute(Bureaucrat const & executor) const
+void RobotomyRequestForm::execute(Bureaucrat const & bureaucrat) const
 {
 	try
 	{
-		AForm::execute(executor);
-		std::cout << "TAC ⚙ TAC ⚙ TAC ⚙ TAC" << std::endl;
+		validateExecution(bureaucrat);
+		std::cout << "* TAC * TAC * TAC * TAC *" << std::endl;
 		srand(time(0));
 		int random_number = rand();
 		if (random_number % 2 == 0)
-			std::cout << target << "has been robotomized" << std::endl;
+			std::cout << target << " has been robotomized" << std::endl;
 		else
-			std::cout << "Robotomy has failed" << std::endl;
+			std::cout << "Robotomy has failed. " << target << " couldn't be robotomized" << std::endl;
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << std::endl;
+		std::cerr << "Exception: " << e.what() << std::endl;
 	}
 }

@@ -2,6 +2,7 @@
 # define FORM_H
 
 # include <iostream>
+# include <exception>
 # include "Bureaucrat.hpp"
 
 class Bureaucrat;
@@ -40,6 +41,6 @@ class Form
 		};
 };
 
-std::ostream &operator<<(std::ostream &output, const Form &other);
+std::ostream &operator<<(std::ostream &output, const Form &form);
 
 #endif

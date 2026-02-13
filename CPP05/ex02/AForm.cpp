@@ -1,13 +1,19 @@
 #include "AForm.hpp"
 
 // Default constructor
-AForm::AForm() : name("undefined"), is_signed(false), req_grade_sign(150), req_grade_exec(150)
-{
-
-}
+AForm::AForm() :
+	name("undefined"),
+	is_signed(false),
+	req_grade_sign(150),
+	req_grade_exec(150)
+{}
 
 // Parameterized constructor
-AForm::AForm(std::string name, int req_sign, int req_exec) : name(name), is_signed(false), req_grade_sign(req_sign), req_grade_exec(req_exec)
+AForm::AForm(std::string name, int req_sign, int req_exec) :
+	name(name.empty() ? "undefined" : name),
+	is_signed(false),
+	req_grade_sign(req_sign),
+	req_grade_exec(req_exec)
 {
 	if (req_sign < GRADE_MAX || req_exec < GRADE_MAX)
 		throw GradeTooHighException();
@@ -16,7 +22,12 @@ AForm::AForm(std::string name, int req_sign, int req_exec) : name(name), is_sign
 }
 
 // Copy constructor
-AForm::AForm(const AForm &other) : name(other.name), is_signed(other.is_signed), req_grade_sign(other.req_grade_sign), req_grade_exec(other.req_grade_exec){}
+AForm::AForm(const AForm &other) :
+	name(other.name),
+	is_signed(other.is_signed),
+	req_grade_sign(other.req_grade_sign),
+	req_grade_exec(other.req_grade_exec)
+{}
 
 // Copy assignment operator overload
 AForm &AForm::operator=(const AForm &other)
@@ -29,32 +40,33 @@ AForm &AForm::operator=(const AForm &other)
 }
 
 // Destructor
-AForm::~AForm()
-{
-	// Delete allocated memory
-}
+AForm::~AForm() {}
 
-// Getters
+// Return form `name`
 std::string AForm::getName() const
 {
 	return (name);
 }
 
+// Return form `is_signed`
 bool AForm::getIsSigned() const
 {
 	return (is_signed);
 }
 
+// Return form `req_grade_sign`
 int AForm::getReqGradeSign() const
 {
 	return (req_grade_sign);
 }
 
+// Return form `req_grade_exec`
 int AForm::getReqGradeExec() const
 {
 	return (req_grade_exec);
 }
 
+// Sign form if bureaucrat is allowed to
 void AForm::beSigned(Bureaucrat const &bureaucrat)
 {
 	if (bureaucrat.getGrade() > req_grade_sign)
@@ -62,13 +74,15 @@ void AForm::beSigned(Bureaucrat const &bureaucrat)
 	is_signed = true;
 }
 
-void AForm::execute(Bureaucrat const &executor) const
+// Check if bureaucrat is allowed to execute form
+bool AForm::validateExecution(Bureaucrat const &bureaucrat) const
 {
 	if (!is_signed)
 		throw NotSignedException();
-	else if (executor.getGrade() > req_grade_exec)
+	else if (bureaucrat.getGrade() > req_grade_exec)
 		throw GradeTooLowException();
-	std::cout << executor.getName() << " executed " << name << std::endl;
+	std::cout << bureaucrat.getName() << " executed " << name << std::endl;
+	return (true);
 }
 
 // Insertion operator overload
@@ -81,16 +95,19 @@ std::ostream &operator<<(std::ostream &output, const AForm &form)
 	return (output);
 }
 
+// Grade too high exception
 const char* AForm::GradeTooHighException::what() const throw()
 {
 	return ("Grade too high");
 }
 
+// Grade too low exception
 const char* AForm::GradeTooLowException::what() const throw()
 {
 	return ("Grade too low");
 }
 
+// Form is not signed exception
 const char* AForm::NotSignedException::what() const throw()
 {
 	return ("Form is not signed");

@@ -2,8 +2,8 @@
 # define BUREAUCRAT_H
 
 # include <iostream>
-#include "Form.hpp"
-#include <exception>
+# include <exception>
+# include "Form.hpp"
 
 # define GRADE_MAX 1
 # define GRADE_MIN 150
@@ -42,6 +42,6 @@ class Bureaucrat
 		};
 };
 
-std::ostream &operator<<(std::ostream &output, const Bureaucrat &other);
+std::ostream &operator<<(std::ostream &output, const Bureaucrat &object);
 
 #endif

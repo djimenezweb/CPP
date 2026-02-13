@@ -2,8 +2,8 @@
 # define BUREAUCRAT_H
 
 # include <iostream>
-#include "AForm.hpp"
-#include <exception>
+# include <exception>
+# include "AForm.hpp"
 
 # define GRADE_MAX 1
 # define GRADE_MIN 150

@@ -1,10 +1,14 @@
 #include "Bureaucrat.hpp"
 
 // Default constructor
-Bureaucrat::Bureaucrat() : name("undefined"), grade(GRADE_MIN) {}
+Bureaucrat::Bureaucrat() :
+	name("undefined"),
+	grade(GRADE_MIN)
+{}
 
 // Parameterized constructor
-Bureaucrat::Bureaucrat(std::string set_name, int set_grade) : name(set_name)
+Bureaucrat::Bureaucrat(std::string set_name, int set_grade) :
+	name(set_name.empty() ? "undefined" : set_name)
 {
 	if (set_grade < GRADE_MAX)
 		throw GradeTooHighException();
@@ -14,7 +18,10 @@ Bureaucrat::Bureaucrat(std::string set_name, int set_grade) : name(set_name)
 }
 
 // Copy constructor
-Bureaucrat::Bureaucrat(const Bureaucrat &other) : name(other.name), grade(other.grade) {}
+Bureaucrat::Bureaucrat(const Bureaucrat &other) :
+	name(other.name),
+	grade(other.grade)
+{}
 
 // Copy assignment operator overload
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
@@ -41,7 +48,7 @@ int Bureaucrat::getGrade() const
 	return (grade);
 }
 
-// 1 is the highest, 150 is the lowest
+// Increment grade
 void Bureaucrat::incrementGrade()
 {
 	if (grade == GRADE_MAX)
@@ -49,7 +56,7 @@ void Bureaucrat::incrementGrade()
 	grade--;
 }
 
-// 1 is the highest, 150 is the lowest
+// Decrement grade
 void Bureaucrat::decrementGrade()
 {
 	if (grade == GRADE_MIN)
@@ -58,17 +65,19 @@ void Bureaucrat::decrementGrade()
 }
 
 // Insertion operator overload
-std::ostream &operator<<(std::ostream &output, const Bureaucrat &other)
+std::ostream &operator<<(std::ostream &output, const Bureaucrat &object)
 {
-	output << other.getName() << ", bureaucrat grade " << other.getGrade();
+	output << object.getName() << ", bureaucrat grade " << object.getGrade();
 	return (output);
 }
 
+// Grade too high exception
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
 	return ("Grade too high");
 }
 
+// Grade too low exception
 const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
 	return ("Grade too low");

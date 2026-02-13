@@ -10,9 +10,9 @@ int main()
 	Bureaucrat simplicio = Bureaucrat("Simplicio", 71);
 	Bureaucrat perfidio = Bureaucrat("Perfidio", 147);
 
-	ShrubberyCreationForm shrub_form = ShrubberyCreationForm("target1");
-	RobotomyRequestForm rob_form = RobotomyRequestForm("target2");
-	PresidentialPardonForm pres_form = PresidentialPardonForm("target3");
+	ShrubberyCreationForm shrub_form = ShrubberyCreationForm("Target 1");
+	RobotomyRequestForm rob_form = RobotomyRequestForm("Target 2");
+	PresidentialPardonForm pres_form = PresidentialPardonForm("Target 3");
 
 	std::cout << shrub_form << std::endl;
 	std::cout << rob_form << std::endl;
