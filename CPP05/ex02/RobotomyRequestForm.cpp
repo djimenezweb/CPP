@@ -33,11 +33,10 @@ RobotomyRequestForm::~RobotomyRequestForm()
 {}
 
 // Execute
-void RobotomyRequestForm::execute(Bureaucrat const & bureaucrat) const
+void RobotomyRequestForm::executeAction() const
 {
 	try
 	{
-		validateExecution(bureaucrat);
 		std::cout << "* TAC * TAC * TAC * TAC *" << std::endl;
 		srand(time(0));
 		int random_number = rand();

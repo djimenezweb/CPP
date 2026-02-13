@@ -33,11 +33,10 @@ PresidentialPardonForm::~PresidentialPardonForm()
 {}
 
 // Execute
-void PresidentialPardonForm::execute(Bureaucrat const & bureaucrat) const
+void PresidentialPardonForm::executeAction() const
 {
 	try
 	{
-		validateExecution(bureaucrat);
 		std::cout << target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
 	}
 	catch(const std::exception& e)

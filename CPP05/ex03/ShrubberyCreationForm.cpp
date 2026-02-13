@@ -33,11 +33,10 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 {}
 
 // Execute
-void ShrubberyCreationForm::execute(Bureaucrat const & bureaucrat) const
+void ShrubberyCreationForm::executeAction() const
 {
 	try
 	{
-		validateExecution(bureaucrat);
 		std::ofstream ostream;
 		std::string filename = target + "_shrubbery";
 		ostream.open(filename.c_str());

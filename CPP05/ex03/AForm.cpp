@@ -75,14 +75,14 @@ void AForm::beSigned(Bureaucrat const &bureaucrat)
 }
 
 // Check if bureaucrat is allowed to execute form
-bool AForm::validateExecution(Bureaucrat const &bureaucrat) const
+void AForm::execute(Bureaucrat const &bureaucrat) const
 {
 	if (!is_signed)
 		throw NotSignedException();
 	else if (bureaucrat.getGrade() > req_grade_exec)
 		throw GradeTooLowException();
 	std::cout << bureaucrat.getName() << " executed " << name << std::endl;
-	return (true);
+	executeAction();
 }
 
 // Insertion operator overload
