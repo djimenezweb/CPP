@@ -30,7 +30,10 @@ int	main(int argc, char *argv[])
 	std::string		line;
 
 	if (argc != 4)
+	{
+		std::cout << "Correct usage: ./replace <file> <str1> <str2>" << std::endl;
 		return (1);
+	}
 
 	infile = argv[1];
 	outfile = infile + ".replace";
@@ -39,7 +42,7 @@ int	main(int argc, char *argv[])
 		return (file_err(infile), 1);
 	ostream.open(outfile.c_str());
 	if (ostream.fail())
-		return (file_err(outfile), 1);
+		return (istream.close(), file_err(outfile), 1);
 
 	while (!istream.eof())
 	{
