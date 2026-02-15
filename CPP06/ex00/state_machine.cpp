@@ -24,12 +24,12 @@ Input get_input_type(char c)
 		return (I_DIGIT);
 	else if (c == 'f')
 		return (I_SUFFIX);
-	else if (c >= 0 && c <= 127)
+	else if (std::isprint(c))
 		return (I_CHAR);
 	return (I_OTHER);
 }
 
-Type detect(const std::string &str)
+State detect(const std::string &str)
 {
 	State state = S_START;
 	size_t i = 0;
@@ -39,10 +39,10 @@ Type detect(const std::string &str)
 		Input input = get_input_type(str[i]);
 		state = transition[state][input];
 		if (state == S_INVALID)
-			return (T_INVALID);
+			return (S_INVALID);
 		i++;
 	}
 	if (state >= S_INVALID)
-		return (T_INVALID);
-	return ((Type)state);
+		return (S_INVALID);
+	return (state);
 }

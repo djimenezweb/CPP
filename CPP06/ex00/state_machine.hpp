@@ -3,7 +3,7 @@
 
 # include <string>
 
-enum Type {
+/* enum Type {
 	T_CHAR,
 	T_STRING,
 	T_INT,
@@ -11,7 +11,7 @@ enum Type {
 	T_FLOAT,
 	T_INVALID,
 	__TYPE_SIZE
-};
+}; */
 
 enum State {
 	S_CHAR,		// Valid final states
@@ -37,6 +37,6 @@ enum Input {
 };
 
 Input	get_input_type(char c);
-Type	detect(const std::string &str);
+State	detect(const std::string &str);
 
 #endif
