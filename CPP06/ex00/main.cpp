@@ -1,10 +1,6 @@
 #include <iostream>
 #include "ScalarConverter.hpp"
 
-using std::cout;
-using std::cerr;
-using std::endl;
-
 /* The following rule applies to the entire module and is mandatory.
 For each exercise, type conversion must be handled using a specific type of casting.
 Your choice will be reviewed during the defense. */
@@ -13,26 +9,46 @@ int	main(int argc, char *argv[])
 {
 	if (argc != 2)
 	{
-		//cerr << "Error. Correct usage: ./convert <arg>" << endl;
-		// return (1);
+		std::cerr << "Error. Correct usage: " << argv[0] << " <arg>" << std::endl;
+		 return (1);
 	}
 
-	(void)argv;
-	// ScalarConverter::convert(argv[1]);
+	ScalarConverter::convert(argv[1]);
+
+	std::cout << std::endl << "Examples: " << std::endl;
 	ScalarConverter::convert("0");
-	cout << "-> 3 (int) (expected)" << endl << endl;
 	ScalarConverter::convert("123");
-	cout << "-> 3 (int) (expected)" << endl << endl;
 	ScalarConverter::convert("-33");
-	cout << "-> 3 (int) (expected)" << endl << endl;
-	ScalarConverter::convert("11.666");
-	cout << "-> 5 (fraction) (expected)" << endl << endl;
-	ScalarConverter::convert("42.0f");
-	cout << "-> 6 (suffix) (expected)" << endl << endl;
+	ScalarConverter::convert("+33");
+
 	ScalarConverter::convert("n");
-	cout << "-> 1 (char) (expected)" << endl << endl;
+	ScalarConverter::convert("c");
+	
+	ScalarConverter::convert("-4.2f");
+	ScalarConverter::convert("42.0f");
+	ScalarConverter::convert(".5f");
+	ScalarConverter::convert("-inff");
+	ScalarConverter::convert("+inff");
+	ScalarConverter::convert("nanf");
+
+	ScalarConverter::convert("11.666");
+	ScalarConverter::convert(".5");
+	ScalarConverter::convert("0.0");
+	ScalarConverter::convert("-4.2");
+	ScalarConverter::convert("4.2");
+
+	ScalarConverter::convert("-inf");
+	ScalarConverter::convert("+inf");
 	ScalarConverter::convert("nan");
-	cout << "-> 7 (invalid) (expected)" << endl << endl;
+
+	std::cout << std::endl << "Invalid examples: " << std::endl;
+	ScalarConverter::convert("n.an");
+	ScalarConverter::convert("13.an");
+	ScalarConverter::convert("(?)");
+	ScalarConverter::convert("++33");
+	ScalarConverter::convert("123.");
+	ScalarConverter::convert("+");
+	ScalarConverter::convert("42.0z");
 }
 
 /*
