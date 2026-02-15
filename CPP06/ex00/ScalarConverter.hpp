@@ -4,39 +4,50 @@
 # include <iostream>
 # include <string>
 
-using std::cout;
-using std::cerr;
-using std::string;
-using std::endl;
+enum Type {
+	T_CHAR,
+	T_STRING,
+	T_INT,
+	T_DOUBLE,
+	T_FLOAT,
+	T_INVALID,
+	__TYPE_SIZE
+};
+
+enum State {
+	S_CHAR,		// Valid final states
+	S_STRING,
+	S_INTEGER,
+	S_FRACTION,
+	S_SUFFIX,
+	S_INVALID,	// Invalid final states
+	S_START,
+	S_SIGN,
+	S_DOT,
+	__STATE_SIZE
+};
+
+enum Input {
+	I_DIGIT,
+	I_CHAR,
+	I_DOT,
+	I_SIGN,
+	I_SUFFIX,
+	I_OTHER,
+	__INPUT_SIZE
+};
 
 class ScalarConverter
 {
 	private:
-		enum type {
-			T_CHAR,
-			T_INT,
-			T_FLOAT,
-			T_DOUBLE
-		};
-
-		enum state {
-			S_START,
-			S_CHAR,
-			S_SIGN,
-			S_INTEGER,
-			S_DOT,
-			S_FRACTION,
-			S_SUFFIX,
-			S_INVALID
-		};
 		ScalarConverter();
 		~ScalarConverter();
 		ScalarConverter(const ScalarConverter &other);
 		ScalarConverter &operator=(const ScalarConverter &other);
-		static size_t detect(string &str);
+		static size_t detect_switch(std::string &str);
 
 	public:
-		static void convert(string str);
+		static void convert(std::string str);
 };
 
 #endif
