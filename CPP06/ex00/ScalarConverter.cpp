@@ -1,4 +1,5 @@
 #include "ScalarConverter.hpp"
+#include "state_machine.hpp"
 
 // Default constructor
 ScalarConverter::ScalarConverter() {}
@@ -16,68 +17,106 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other)
 // Destructor
 ScalarConverter::~ScalarConverter() {}
 
-Input get_input_type(char c)
+std::string pseudo_lit[] = { "nan", "-inf", "+inf", "nanf", "-inff", "+inff" };
+
+void	cast_double(const std::string &str)
 {
-	if (std::isdigit(c))
-		return (I_DIGIT);
-	else if (c == 'f')
-		return (I_SUFFIX);
-	else if (std::isalpha(c))
-		return (I_CHAR);
-	else if (c == '.')
-		return (I_DOT);
-	else if (c == '+' || c == '-')
-		return (I_SIGN);
-	return (I_OTHER);
+	double	value = static_cast<double>(std::atof(str.c_str()));
+
+	std::cout << "  char: '" << static_cast<char>(value) << "'" << std::endl
+			  << "   int: " << static_cast<int>(value) << std::endl
+			  << " float: " << static_cast<float>(value) << "f" << std::endl
+			  << "double: " << value << std::endl;
 }
 
-std::string type_str[__TYPE_SIZE] =
+void	cast_float(const std::string &str)
 {
-	"char",
-	"string",
-	"int",
-	"double",
-	"float",
-	"invalid"
-};
+	float	value = static_cast<float>(std::atof(str.c_str()));
 
-State transition[__STATE_SIZE][__INPUT_SIZE] =
+	std::cout << "  char: '" << static_cast<char>(value) << "'" << std::endl
+			  << "   int: " << static_cast<int>(value) << std::endl
+			  << " float: " << value << "f" << std::endl
+			  << "double: " << static_cast<double>(value) << std::endl;
+}
+
+void cast_int(const std::string &str)
 {
-	// I_DIGIT		I_CHAR		I_DOT		I_SIGN		I_SUFFIX	I_OTHER
-	{S_INVALID,		S_STRING,	S_INVALID,	S_INVALID,	S_STRING,	S_INVALID},	// S_CHAR		Valid final states
-	{S_INVALID,		S_STRING,	S_INVALID,	S_INVALID,	S_STRING,	S_INVALID}, // S_STRING
-	{S_INTEGER,		S_INVALID,	S_DOT,		S_INVALID,	S_INVALID,	S_INVALID},	// S_INTEGER
-	{S_FRACTION,	S_INVALID,	S_INVALID,	S_INVALID,	S_SUFFIX,	S_INVALID},	// S_FRACTION
-	{S_INVALID,		S_INVALID,	S_INVALID,	S_INVALID,	S_INVALID,	S_INVALID},	// S_SUFFIX
-	{S_INVALID,		S_INVALID,	S_INVALID,	S_INVALID,	S_INVALID,	S_INVALID},	// S_INVALID	Invalid final states
-	{S_INTEGER,		S_CHAR,		S_DOT,		S_SIGN,		S_CHAR,		S_INVALID},	// S_START
-	{S_INTEGER,		S_STRING,	S_INVALID,	S_INVALID,	S_INVALID,	S_INVALID},	// S_SIGN
-	{S_FRACTION,	S_INVALID,	S_INVALID,	S_INVALID,	S_INVALID,	S_INVALID},	// S_DOT
-};
+	int	value = static_cast<int>(std::atoi(str.c_str()));
 
-Type detect(std::string &str)
+	if (isprint(value))
+		std::cout << "  char: '" << static_cast<char>(value) << "'" << std::endl;
+	else
+		std::cout << "  char: (Non displayable)" << std::endl;
+	//std::cout << "  char: '" << static_cast<char>(value) << "'" << std::endl
+	std::cout << "   int: " << value << std::endl
+			  << " float: " << static_cast<float>(value) << ".0f" << std::endl
+			  << "double: " << static_cast<double>(value) << ".0" << std::endl;
+}
+
+void cast_char(const std::string &str)
 {
-	State state = S_START;
-	size_t i = 0;
+	char	value = static_cast<char>(str[0]);
 
-	while (i < str.length())
+	if (isprint(str[0]))
+		std::cout << "  char: '" << value << "'" << std::endl;
+	else
+		std::cout << "  char: (Non displayable)" << std::endl;
+	std::cout << "   int: " << static_cast<int>(value) << std::endl
+			  << " float: " << static_cast<float>(value) << ".0f" << std::endl
+			  << "double: " << static_cast<double>(value) << ".0" << std::endl;
+}
+
+void	cast_pseudo_lit(const std::string &str)
+{
+	for (size_t i = 0; i < 6; i++)
 	{
-		Input input = get_input_type(str[i]);
-		state = transition[state][input];
-		i++;
+		if (pseudo_lit[i] == str)
+		{
+			std::cout << "  char: impossible" << std::endl
+					  << "   int: impossible" << std::endl;
+			if (i <= 2)
+			{
+				// std::cout << " float: " << str << "f" << std::endl
+				// 		  << "double: " << str << std::endl;
+				std::cout << " float: " << static_cast<float>(std::atof(str.c_str())) << "f" << std::endl
+						  << "double: " << static_cast<double>(std::atof(str.c_str())) << std::endl;
+			}
+			else
+			{
+				// std::cout << " float: " << str << std::endl
+				// 		  << "double: " << pseudo_lit[i - 3] << std::endl;
+				std::cout << " float: " << static_cast<float>(std::atof(str.c_str())) << "f" << std::endl
+						  << "double: " << static_cast<double>(std::atof(str.c_str())) << std::endl;
+			}
+			return ;
+		}
 	}
-	if (state >= S_INVALID)
-		return (T_INVALID);
-	return ((Type)state);
+	std::cout << "Invalid argument" << std::endl;
 }
+
+std::string type_str[__TYPE_SIZE] = { "char", "string", "int", "double", "float", "invalid" };
 
 // Convert
-void ScalarConverter::convert(std::string str)
+void ScalarConverter::convert(const std::string &str)
 {
-/* 	cout << "  char: " << str << endl
-		 << "   int: " << str << endl
-		 << " float: " << str << endl
-		 << "double: " << str << endl; */
 	Type type = detect(str);
-	std::cout << str << " -> " << type_str[type] << std::endl;
+	std::cout << "Argument <" << str << "> is of type " << type_str[type] << std::endl;
+	switch (type)
+	{
+	case T_CHAR:
+		cast_char(str);
+		break;
+	case T_INT:
+		cast_int(str);
+		break;
+	case T_FLOAT:
+		cast_float(str);
+		break;
+	case T_DOUBLE:
+		cast_double(str);
+		break;
+	default:
+		cast_pseudo_lit(str);
+		break;
+	}
 }

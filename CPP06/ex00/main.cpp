@@ -10,12 +10,12 @@ int	main(int argc, char *argv[])
 	if (argc != 2)
 	{
 		std::cerr << "Error. Correct usage: " << argv[0] << " <arg>" << std::endl;
-		 return (1);
+		return (1);
 	}
 
 	ScalarConverter::convert(argv[1]);
 
-	std::cout << std::endl << "Examples: " << std::endl;
+	/* std::cout << std::endl << "Examples: " << std::endl;
 	ScalarConverter::convert("0");
 	ScalarConverter::convert("123");
 	ScalarConverter::convert("-33");
@@ -23,9 +23,11 @@ int	main(int argc, char *argv[])
 
 	ScalarConverter::convert("n");
 	ScalarConverter::convert("c");
+	ScalarConverter::convert("f");
 	
 	ScalarConverter::convert("-4.2f");
 	ScalarConverter::convert("42.0f");
+	ScalarConverter::convert("0.0f");
 	ScalarConverter::convert(".5f");
 	ScalarConverter::convert("-inff");
 	ScalarConverter::convert("+inff");
@@ -42,6 +44,7 @@ int	main(int argc, char *argv[])
 	ScalarConverter::convert("nan");
 
 	std::cout << std::endl << "Invalid examples: " << std::endl;
+	ScalarConverter::convert("hola");
 	ScalarConverter::convert("n.an");
 	ScalarConverter::convert("13.an");
 	ScalarConverter::convert("(?)");
@@ -49,6 +52,8 @@ int	main(int argc, char *argv[])
 	ScalarConverter::convert("123.");
 	ScalarConverter::convert("+");
 	ScalarConverter::convert("42.0z");
+	ScalarConverter::convert(" ");
+	ScalarConverter::convert("     "); */
 }
 
 /*

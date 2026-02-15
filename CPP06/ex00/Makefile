@@ -1,5 +1,5 @@
 NAME		= convert
-SRCS		= main.cpp ScalarConverter.cpp
+SRCS		= main.cpp ScalarConverter.cpp state_machine.cpp
 BUILD		= build
 OBJS		= $(addprefix $(BUILD)/, $(SRCS:.cpp=.o))
 CXX			= c++
