@@ -3,16 +3,6 @@
 
 # include <string>
 
-/* enum Type {
-	T_CHAR,
-	T_STRING,
-	T_INT,
-	T_DOUBLE,
-	T_FLOAT,
-	T_INVALID,
-	__TYPE_SIZE
-}; */
-
 enum State {
 	S_CHAR,		// Valid final states
 	S_STRING,

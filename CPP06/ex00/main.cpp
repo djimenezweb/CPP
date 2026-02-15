@@ -15,7 +15,7 @@ int	main(int argc, char *argv[])
 
 	ScalarConverter::convert(argv[1]);
 
-	/* std::cout << std::endl << "Examples: " << std::endl;
+	std::cout << std::endl << "Examples: " << std::endl;
 	ScalarConverter::convert("0");
 	ScalarConverter::convert("123");
 	ScalarConverter::convert("-33");
@@ -53,27 +53,5 @@ int	main(int argc, char *argv[])
 	ScalarConverter::convert("+");
 	ScalarConverter::convert("42.0z");
 	ScalarConverter::convert(" ");
-	ScalarConverter::convert("     "); */
+	ScalarConverter::convert("     ");
 }
-
-/*
-
-./convert 0
-char: Non displayable
-int: 0
-float: 0.0f
-double: 0.0
-
-./convert nan
-char: impossible
-int: impossible
-float: nanf
-double: nan
-
-./convert 42.0f
-char: '*'
-int: 42
-float: 42.0f
-double: 42.0
-
-*/

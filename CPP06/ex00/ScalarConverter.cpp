@@ -17,27 +17,62 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other)
 // Destructor
 ScalarConverter::~ScalarConverter() {}
 
-bool is_valid_range(const std::string &str, long min, long max)
+bool is_valid_double(const std::string &str)
 {
-	long lvalue = static_cast<long>(std::atol(str.c_str()));
-	if (lvalue < min || lvalue > max)
+	long double value = static_cast<long double>(std::strtold(str.c_str(), NULL));
+
+	if (value < -std::numeric_limits<double>::max() || value > std::numeric_limits<double>::max())
 		return (false);
 	return (true);
 }
 
+bool is_valid_float(const std::string &str)
+{
+	double value = static_cast<double>(std::atof(str.c_str()));
+
+	if (value < -std::numeric_limits<float>::max() || value > std::numeric_limits<float>::max())
+		return (false);
+	return (true);
+}
+
+bool is_valid_int(const std::string &str)
+{
+	double value = static_cast<double>(std::atof(str.c_str()));
+
+	if (value < -std::numeric_limits<int>::max() || value > std::numeric_limits<int>::max())
+		return (false);
+	return (true);
+}
+
+bool is_valid_char(const std::string &str)
+{
+	int value = static_cast<int>(std::atoi(str.c_str()));
+
+	if (value < -CHAR_MAX || value > CHAR_MAX)
+		return (false);
+	return (true);
+}
+
+bool is_char_print(const std::string &str)
+{
+	long double value = static_cast<long double>(std::atof(str.c_str()));
+
+	if (value > 32 && value < 127)
+		return (true);
+	return (false);
+}
+
 void	print_double(const std::string &str)
 {
-	// long lvalue = static_cast<long>(std::atol(str.c_str()));
-	// if (lvalue < (long)DBL_MIN || lvalue > (long)DBL_MAX)
-	if (!is_valid_range(str, (long)DBL_MIN, (long)DBL_MAX))
+	if (!is_valid_double(str))
 	{
-		std::cout << str << " is out of range of float values" << std::endl;
+		std::cerr << str << " is outside the range of representable values of type 'double'" << std::endl;
 		return;
 	}
 
 	double	value = static_cast<double>(std::atof(str.c_str()));
 
-	if ((value >= CHAR_MIN && value <= CHAR_MAX) && isprint(static_cast<int>(value)))
+	if (is_char_print(str))
 		std::cout << "  char: '" << static_cast<char>(value) << "'" << std::endl;
 	else
 		std::cout << "  char: (Non displayable)" << std::endl;
@@ -48,17 +83,15 @@ void	print_double(const std::string &str)
 
 void	print_float(const std::string &str)
 {
-	// long lvalue = static_cast<long>(std::atol(str.c_str()));
-	// if (lvalue < (long)FLT_MIN || lvalue > (long)FLT_MAX)
-	if (!is_valid_range(str, (long)FLT_MIN, (long)FLT_MAX))
+	if (!is_valid_float(str))
 	{
-		std::cout << str << " is out of range of float values" << std::endl;
+		std::cerr << str << " is outside the range of representable values of type 'float'" << std::endl;
 		return;
 	}
 
 	float	value = static_cast<float>(std::atof(str.c_str()));
 
-	if ((value >= CHAR_MIN && value <= CHAR_MAX) && isprint(static_cast<int>(value)))
+	if (is_char_print(str))
 		std::cout << "  char: '" << static_cast<char>(value) << "'" << std::endl;
 	else
 		std::cout << "  char: (Non displayable)" << std::endl;
@@ -69,17 +102,15 @@ void	print_float(const std::string &str)
 
 void print_int(const std::string &str)
 {
-	// long lvalue = static_cast<long>(std::atol(str.c_str()));
-	// if (lvalue < INT_MIN || lvalue > INT_MAX)
-	if (!is_valid_range(str, (long)INT_MIN, (long)INT_MAX))
+	if (!is_valid_int(str))
 	{
-		std::cout << str << " is out of range of int values" << std::endl;
+		std::cerr << str << " is outside the range of representable values of type 'int'" << std::endl;
 		return;
 	}
 
 	int	value = static_cast<int>(std::atoi(str.c_str()));
 
-	if (value >= CHAR_MIN && value <= CHAR_MAX)
+	if (is_char_print(str))
 		std::cout << "  char: '" << static_cast<char>(value) << "'" << std::endl;
 	else
 		std::cout << "  char: (Non displayable)" << std::endl;
@@ -116,7 +147,7 @@ void	print_pseudo_lit(const std::string &str)
 			return ;
 		}
 	}
-	std::cout << "Invalid argument" << std::endl;
+	std::cout << "Invalid string literal" << std::endl;
 }
 
 void (*actions[])(const std::string&) = { print_char, print_pseudo_lit, print_int, print_double, print_float };
@@ -125,5 +156,8 @@ void (*actions[])(const std::string&) = { print_char, print_pseudo_lit, print_in
 void ScalarConverter::convert(const std::string &str)
 {
 	State state = detect(str);
-	actions[state](str);
+	if (state < S_INVALID)
+		actions[state](str);
+	else
+		std::cerr << "Invalid argument" << std::endl;
 }
