@@ -1,13 +1,13 @@
 #ifndef SCALARCONVERTER_H
 # define SCALARCONVERTER_H
 
-# include <iostream>
+//# include <iostream>
 # include <string>
-# include <cstdlib>
-# include <limits>
-# include <climits>
-# include <cfloat>
-# include <iomanip>
+//# include <cstdlib>
+//# include <limits>
+//# include <climits>
+//# include <cfloat>
+//# include <iomanip>
 
 class ScalarConverter
 {

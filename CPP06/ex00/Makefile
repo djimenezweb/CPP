@@ -1,5 +1,5 @@
 NAME		= convert
-SRCS		= main.cpp ScalarConverter.cpp state_machine.cpp limits.cpp
+SRCS		= main.cpp ScalarConverter.cpp conversions.cpp limits.cpp print.cpp state_machine.cpp
 BUILD		= build
 OBJS		= $(addprefix $(BUILD)/, $(SRCS:.cpp=.o))
 CXX			= c++
@@ -25,7 +25,7 @@ fclean : clean
 re : fclean all
 
 debug :
-	$(MAKE) re \
+	@$(MAKE) all \
 		CXX="clang++" \
 		LDFLAGS="$(SANITIZE)" \
 		CXXFLAGS="$(CXXFLAGS) -pedantic -Wconversion -Wshadow -g2 -O0 $(SANITIZE)"
@@ -36,3 +36,5 @@ run : all
 -include $(OBJS:.o=.d)
 
 .PHONY : all clean fclean re debug run
+
+MAKEFLAGS += --no-print-directory

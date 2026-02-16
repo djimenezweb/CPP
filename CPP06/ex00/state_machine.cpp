@@ -1,5 +1,4 @@
-#include "state_machine.hpp"
-#include <iostream>
+#include "converter.hpp"
 
 State transition[__STATE_SIZE][__INPUT_SIZE] =
 {
