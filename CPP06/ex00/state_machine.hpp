@@ -22,7 +22,6 @@ enum Input {
 	I_DIGIT,
 	I_SUFFIX,
 	I_CHAR,
-	I_OTHER,
 	__INPUT_SIZE
 };
 
