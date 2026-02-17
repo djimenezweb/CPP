@@ -7,14 +7,28 @@
 
 	FLOAT	0.0				340282346638528859811704183484516925440.0
 
-	DOUBLE	0.0				179769313486231570814527423731704356798070567525844
-							996598917476803157260780028538760589558632766878171
-							540458953514382464234321326889464182768467546703537
-							516986049910576551282076245490090389328944075868508
-							455133942304583236903222948165808559332123348274797
-							826204144723168738177180919299881250404026184124858
-							368.0
+	DOUBLE	0.0				1797693134862315708145274237317043567980705675258449
+							9659891747680315726078002853876058955863276687817154
+							0458953514382464234321326889464182768467546703537516
+							9860499105765512820762454900903893289440758685084551
+							3394230458323690322294816580855933212334827479782620
+							4144723168738177180919299881250404026184124858368.0
 */
+
+size_t	integer_part_length(const std::string &str)
+{
+	size_t	start;
+	size_t	end;
+
+	start = 0;
+	if (str.find_first_of("+-") != std::string::npos)
+		start++;
+	end = str.find('.');
+	if (end == std::string::npos)
+		end = str.length();
+
+	return (end - start);
+}
 
 bool	is_quoted_char(const std::string &str)
 {
@@ -37,39 +51,51 @@ bool	is_pseudo_lit(const std::string &str)
 
 bool	is_valid_double(const std::string &str)
 {
-	if (is_pseudo_lit(str))
-		return (true);
+	if (integer_part_length(str) <= 309)
+	{
+		if (is_pseudo_lit(str))
+			return (true);
 
-	long double value = static_cast<long double>(std::strtold(str.c_str(), NULL));
+		long double value = static_cast<long double>(std::strtold(str.c_str(), NULL));
 
-	if (value < -std::numeric_limits<double>::max() || value > std::numeric_limits<double>::max())
-		return (false);
-	return (true);
+		if (value >= -DBL_MAX && value <= DBL_MAX)
+			return (true);
+	}
+	return (false);
 }
 
 bool	is_valid_float(const std::string &str)
 {
-	if (is_pseudo_lit(str))
+	if (integer_part_length(str) <= 39)
+	{
+		if (is_pseudo_lit(str))
 		return (true);
 
-	double value = static_cast<double>(std::atof(str.c_str()));
+		double value = static_cast<double>(std::atof(str.c_str()));
 
-	if (value < -std::numeric_limits<float>::max() || value > std::numeric_limits<float>::max())
-		return (false);
-	return (true);
+		if (value >= -FLT_MAX && value <= FLT_MAX)
+			return (true);
+	}
+	return (false);
 }
 
 bool	is_valid_int(const std::string &str)
 {
-	double value = static_cast<double>(std::atof(str.c_str()));
+	if (integer_part_length(str) <= 10)
+	{
+		double value = static_cast<double>(std::atof(str.c_str()));
 
-	if (value >= INT_MIN && value <= INT_MAX)
-		return (true);
+		if (value >= INT_MIN && value <= INT_MAX)
+			return (true);
+	}
 	return (false);
 }
 
 bool	is_valid_char(const std::string &str)
 {
+	if (integer_part_length(str) > 3)
+		return (false);
+
 	int value = static_cast<int>(std::atoi(str.c_str()));
 
 	if (value >= CHAR_MIN && value <= CHAR_MAX)

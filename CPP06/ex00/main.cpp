@@ -11,7 +11,7 @@ int	main(int argc, char *argv[])
 
 	ScalarConverter::convert(argv[1]);
 
-	/* std::cout << std::endl << "Examples: " << std::endl;
+	/* std::cout << std::endl;
 	ScalarConverter::convert("0");
 	ScalarConverter::convert("123");
 	ScalarConverter::convert(" ");
@@ -23,7 +23,6 @@ int	main(int argc, char *argv[])
 	ScalarConverter::convert("-127");
 	ScalarConverter::convert("126");
 	ScalarConverter::convert("127");
-	ScalarConverter::convert("128");
 	ScalarConverter::convert("n");
 	ScalarConverter::convert("c");
 	ScalarConverter::convert("f");
@@ -33,19 +32,34 @@ int	main(int argc, char *argv[])
 	ScalarConverter::convert("42.0f");
 	ScalarConverter::convert("-4.2f");
 	ScalarConverter::convert("0.0f");
-	ScalarConverter::convert(".5f");	
+	ScalarConverter::convert(".5f");
 	ScalarConverter::convert("11.666");
 	ScalarConverter::convert(".5");
 	ScalarConverter::convert("0.0");
 	ScalarConverter::convert("-4.2");
 	ScalarConverter::convert("4.2");
 	
+	std::cout << std::endl << "Pseudo-literals: " << std::endl;
 	ScalarConverter::convert("nan");
 	ScalarConverter::convert("nanf");
 	ScalarConverter::convert("-inf");
 	ScalarConverter::convert("+inf");
 	ScalarConverter::convert("-inff");
 	ScalarConverter::convert("+inff");
+
+	std::cout << std::endl << "Overflows: " << std::endl;
+	ScalarConverter::convert("-129");
+	ScalarConverter::convert("128");
+	ScalarConverter::convert("-129.0");
+	ScalarConverter::convert("128.0");
+	ScalarConverter::convert("-129.0f");
+	ScalarConverter::convert("128.0f");
+	ScalarConverter::convert("-2147483649");
+	ScalarConverter::convert("2147483648");
+	ScalarConverter::convert("-2147483649.0");
+	ScalarConverter::convert("2147483648.0");
+	ScalarConverter::convert("-2147483649.0f");
+	ScalarConverter::convert("2147483648.0f");
 
 	std::cout << std::endl << "Invalid examples: " << std::endl;
 	ScalarConverter::convert("hola");

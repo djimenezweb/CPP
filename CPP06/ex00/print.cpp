@@ -66,7 +66,7 @@ void	print_char(const char c, const std::string &str)
 void	print_string(const std::string &str)
 {
 	if (is_quoted_char(str))
-		convert_char(&str[1]);
+		str_to_char(&str[1]);
 	else if (is_pseudo_lit(str))
 	{
 		std::cout << "  char: (Impossible)" << std::endl

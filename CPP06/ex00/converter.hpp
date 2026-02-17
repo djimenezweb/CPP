@@ -9,7 +9,6 @@
 # include <cfloat>
 # include <cmath>
 # include <iomanip>
-
 # include "ScalarConverter.hpp"
 
 // Finite state machine
@@ -35,9 +34,6 @@ enum Input {
 	__INPUT_SIZE
 };
 
-// Input	get_input_type(char c);
-// State	detect(const std::string &str);
-
 // Print
 
 int		calc_precision(const std::string &str);
@@ -50,13 +46,14 @@ void	print_string(const std::string &str);
 // Conversions
 
 void	out_of_range(const std::string &str, std::string type);
-void	convert_double(const std::string &str);
-void	convert_float(const std::string &str);
-void	convert_int(const std::string &str);
-void	convert_char(const std::string &str);
+void	str_to_double(const std::string &str);
+void	str_to_float(const std::string &str);
+void	str_to_int(const std::string &str);
+void	str_to_char(const std::string &str);
 
 // Limits
 
+size_t	integer_part_length(const std::string &str);
 bool	is_quoted_char(const std::string &str);
 bool	is_pseudo_lit(const std::string &str);
 bool	is_valid_double(const std::string &str);

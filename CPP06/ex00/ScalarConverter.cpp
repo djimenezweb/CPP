@@ -65,9 +65,8 @@ State detect(const std::string &str)
 void ScalarConverter::convert(const std::string &str)
 {
 	void (*actions[])(const std::string&) =
-		{ convert_char, convert_int, convert_double, convert_float, print_string };
+		{ str_to_char, str_to_int, str_to_double, str_to_float, print_string };
 
-	// std::cout << std::endl << "CONVERT: <" << str << ">" << std::endl;
 	State state = detect(str);
 	actions[state](str);
 }

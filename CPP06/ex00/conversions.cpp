@@ -7,7 +7,7 @@ void	out_of_range(const std::string &str, std::string type)
 			  << type << "'" << std::endl;
 }
 
-void	convert_double(const std::string &str)
+void	str_to_double(const std::string &str)
 {
 	if (!is_valid_double(str))
 		return (out_of_range(str, "double"));
@@ -20,7 +20,7 @@ void	convert_double(const std::string &str)
 	print_double(value, str);
 }
 
-void	convert_float(const std::string &str)
+void	str_to_float(const std::string &str)
 {
 	if (!is_valid_float(str))
 		return (out_of_range(str, "float"));
@@ -33,7 +33,7 @@ void	convert_float(const std::string &str)
 	print_double(static_cast<double>(value), str);
 }
 
-void	convert_int(const std::string &str)
+void	str_to_int(const std::string &str)
 {
 	if (!is_valid_int(str))
 		return (out_of_range(str, "int"));
@@ -46,7 +46,7 @@ void	convert_int(const std::string &str)
 	print_double(static_cast<double>(value), str);
 }
 
-void	convert_char(const std::string &str)
+void	str_to_char(const std::string &str)
 {
 	char	value = static_cast<char>(str[0]);
 
