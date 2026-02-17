@@ -17,38 +17,57 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other)
 // Destructor
 ScalarConverter::~ScalarConverter() {}
 
-static const std::string pseudo_lit[] = { "nan", "-inf", "+inf", "nanf", "-inff", "+inff" };
-
-void	print_string(const std::string &str)
+State transition[__STATE_SIZE][__INPUT_SIZE] =
 {
-	if (str.size() == 3 && str[0] == '\'' && str[2] == '\'')
-	{
-		convert_char(&str[1]);
-		return ;
-	}
-	for (size_t i = 0; i < 6; i++)
-	{
-		if (str == pseudo_lit[i])
-		{
-			std::cout << "  char: (Impossible)" << std::endl
-					  << "   int: (Impossible)" << std::endl
-					  << " float: " << static_cast<float>(std::atof(str.c_str())) << "f" << std::endl
-					  << "double: " << static_cast<double>(std::atof(str.c_str())) << std::endl;
-			return ;
-		}
-	}
-	std::cout << "Invalid string literal" << std::endl;
+	//I_SIGN	I_DOT		I_DIGIT		I_SUFFIX	I_CHAR 
+	{S_STRING,	S_STRING,	S_STRING,	S_STRING,	S_STRING},	// S_CHAR		Valid final states
+	{S_STRING,	S_DOT,		S_INTEGER,	S_STRING,	S_STRING},	// S_INTEGER
+	{S_STRING,	S_STRING,	S_FRACTION,	S_SUFFIX,	S_STRING},	// S_FRACTION
+	{S_STRING,	S_STRING,	S_STRING,	S_STRING,	S_STRING},	// S_SUFFIX
+	{S_STRING,	S_STRING,	S_STRING,	S_STRING,	S_STRING},	// S_STRING		Invalid final states
+	{S_SIGN,	S_DOT,		S_INTEGER,	S_CHAR,		S_CHAR	},	// S_START
+	{S_STRING,	S_STRING,	S_INTEGER,	S_STRING,	S_STRING},	// S_SIGN
+	{S_STRING,	S_STRING,	S_FRACTION,	S_STRING,	S_STRING},	// S_DOT
+};
+
+Input get_input_type(char c)
+{
+	if (c == '+' || c == '-')
+		return (I_SIGN);
+	else if (c == '.')
+		return (I_DOT);
+	else if (std::isdigit(c))
+		return (I_DIGIT);
+	else if (c == 'f')
+		return (I_SUFFIX);
+	return (I_CHAR);
 }
 
-void (*actions[])(const std::string&) = { convert_char, print_string, convert_int, convert_double, convert_float };
+State detect(const std::string &str)
+{
+	State state = S_START;
+	size_t i = 0;
+
+	while (i < str.length())
+	{
+		Input input = get_input_type(str[i]);
+		state = transition[state][input];
+		if (state == S_STRING)
+			return (S_STRING);
+		i++;
+	}
+	if (state >= S_STRING)
+		return (S_STRING);
+	return (state);
+}
 
 // Convert
 void ScalarConverter::convert(const std::string &str)
 {
+	void (*actions[])(const std::string&) =
+		{ convert_char, convert_int, convert_double, convert_float, print_string };
+
 	// std::cout << std::endl << "CONVERT: <" << str << ">" << std::endl;
 	State state = detect(str);
-	if (state < S_INVALID)
-		actions[state](str);
-	else
-		std::cerr << "Invalid argument" << std::endl;
+	actions[state](str);
 }

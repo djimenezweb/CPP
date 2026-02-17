@@ -2,44 +2,44 @@
 
 int	calc_precision(const std::string &str)
 {
-	size_t	precision = 1;
+	size_t	end;
+	size_t	precision;
+	size_t	index;
 
-	size_t	end = str.rfind('f');
+	end = str.rfind('f');
 	if (end == std::string::npos)
 		end = str.length();
 
-	size_t	index = str.find('.');
+	precision = 1;
+	index = str.find('.');
 	if (index != std::string::npos)
-	{
 		precision = end - 1 - index;
-		// std::cout << "Number of decimals: " << precision << std::endl;
-	}
-	// std::cout << "Returning: " << precision << std::endl;
+
 	return ((int)precision);
 }
 
 void	print_double(const double d, const std::string &str)
 {
-	if (!is_valid_double(str))
+	if (is_valid_double(str))
 	{
-		std::cout << "double: (Overflow)" << std::endl;
-		return;
+		int	precision = calc_precision(str);
+		std::cout << std::fixed << std::setprecision(precision)
+				  << "double: " << d << std::endl;
 	}
-	int	precision = calc_precision(str);
-	std::cout << std::fixed << std::setprecision(precision)
-			  << "double: " << d << std::endl;
+	else
+		std::cout << "double: (Overflow)" << std::endl;
 }
 
 void	print_float(const float f, const std::string &str)
 {
-	if (!is_valid_float(str))
+	if (is_valid_float(str))
 	{
-		std::cout << " float: (Overflow)" << std::endl;
-		return;
+		int	precision = calc_precision(str);
+		std::cout << std::fixed << std::setprecision(precision)
+				  << " float: " << f << "f" << std::endl;
 	}
-	int	precision = calc_precision(str);
-	std::cout << std::fixed << std::setprecision(precision)
-			  << " float: " << f << "f" << std::endl;
+	else
+		std::cout << " float: (Overflow)" << std::endl;
 }
 
 void	print_int(const int i, const std::string &str)
@@ -61,4 +61,19 @@ void	print_char(const char c, const std::string &str)
 	}
 	else
 		std::cout << "  char: (Overflow)" << std::endl;
+}
+
+void	print_string(const std::string &str)
+{
+	if (is_quoted_char(str))
+		convert_char(&str[1]);
+	else if (is_pseudo_lit(str))
+	{
+		std::cout << "  char: (Impossible)" << std::endl
+				  << "   int: (Impossible)" << std::endl;
+		print_float(static_cast<float>(std::atof(str.c_str())), str);
+		print_double(static_cast<double>(std::atof(str.c_str())), str);
+	}
+	else
+		std::cout << "Invalid string literal" << std::endl;
 }

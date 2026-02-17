@@ -1,10 +1,6 @@
 #include <iostream>
 #include "ScalarConverter.hpp"
 
-/* The following rule applies to the entire module and is mandatory.
-For each exercise, type conversion must be handled using a specific type of casting.
-Your choice will be reviewed during the defense. */
-
 int	main(int argc, char *argv[])
 {
 	if (argc != 2)
@@ -28,32 +24,28 @@ int	main(int argc, char *argv[])
 	ScalarConverter::convert("126");
 	ScalarConverter::convert("127");
 	ScalarConverter::convert("128");
-
 	ScalarConverter::convert("n");
 	ScalarConverter::convert("c");
 	ScalarConverter::convert("f");
-
 	ScalarConverter::convert("*");
 	ScalarConverter::convert("42");
 	ScalarConverter::convert("42.0");
 	ScalarConverter::convert("42.0f");
-	
 	ScalarConverter::convert("-4.2f");
 	ScalarConverter::convert("0.0f");
-	ScalarConverter::convert(".5f");
-	ScalarConverter::convert("-inff");
-	ScalarConverter::convert("+inff");
-	ScalarConverter::convert("nanf");
-
+	ScalarConverter::convert(".5f");	
 	ScalarConverter::convert("11.666");
 	ScalarConverter::convert(".5");
 	ScalarConverter::convert("0.0");
 	ScalarConverter::convert("-4.2");
 	ScalarConverter::convert("4.2");
-
+	
+	ScalarConverter::convert("nan");
+	ScalarConverter::convert("nanf");
 	ScalarConverter::convert("-inf");
 	ScalarConverter::convert("+inf");
-	ScalarConverter::convert("nan");
+	ScalarConverter::convert("-inff");
+	ScalarConverter::convert("+inff");
 
 	std::cout << std::endl << "Invalid examples: " << std::endl;
 	ScalarConverter::convert("hola");
