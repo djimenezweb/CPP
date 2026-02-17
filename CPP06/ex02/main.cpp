@@ -4,6 +4,8 @@
 #include <ctime>
 #include <exception>
 #include <typeinfo>
+#include <sys/time.h>
+
 #include "Base.hpp"
 #include "A.hpp"
 #include "B.hpp"
@@ -11,7 +13,11 @@
 
 int	randomizer(int min, int max)
 {
-	// int random_number = (std::rand() % max) + min + 1;
+	struct timeval	tv;
+
+	gettimeofday(&tv, 0);
+	std::srand(tv.tv_sec ^ tv.tv_usec);
+
 	int random_number = (std::rand() % (max - min + 1)) + min;
 	return (random_number);
 }
@@ -41,7 +47,6 @@ Base * generate(void)
 
 	return (ptr);
 }
-
 
 // Print the actual type of the object pointed to by `p`: "A", "B", or "C".
 void identify(Base* p)
@@ -90,15 +95,12 @@ void identify(Base& p)
 			{
 				std::cout << "Reference is of unknown class" << std::endl;
 			}
-			
 		}
 	}
 }
 
 int	main()
 {
-	std::srand((unsigned int)std::time(0) ^ (unsigned int)getpid());
-
 	Base *obj = generate();
 	Base &ref = *obj;
 

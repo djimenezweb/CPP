@@ -1,16 +1,9 @@
 #ifndef SERIALIZER_H
 # define SERIALIZER_H
 
-# include <cassert>
 # include <stdint.h>
 # include <iostream>
-# include <iomanip>
-
-struct Data
-{
-	int		i;
-	char	c;
-};
+# include "data.hpp"
 
 class Serializer
 {

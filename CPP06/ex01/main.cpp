@@ -1,21 +1,27 @@
 #include "Serializer.hpp"
 
-// Source: https://en.cppreference.com/w/cpp/language/reinterpret_cast.html
-
 int	main()
 {
-
 	Data		data;
 	Data		*data_ptr = NULL;
-	uintptr_t	value;
+	uintptr_t	serialized;
 	
-	data.c = 'a';
-	data.i = 123;
+	data.letter = 'a';
+	data.number = 123;
 
-	value = Serializer::serialize(&data);
-	data_ptr = Serializer::deserialize(value);
+	std::cout << "data.letter: " << data.letter << std::endl
+			  << "data.number: " << data.number << std::endl;
 
-	std::cout << &data << std::endl;
-	std::cout << data_ptr << std::endl;
+	serialized = Serializer::serialize(&data);
+	data_ptr = Serializer::deserialize(serialized);
+
+	std::cout << std::endl
+			  << &data << std::endl
+			  << data_ptr << std::endl;
+
+	std::cout << std::endl
+			  << "data_ptr->letter: " << data_ptr->letter << std::endl
+			  << "data_ptr->number: " << data_ptr->number << std::endl;
+
 	return (0);
 }
