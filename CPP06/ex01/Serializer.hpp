@@ -1,11 +1,16 @@
 #ifndef SERIALIZER_H
 # define SERIALIZER_H
 
+# include <cassert>
+# include <stdint.h>
 # include <iostream>
-# include "data.hpp"
+# include <iomanip>
 
-// struct Data;
-// You must create a non-empty (meaning it has data members) Data structure
+struct Data
+{
+	int		i;
+	char	c;
+};
 
 class Serializer
 {
