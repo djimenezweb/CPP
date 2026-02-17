@@ -68,7 +68,7 @@ bool	is_valid_float(const std::string &str)
 	if (integer_part_length(str) <= 39)
 	{
 		if (is_pseudo_lit(str))
-		return (true);
+			return (true);
 
 		double value = static_cast<double>(std::atof(str.c_str()));
 
