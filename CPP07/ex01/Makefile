@@ -1,4 +1,4 @@
-NAME		= ex01
+NAME		= iter
 SRCS		= main.cpp
 BUILD		= build
 OBJS		= $(addprefix $(BUILD)/, $(SRCS:.cpp=.o))
