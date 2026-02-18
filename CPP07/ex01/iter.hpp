@@ -1,9 +1,12 @@
+#include <iostream>
 
 template <typename T1, typename T2, typename T3>
-void	iter(*T arr[], const T2 value, T3 f)
+void	iter(T1 arr[], const T2 size, T3 &func)
 {
-	for (i = 0; i < value; i++)
+	size_t max_size = static_cast<size_t>(size);
+	for (size_t i = 0; i < max_size; i++)
 	{
-		f(*arr[i]);
+		std::cout << func(const_cast<T2&>(arr[i])) << " ";
 	}
-};
+	std::cout << std::endl;
+}
