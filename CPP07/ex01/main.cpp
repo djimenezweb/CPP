@@ -17,11 +17,9 @@ int	main()
 	const int arr_c[] = { 1, 2, 3, 4, 5, 6, 7, 8 };
 	
 	::iter(arr, size, duplicate);
-	
 	::iter(arr_c, size, duplicate);
 
 	::iter(arr, size, triplicate);
-	
 	::iter(arr_c, size, triplicate);
 
 	return (0);
