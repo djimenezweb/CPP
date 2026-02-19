@@ -1,8 +1,6 @@
 #ifndef ARRAY_H
 # define ARRAY_H
 
-# include <iostream>
-
 template <typename T>
 class Array
 {
@@ -16,7 +14,7 @@ class Array
 		~Array();
 		Array(const Array &other);
 		Array &operator=(const Array &other);
-		T &operator[](unsigned int n);
+		T &operator[](int n);
 
 		unsigned int size() const;
 };
