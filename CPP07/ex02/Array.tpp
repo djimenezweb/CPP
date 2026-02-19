@@ -56,6 +56,15 @@ T &Array<T>::operator[](int n)
 	return (_arr[n]);
 }
 
+// Subscript operator (const)
+template <typename T>
+T &Array<T>::operator[](int n) const
+{
+	if (n < 0 || n > (signed int)_length - 1)
+		throw std::out_of_range("Error: index is out of bounds");
+	return (_arr[n]);
+}
+
 // Destructor
 template <typename T>
 Array<T>::~Array()
