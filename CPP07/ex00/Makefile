@@ -1,4 +1,4 @@
-NAME		= ex00
+NAME		= templates
 SRCS		= main.cpp
 BUILD		= build
 OBJS		= $(addprefix $(BUILD)/, $(SRCS:.cpp=.o))

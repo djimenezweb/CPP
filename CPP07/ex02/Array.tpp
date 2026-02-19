@@ -60,7 +60,7 @@ T &Array<T>::operator[](int n)
 template <typename T>
 Array<T>::~Array()
 {
-	std::cout << "Deleting array of length: " << _length << std::endl;
+	std::cout << "Deleting array of length " << _length << std::endl;
 	delete[] _arr;
 }
 

@@ -46,8 +46,18 @@ int main(int, char**)
 
 	try
 	{
+		std::cout << "Trying to access array[0]" << std::endl;
+		std::cout << numbers[0] << std::endl << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+
+	try
+	{
 		std::cout << "Trying to access array[-2]" << std::endl;
-		numbers[-2] = 0;
+		std::cout << numbers[-2] << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -59,7 +69,7 @@ int main(int, char**)
 	try
 	{
 		std::cout << "Trying to access array[9999]" << std::endl;
-		numbers[9999] = 0;
+		std::cout << numbers[9999] << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -71,7 +81,7 @@ int main(int, char**)
 	try
 	{
 		std::cout << "Trying to access array[MAX_VAL]" << std::endl;
-		numbers[MAX_VAL] = 0;
+		std::cout << numbers[MAX_VAL] << std::endl;
 	}
 	catch(const std::exception& e)
 	{
