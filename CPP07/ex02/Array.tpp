@@ -8,13 +8,20 @@
 template <typename T>
 Array<T>::Array() : _length(0)
 {
-	_arr = new T[0];
+	_arr = NULL;
 }
 
 // Parameterized constructor
 template <typename T>
-Array<T>::Array(unsigned int n) : _length(n)
+Array<T>::Array(unsigned int n)
 {
+	if ((int)n <= 0)
+	{
+		_length = 0;
+		_arr = NULL;
+		return;
+	}
+	_length = n;
 	_arr = new T[n];
 	for (size_t i = 0; i < n; i++)
 		_arr[i] = 0;
@@ -24,7 +31,6 @@ Array<T>::Array(unsigned int n) : _length(n)
 template <typename T>
 Array<T>::Array(const Array &other)
 {
-	// std::cout << "Copy constructor" << std::endl;
 	_length = other._length;
 	_arr = new T[other.size()];
 	for (size_t i = 0; i < other.size(); i++)
@@ -35,7 +41,6 @@ Array<T>::Array(const Array &other)
 template <typename T>
 Array<T> &Array<T>::operator=(const Array &other)
 {
-	// std::cout << "Copy assignment operator" << std::endl;
 	if (this != &other)
 	{
 		_length = other._length;

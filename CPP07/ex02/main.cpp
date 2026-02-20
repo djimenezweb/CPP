@@ -6,8 +6,14 @@
 
 int main(int, char**)
 {
+	Array<int> empty_arr;
+
 	Array<int> numbers(MAX_VAL);
+	
+	Array<int> numbers_negative(-1);
+	
 	int* mirror = new int[MAX_VAL];
+
 	srand(time(NULL));
 	for (int i = 0; i < MAX_VAL; i++)
 	{
