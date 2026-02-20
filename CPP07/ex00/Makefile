@@ -28,7 +28,7 @@ debug :
 	@$(MAKE) all \
 		CXX="clang++" \
 		LDFLAGS="$(SANITIZE)" \
-		CXXFLAGS="$(CXXFLAGS) -pedantic -Wconversion -Wshadow -g2 -O0 $(SANITIZE)"
+		CXXFLAGS="$(CXXFLAGS) -pedantic -Wshadow -g2 -O0 $(SANITIZE)"
 
 run : all
 	./$(NAME)
