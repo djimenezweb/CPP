@@ -1,11 +1,11 @@
-NAME		= ex01
-SRCS		= main.cpp
-BUILD		= build
-OBJS		= $(addprefix $(BUILD)/, $(SRCS:.cpp=.o))
-CXX			= c++
-CXXFLAGS	= -std=c++98 -Wall -Wextra -Werror -MMD -MP
-LDFLAGS		=
-SANITIZE	= -fsanitize=address,undefined -fno-omit-frame-pointer
+NAME		:= ex01
+SRCS		:= main.cpp
+BUILD		:= build
+OBJS		:= $(addprefix $(BUILD)/, $(SRCS:.cpp=.o))
+CXX			:= c++
+CXXFLAGS	:= -std=c++98 -Wall -Wextra -Werror -MMD -MP
+LDFLAGS		:=
+SANITIZE	:= -fsanitize=address,undefined -fno-omit-frame-pointer
 
 all : $(NAME)
 
@@ -24,7 +24,7 @@ fclean : clean
 
 re : fclean all
 
-debug: CXX		=	clang++
+debug: CXX		:=	clang++
 debug: CXXFLAGS	+=	-pedantic -Wshadow -g2 -O0 $(SANITIZE)
 debug: LDFLAGS	+= $(SANITIZE)
 debug: all
