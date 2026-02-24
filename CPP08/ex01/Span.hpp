@@ -16,6 +16,7 @@ class Span
 		int getMin();
 		int getMax();
 		bool isLongEnough();
+		int	randomizer();
 
 	public:
 		Span();
@@ -27,6 +28,7 @@ class Span
 		void addNumber(int num);
 		unsigned int shortestSpan();
 		unsigned int longestSpan();
+		void fill();
 };
 
 #endif

@@ -1,5 +1,6 @@
 #include "Span.hpp"
 #include <limits.h>
+#include <sys/time.h>
 
 // Default constructor
 Span::Span() : N(0)
@@ -61,7 +62,25 @@ bool Span::isLongEnough()
 	return (true);
 }
 
+int	Span::randomizer()
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, 0);
+	std::srand(tv.tv_sec ^ tv.tv_usec);
+
+	int random_number = std::rand();
+	// std::cout << "Random: " << random_number << std::endl;
+	return (random_number);
+}
+
 // Public member functions
+
+void Span::fill()
+{
+	for (size_t i = 0; i < N; i++)
+		vector.push_back(randomizer());
+}
 
 void Span::addNumber(int num)
 {
@@ -73,7 +92,6 @@ void Span::addNumber(int num)
 unsigned int Span::shortestSpan()
 {
 	isLongEnough();
-
 	int shortest = INT_MAX;
 	int diff = INT_MAX;
 	std::vector<int> sorted_v = vector;
@@ -83,12 +101,7 @@ unsigned int Span::shortestSpan()
 	while(it != (sorted_v.end() - 1))
 	{
 		diff = *(it + 1) - *it;
-		if (diff > 0)
-		{
-			shortest = (diff < shortest) ? diff : shortest;
-			if (shortest == 1)
-				break;
-		}
+		shortest = (diff < shortest) ? diff : shortest;
 		it++;
 	}
 	return (shortest);
