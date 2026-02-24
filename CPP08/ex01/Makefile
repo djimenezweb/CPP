@@ -1,5 +1,5 @@
-NAME		:= ex01
-SRCS		:= main.cpp
+NAME		:= span
+SRCS		:= main.cpp Span.cpp
 BUILD		:= build
 OBJS		:= $(addprefix $(BUILD)/, $(SRCS:.cpp=.o))
 CXX			:= c++
