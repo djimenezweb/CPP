@@ -1,4 +1,4 @@
-NAME		:= ex02
+NAME		:= mutant
 SRCS		:= main.cpp
 BUILD		:= build
 OBJS		:= $(addprefix $(BUILD)/, $(SRCS:.cpp=.o))
