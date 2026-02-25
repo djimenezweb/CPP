@@ -4,19 +4,19 @@
 # include <iostream>
 # include <vector>
 # include <exception>
-# include <vector>
 # include <algorithm>
-
+# include <limits.h>
+# include <sys/time.h>
 
 class Span
 {
 	private:
-		unsigned int N;
-		std::vector<int> vector;
-		int getMin();
-		int getMax();
-		bool isLongEnough();
-		int	randomizer();
+		unsigned int		N;
+		std::vector<int>	vector;
+
+		bool	isLongEnough();
+		int		randomizer();
+		int		signedRandomizer();
 
 	public:
 		Span();
@@ -25,10 +25,12 @@ class Span
 		Span(const Span &other);
 		Span &operator=(const Span &other);
 
-		void addNumber(int num);
-		unsigned int shortestSpan();
-		unsigned int longestSpan();
-		void fill();
+		void			addNumber(int num);
+		unsigned int	shortestSpan();
+		unsigned int	longestSpan();
+		void			fill();
+		void			fill(int num);
+		void			printContent();
 };
 
 #endif
