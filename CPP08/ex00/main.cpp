@@ -7,6 +7,7 @@
 int	main()
 {
 	{
+		std::cout << "== TEST 1 == List ==" << std::endl;
 		std::list<int> numbers;
 
 		numbers.push_front(12);
@@ -28,8 +29,10 @@ int	main()
 		}
 		catch(const std::exception& e)
 		{
-			std::cerr << "Error (list): " << e.what() << '\n';
+			std::cerr << "Error: " << e.what() << '\n';
 		}
+
+		std::cout << std::endl << "== TEST 2 == Const list ==" << std::endl;
 
 		const std::list<int> const_numbers = numbers;
 
@@ -42,11 +45,13 @@ int	main()
 		}
 		catch(const std::exception& e)
 		{
-			std::cerr << "Error (const list): " << e.what() << '\n';
+			std::cerr << "Error: " << e.what() << '\n';
 		}
 	}
 
 	{
+		std::cout << std::endl << "== TEST 3 == Vector ==" << std::endl;
+
 		std::vector<int> numbers;
 
 		numbers.push_back(12);
@@ -68,11 +73,13 @@ int	main()
 		}
 		catch(const std::exception& e)
 		{
-			std::cerr << "Error (vector): " << e.what() << '\n';
+			std::cerr << "Error: " << e.what() << '\n';
 		}
 	}
 
 	{
+		std::cout << std::endl << "== TEST 4 == Deque ==" << std::endl;
+
 		std::deque<int> numbers;
 
 		numbers.push_back(12);
@@ -94,7 +101,7 @@ int	main()
 		}
 		catch(const std::exception& e)
 		{
-			std::cerr << "Error (deque): " << e.what() << '\n';
+			std::cerr << "Error: " << e.what() << '\n';
 		}
 	}
 

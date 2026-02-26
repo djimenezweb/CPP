@@ -3,7 +3,7 @@
 
 int main()
 {
-	std::cout << "== 1 == Initializing Span(-1) ==" << std::endl;
+	std::cout << "== TEST 1 == Initializing Span(-1) ==" << std::endl;
 	{
 		try
 		{
@@ -15,7 +15,7 @@ int main()
 		}
 	}
 
-	std::cout << std::endl << "== 2 == Initializing Span(5) ==" << std::endl;
+	std::cout << std::endl << "== TEST 2 == Initializing Span(5) ==" << std::endl;
 
 	{
 		try
@@ -38,7 +38,7 @@ int main()
 		}
 	}
 
-	std::cout << std::endl << "== 3 == Adding a 6th element into a Span(5) ==" << std::endl;
+	std::cout << std::endl << "== TEST 3 == Adding a 6th element into a Span(5) ==" << std::endl;
 
 	{
 		try
@@ -62,7 +62,7 @@ int main()
 		}
 	}
 
-	std::cout << std::endl << "== 4 == Adding a duplicated number ==" << std::endl;
+	std::cout << std::endl << "== TEST 4 == Adding a duplicated number ==" << std::endl;
 
 	{
 		Span sp = Span(6);
@@ -86,10 +86,9 @@ int main()
 		}
 	}
 
-	std::cout << std::endl << "== 5 == Finding span in an empty vector ==" << std::endl;
+	std::cout << std::endl << "== TEST 5 == Finding span in an empty vector ==" << std::endl;
 
 	{
-		
 		try
 		{
 			Span sp = Span(100);
@@ -103,7 +102,7 @@ int main()
 		}
 	}
 
-	std::cout << std::endl << "== 6 == Finding span in a 1-element-vector ==" << std::endl;
+	std::cout << std::endl << "== TEST 6 == Finding span in a 1-element-vector ==" << std::endl;
 
 	{
 		try
@@ -121,7 +120,7 @@ int main()
 		}
 	}
 
-	std::cout << std::endl << "== 7 == Filling in a span with 10000 random numbers ==" << std::endl;
+	std::cout << std::endl << "== TEST 7 == Filling in a span with 10000 random numbers ==" << std::endl;
 
 	{
 		try

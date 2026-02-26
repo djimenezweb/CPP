@@ -9,6 +9,8 @@ void easyfind(const T &container, const int num)
 {
 	if (std::find(container.begin(), container.end(), num) == container.end())
 		throw (std::runtime_error("Value wasn't found"));
+	else
+		std::cout << "Found value " << num << std::endl; 
 }
 
 #endif
