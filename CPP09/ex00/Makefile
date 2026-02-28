@@ -30,7 +30,7 @@ debug: LDFLAGS	+= $(SANITIZE)
 debug: all
 
 run : all
-	./$(NAME)
+	./$(NAME) input.txt
 
 -include $(OBJS:.o=.d)
 
