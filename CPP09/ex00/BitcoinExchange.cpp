@@ -4,7 +4,10 @@
 BitcoinExchange::BitcoinExchange() {}
 
 // Copy constructor
-BitcoinExchange::BitcoinExchange(const BitcoinExchange &other) {}
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
+{
+	(void)other;
+}
 
 // Copy assignment operator
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other)
