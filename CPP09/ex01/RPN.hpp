@@ -28,8 +28,8 @@ class RPN
 				std::string message;
 			public :
 				UnexpectedTokenException(char c) throw();
-				~UnexpectedTokenException() throw() {};
-				const char *what() const throw();
+				virtual ~UnexpectedTokenException() throw() {};
+				virtual const char *what() const throw();
 		};
 };
 
