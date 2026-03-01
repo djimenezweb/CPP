@@ -1,5 +1,5 @@
 NAME		:= RPN
-SRCS		:= main.cpp
+SRCS		:= main.cpp RPN.cpp
 BUILD		:= build
 OBJS		:= $(addprefix $(BUILD)/, $(SRCS:.cpp=.o))
 CXX			:= c++
@@ -30,7 +30,20 @@ debug: LDFLAGS	+= $(SANITIZE)
 debug: all
 
 run : all
-	./$(NAME)
+	./$(NAME) "8 9 * 9 - 9 - 9 - 4 - 1 +"
+	@echo "42 (expected)\n"
+	./$(NAME) "7 7 * 7 -"
+	@echo "42 (expected)\n"
+	./$(NAME) "1 2 * 2 / 2 * 2 4 - +"
+	@echo "0 (expected)\n"
+	./$(NAME) "(1 + 1)"
+	@echo "Error (expected)\n"
+	./$(NAME) "3 4 - 5 +"
+	@echo "4 (expected)\n"
+	./$(NAME) "3 4 + 2 *"
+	@echo "14 (expected)\n"
+	./$(NAME) "3 4 - 2 7 + * 4 /"
+	@echo "-2 (expected)\n"
 
 -include $(OBJS:.o=.d)
 
