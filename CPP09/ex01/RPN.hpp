@@ -8,8 +8,8 @@
 class RPN
 {
 	private:
-		std::string		expr;
-		std::stack<int>	stack;
+		std::string			expr;
+		std::stack<double>	stack;
 		void pushDigit(size_t idx);
 		void operate(char c);
 
@@ -20,7 +20,7 @@ class RPN
 		RPN(const RPN &other);
 		RPN &operator=(const RPN &other);
 
-		int calc();
+		double calc();
 
 		class UnexpectedTokenException : public std::exception
 		{

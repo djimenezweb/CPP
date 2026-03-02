@@ -43,7 +43,7 @@ run : all
 	./$(NAME) "3 4 + 2 *"
 	@echo "14 (expected)\n"
 	./$(NAME) "3 4 - 2 7 + * 4 /"
-	@echo "-2 (expected)\n"
+	@echo "-2.25 (expected)\n"
 
 -include $(OBJS:.o=.d)
 

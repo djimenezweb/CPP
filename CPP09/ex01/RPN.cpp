@@ -42,7 +42,7 @@ void RPN::operate(char c)
 	if (stack.size() < 2)
 		throw (RPN::UnexpectedTokenException(c));
 
-	int a, b;
+	double a, b;
 	a = stack.top();
 	stack.pop();
 	b = stack.top();
@@ -60,15 +60,19 @@ void RPN::operate(char c)
 		stack.push(b * a);
 		break;
 	case ('/'):
+	{
+		if (a == 0)
+			throw (std::runtime_error("Error: Can't divide between 0"));
 		stack.push(b / a);
 		break;
+	}
 	default:
 		throw (RPN::UnexpectedTokenException(c));
 		break;
 	}
 }
 
-int RPN::calc()
+double RPN::calc()
 {
 	for (size_t i = 0; i < expr.length(); i++)
 	{
