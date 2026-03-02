@@ -6,10 +6,11 @@
 class PmergeMe
 {
 	private:
-		// private member variable
+		char **argv;
 
 	public:
 		PmergeMe();
+		PmergeMe(char **argv);
 		~PmergeMe();
 		PmergeMe(const PmergeMe &other);
 		PmergeMe &operator=(const PmergeMe &other);
