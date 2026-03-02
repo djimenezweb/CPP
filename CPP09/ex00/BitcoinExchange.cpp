@@ -3,23 +3,13 @@
 // Default constructor
 BitcoinExchange::BitcoinExchange()
 {
-	db_file.open(DB_FILE);
-	if (db_file.fail())
-		throw std::runtime_error("Error: Failed to open database");
 	openDb();
-	if (db.empty())
-		throw std::runtime_error("Error: Failed to load database");
 }
 
 // Parameterized constructor
 BitcoinExchange::BitcoinExchange(char *str)
 {
-	db_file.open(DB_FILE);
-	if (db_file.fail())
-		throw std::runtime_error("Error: Failed to open database");
 	openDb();
-	if (db.empty())
-		throw std::runtime_error("Error: Failed to load database");
 	input_file.open(str);
 	if (input_file.fail())
 		throw std::runtime_error(std::string("Failed to open input file: '") + str + "'");
@@ -28,8 +18,11 @@ BitcoinExchange::BitcoinExchange(char *str)
 // Copy constructor
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
 {
-	// TO DO!!
 	(void)other;
+	db_file.close();
+	input_file.close();
+	// db_file = other.db_file;
+	// db = other.db;
 }
 
 // Copy assignment operator
@@ -46,17 +39,23 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other)
 // Destructor
 BitcoinExchange::~BitcoinExchange()
 {
-	// std::cout << "Destructor" << std::endl;
 	if (db_file.is_open())
 		db_file.close();
 	if (input_file.is_open())
 		input_file.close();
 }
 
+bool isFutureDate(std::string date)
+{
+	std::time_t now = std::time(0);
+	std::tm *tm = std::localtime(&now);
+	char today[20];
+	strftime(today, sizeof(today), "%Y-%m-%d", tm);
+	return (date > today);
+}
+
 bool validateDate(int &year, int &month, int &day)
 {
-	// Invalidate future dates ???
-
 	// Save parsed values into time structure
 	std::tm tm = {};
 	tm.tm_year = year - 1900;
@@ -64,7 +63,6 @@ bool validateDate(int &year, int &month, int &day)
 	tm.tm_mday = day;
 	std::time_t time = std::mktime(&tm);
 	(void)time;
-
 	// Check if date has been parsed correctly
 	return (tm.tm_year == year - 1900 && tm.tm_mon == month - 1 && tm.tm_mday == day);
 }
@@ -118,6 +116,10 @@ void BitcoinExchange::openDb()
 {
 	std::string	line;
 
+	db_file.open(DB_FILE);
+	if (db_file.fail())
+		throw std::runtime_error("Error: Failed to open database");
+
 	getline(db_file, line);
 	if (line != DB_HEADER)
 		throw std::runtime_error("Error: Wrong or missing header in database file");
@@ -131,6 +133,8 @@ void BitcoinExchange::openDb()
 		if (!insert(line))
 			throw std::runtime_error(std::string("Error: Failed to insert line '") + line + "' into database");
 	}
+	if (db.empty())
+		throw std::runtime_error("Error: Database is empty");
 }
 
 void BitcoinExchange::getExchangeRate()
@@ -149,12 +153,13 @@ void BitcoinExchange::getExchangeRate()
 			throw std::runtime_error(std::string("Error: Failed to parse line '") + line + "'");
 		
 		std::string date = line.substr(0,10);
-	
+		if (isFutureDate(date))
+			throw std::runtime_error(std::string("Error: Date '") + date + "' is in the future");
+
 		float	bc_value = extract_float_at(line, 13);
 		if (bc_value >= static_cast<float>(std::numeric_limits<int>::max()))
 			throw std::runtime_error("Error: Too large value");
 
-		std::cout << "db.begin()->first: " << db.begin()->first << std::endl;
 		if (date < db.begin()->first)
 			throw std::runtime_error("Error: Date is out of range");
 
@@ -175,10 +180,8 @@ void	BitcoinExchange::printDb()
 
 	while (it != it_end)
 	{
-		std::cout << "it->first: >" << it->first << "<";
-		std::cout << " ";
-		std::cout << "it->second: >" << it->second << "<";
-		std::cout << std::endl;
+		std::cout << it->first << " "
+				  << it->second << std::endl;
 		it++;
 	}
 }
