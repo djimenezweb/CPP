@@ -7,7 +7,7 @@ BitcoinExchange::BitcoinExchange()
 }
 
 // Parameterized constructor
-BitcoinExchange::BitcoinExchange(char *str)
+BitcoinExchange::BitcoinExchange(char *str) : input_filename(str)
 {
 	openDb();
 	input_file.open(str);
@@ -16,13 +16,13 @@ BitcoinExchange::BitcoinExchange(char *str)
 }
 
 // Copy constructor
-BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &other) :
+	input_filename(other.input_filename),
+	db(other.db)
 {
-	(void)other;
-	db_file.close();
-	input_file.close();
-	// db_file = other.db_file;
-	// db = other.db;
+	input_file.open(other.input_filename.c_str());
+	if (input_file.fail())
+		throw std::runtime_error(std::string("Failed to open input file: '") + input_filename + "'");
 }
 
 // Copy assignment operator
@@ -30,8 +30,11 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other)
 {
 	if (this != &other)
 	{
-		// TO DO!!
-		// Copy values
+		input_filename = other.input_filename;
+		db = other.db;
+		input_file.open(other.input_filename.c_str());
+		if (input_file.fail())
+			throw std::runtime_error(std::string("Failed to open input file: '") + input_filename + "'");
 	}
 	return (*this);
 }
@@ -45,6 +48,7 @@ BitcoinExchange::~BitcoinExchange()
 		input_file.close();
 }
 
+// Return true if date is later than today's
 bool isFutureDate(std::string date)
 {
 	std::time_t now = std::time(0);
@@ -54,16 +58,18 @@ bool isFutureDate(std::string date)
 	return (date > today);
 }
 
+// Save parsed values into time structure
+// and check if date has been parsed correctly
 bool validateDate(int &year, int &month, int &day)
 {
-	// Save parsed values into time structure
+	if (year < 1000)
+		return (false);
 	std::tm tm = {};
 	tm.tm_year = year - 1900;
 	tm.tm_mon = month - 1;
 	tm.tm_mday = day;
 	std::time_t time = std::mktime(&tm);
 	(void)time;
-	// Check if date has been parsed correctly
 	return (tm.tm_year == year - 1900 && tm.tm_mon == month - 1 && tm.tm_mday == day);
 }
 
@@ -89,6 +95,7 @@ bool BitcoinExchange::parseDate(std::string &line, char delimiter)
 	return (false);
 }
 
+// Extract float value from a string starting at the specified position
 float extract_float_at(std::string &str, size_t i)
 {
 	std::stringstream ss(str.substr(i));
@@ -111,7 +118,7 @@ bool BitcoinExchange::insert(std::string &line)
 	return (return_value.second);
 }
 
-// Open database
+// Open CSV database, read line by line and insert values in map
 void BitcoinExchange::openDb()
 {
 	std::string	line;
@@ -128,7 +135,7 @@ void BitcoinExchange::openDb()
 		getline(db_file, line);
 		if (line.empty())
 			break;
-		if (!parseDate(line, ','))
+		if (line.find(',') != 10 || !parseDate(line, ','))
 			throw std::runtime_error(std::string("Error: Failed to parse line '") + line + "'");
 		if (!insert(line))
 			throw std::runtime_error(std::string("Error: Failed to insert line '") + line + "' into database");
@@ -137,6 +144,7 @@ void BitcoinExchange::openDb()
 		throw std::runtime_error("Error: Database is empty");
 }
 
+// Read input file line by line and print exchange rate
 void BitcoinExchange::getExchangeRate()
 {
 	std::string	line;
@@ -149,7 +157,7 @@ void BitcoinExchange::getExchangeRate()
 		getline(input_file, line);
 		if (line.empty())
 			break;
-		if (!parseDate(line, '|'))
+		if (line.find('|') != 11 || !parseDate(line, '|'))
 			throw std::runtime_error(std::string("Error: Failed to parse line '") + line + "'");
 		
 		std::string date = line.substr(0,10);
@@ -170,6 +178,7 @@ void BitcoinExchange::getExchangeRate()
 	}
 }
 
+// Print database contents
 void	BitcoinExchange::printDb()
 {
 	if (db.empty())
@@ -180,8 +189,7 @@ void	BitcoinExchange::printDb()
 
 	while (it != it_end)
 	{
-		std::cout << it->first << " "
-				  << it->second << std::endl;
+		std::cout << it->first << " " << it->second << std::endl;
 		it++;
 	}
 }

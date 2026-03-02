@@ -18,6 +18,7 @@ class BitcoinExchange
 	private:
 		std::ifstream					db_file;
 		std::ifstream					input_file;
+		std::string						input_filename;
 		std::map<std::string, float>	db;
 
 		void	openDb();

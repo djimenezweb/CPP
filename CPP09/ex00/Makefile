@@ -31,6 +31,24 @@ debug: all
 
 run : all
 	./$(NAME) input.txt
+	@echo
+	./$(NAME) input-error1.txt
+	@echo
+	./$(NAME) input-error2.txt
+	@echo
+	./$(NAME) input-error3.txt
+	@echo
+	./$(NAME) input-error4.txt
+	@echo
+	./$(NAME) input-error5.txt
+	@echo
+	./$(NAME) input-error6.txt
+	@echo
+	./$(NAME) input-error7.txt
+	@echo
+	./$(NAME) input-error8.txt
+	@echo
+	./$(NAME) input-error9.txt
 
 -include $(OBJS:.o=.d)
 
