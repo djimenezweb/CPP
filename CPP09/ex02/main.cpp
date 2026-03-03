@@ -87,7 +87,7 @@ int main(int argc, char* argv[])
 			return (1);
 	}
 
-	std::cout << "Validation OK!" << std::endl;
+	std::cout << "Validation OK!" << std::endl << std::endl;
 
 	try
 	{

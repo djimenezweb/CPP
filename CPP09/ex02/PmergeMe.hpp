@@ -22,10 +22,9 @@ class PmergeMe
 
 		void initVector();
 		void printVector(std::vector<int> &vector);
+		void printSortedPairs(std::vector<int> &vector);
 		void sort();
 		void sort_by_pairs(std::vector<int> &vector);
-		// void divide_by_pairs();
-		// void divide_by_pairs_rec(std::vector<int> parent);
 };
 
 #endif

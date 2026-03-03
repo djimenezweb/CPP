@@ -56,43 +56,59 @@ void PmergeMe::printVector(std::vector<int> &vector)
 	std::cout << "}" << std::endl;
 }
 
+void PmergeMe::printSortedPairs(std::vector<int> &vector)
+{
+	std::cout << "{ ";
+	for (size_t i = 0; i < vector.size(); i++)
+	{
+		if (i % 2 != 0)
+			std::cout << "\033[0m" << vector[i] << "\033[0m" << " ";
+		else
+			std::cout << "\033[33;1m" << vector[i] << "\033[0m" << " ";
+	}
+	std::cout << "}" << std::endl << std::endl;
+}
+
 void PmergeMe::sort_by_pairs(std::vector<int> &vector)
 {
+	if (vector.size() == 1)
+	{
+		printSortedPairs(vector);
+		return;
+	}
 	std::vector<int>::iterator it = vector.begin();
 	std::vector<int>::iterator it_end = vector.end();
+	std::vector<int> maxs;
+	std::vector<int> mins;
 	while (it + 1 < it_end)
 	{
 		if (*it > *(it + 1))
+		{
 			std::iter_swap(it, it + 1);
+		}
+		mins.push_back(*it);
+		maxs.push_back(*(it + 1));
 		it += 2;
 	}
+	if (vector.size() % 2 != 0)
+		maxs.push_back(*it);
+	printSortedPairs(vector);
+	printVector(maxs);
+	sort_by_pairs(maxs);
+	// add the insertion logic after the recursive call
+	std::vector<int> merged;
+	merged.reserve(vector.size());
+	merged.insert(merged.end(), maxs.begin(), maxs.end() );
+	merged.insert(merged.end(), mins.begin(), mins.end() );
+	printVector(merged);
+	std::cout << "Merged size: " << merged.size() << std::endl;
 }
-
-/* void PmergeMe::divide_by_pairs_rec(std::vector<int> parent)
-{
-	if (parent.size() <= 2)
-		return;
-	std::vector<int>::iterator it = parent.begin();
-	std::vector<int>::iterator it_end = parent.end();
-	std::vector<int>::iterator it_mid = parent.begin() + parent.size() / 2;
-
-	std::vector<int> left(it, it_mid);
-	std::vector<int> right(it_mid, it_end);
-
-	std::cout << "{ ";
-	printVector(left);
-	std::cout << " }, { ";
-	printVector(right);
-	std::cout << " }" << std::endl;
-
-	divide_by_pairs_rec(left);
-	divide_by_pairs_rec(right);
-} */
 
 // Sort
 void PmergeMe::sort()
 {
+	std::cout << "Vector size: " << v.size() << std::endl;
 	printVector(v);
 	sort_by_pairs(v);
-	printVector(v);
+	// printVector(v);
 }
