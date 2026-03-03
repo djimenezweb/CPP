@@ -28,6 +28,9 @@ bool	are_valid_integers(const std::string &str)
 
 	while (!ss.eof())
 	{
+		ss >> std::ws;
+		if (ss.eof())
+			break ;
 		ss >> number;
 		if (ss.fail() || number < 0 || number > std::numeric_limits<unsigned int>::max())
 		{
@@ -88,7 +91,9 @@ int main(int argc, char* argv[])
 
 	try
 	{
-		PmergeMe pme(argv);
+		PmergeMe pme(argc, argv);
+		pme.initVector();
+		pme.sort();
 		// std::cout << pme.sort() << std::endl;
 	}
 	catch(const std::exception& e)
