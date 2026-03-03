@@ -31,7 +31,8 @@ debug: all
 
 run : all
 	./$(NAME) 11 2 17 0 16 8 6 15 10 3 21 1 18 9 14 19 12 5 4 20 13 7
-	@echo
+
+test : all
 	./$(NAME) || true
 	@echo
 	./$(NAME) 1 -5 42 0 53 88 || true
@@ -42,6 +43,6 @@ run : all
 
 -include $(OBJS:.o=.d)
 
-.PHONY : all clean fclean re debug run
+.PHONY : all clean fclean re debug run test
 
 MAKEFLAGS += --no-print-directory
