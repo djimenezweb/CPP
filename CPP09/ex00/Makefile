@@ -32,6 +32,8 @@ debug: all
 run : all
 	./$(NAME) input.txt
 	@echo
+	./$(NAME) input-error0.txt
+	@echo
 	./$(NAME) input-error1.txt
 	@echo
 	./$(NAME) input-error2.txt
