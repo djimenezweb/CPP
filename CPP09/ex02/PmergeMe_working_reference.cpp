@@ -69,42 +69,6 @@ void PmergeMe::printSortedPairs(std::vector<int> &vector)
 	std::cout << "}" << std::endl;
 }
 
-/* void PmergeMe::sort_by_pairs(std::vector<int> &vector)
-{
-	if (vector.size() == 1)
-	{
-		printSortedPairs(vector);
-		return;
-	}
-	std::vector<int>::iterator it = vector.begin();
-	std::vector<int>::iterator it_end = vector.end();
-	std::vector<int> maxs;
-	std::vector<int> mins;
-	while (it + 1 < it_end)
-	{
-		if (*it > *(it + 1))
-		{
-			std::iter_swap(it, it + 1);
-		}
-		mins.push_back(*it);
-		maxs.push_back(*(it + 1));
-		it += 2;
-	}
-	if (vector.size() % 2 != 0)
-		maxs.push_back(*it);
-	printSortedPairs(vector);
-	printVector(maxs);
-	printVector(mins);
-	sort_by_pairs(maxs);
-	// add the insertion logic after the recursive call
-	std::vector<int> merged;
-	merged.reserve(vector.size());
-	merged.insert(merged.end(), maxs.begin(), maxs.end() );
-	merged.insert(merged.end(), mins.begin(), mins.end() );
-	printVector(merged);
-} */
-
-
 // Generate Jacobsthal numbers up to a given limit
 // Jacobsthal: 0, 1, 1, 3, 5, 11, 21, 43, 85...
 // We use it to determine the ORDER in which we insert elements
