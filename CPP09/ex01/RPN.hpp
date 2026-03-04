@@ -10,7 +10,6 @@ class RPN
 	private:
 		std::string			expr;
 		std::stack<double>	stack;
-		void pushDigit(size_t idx);
 		void operate(char c);
 
 	public:

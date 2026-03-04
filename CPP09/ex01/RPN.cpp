@@ -30,13 +30,6 @@ RPN &RPN::operator=(const RPN &other)
 RPN::~RPN()
 {}
 
-void RPN::pushDigit(size_t idx)
-{
-	if (idx + 1 < expr.length() && !isspace(expr[idx + 1]))
-		throw (RPN::UnexpectedTokenException(expr[idx + 1]));
-	stack.push(expr[idx] - '0');
-}
-
 void RPN::operate(char c)
 {
 	if (stack.size() < 2)
@@ -78,8 +71,10 @@ double RPN::calc()
 	{
 		if (isspace(expr[i]))
 			continue;
-		else if (isdigit(expr[i]))
-			pushDigit(i);
+		else if (i + 1 < expr.length() && !isspace(expr[i + 1]))
+			throw (RPN::UnexpectedTokenException(expr[i + 1]));
+		if (isdigit(expr[i]))
+			stack.push(expr[i] - '0');
 		else
 			operate(expr[i]);
 	}

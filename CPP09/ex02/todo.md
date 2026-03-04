@@ -5,7 +5,6 @@
 
 ## ex01
 
-- En método calc() comprobar carácter y si el siguiente es espacio
 
 ## ex02
 
