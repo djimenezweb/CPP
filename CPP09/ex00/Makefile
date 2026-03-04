@@ -1,5 +1,5 @@
 NAME		:= btc
-SRCS		:= main.cpp BitcoinExchange.cpp
+SRCS		:= main.cpp BitcoinExchange.cpp database.cpp date.cpp exchange.cpp
 BUILD		:= build
 OBJS		:= $(addprefix $(BUILD)/, $(SRCS:.cpp=.o))
 CXX			:= c++
