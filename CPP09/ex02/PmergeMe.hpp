@@ -5,6 +5,7 @@
 # include <sstream>
 # include <vector>
 # include <algorithm>
+# include <ctime>
 
 class PmergeMe
 {
@@ -23,6 +24,7 @@ class PmergeMe
 		void initVector();
 		void printVector(std::vector<int> &vector);
 		void printSortedPairs(std::vector<int> &vector);
+		void mergeBack(std::vector<int> &vec, std::vector<int> &mins, std::vector<int> &maxs, int unpaired);
 		void sort();
 		void sort_by_pairs(std::vector<int> &vector);
 };
