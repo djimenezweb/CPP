@@ -144,6 +144,31 @@ void BitcoinExchange::openDb()
 		throw std::runtime_error("Error: Database is empty");
 }
 
+std::string BitcoinExchange::printExchangeRate(std::string &line)
+{
+	if (line.find('|') != 11 || !parseDate(line, '|'))
+		return (std::string("Error: Invalid line: '") + line + "'");
+	
+	std::string date = line.substr(0,10);
+	if (isFutureDate(date))
+		return (std::string("Error: Date '") + date + "' is in the future");
+
+	float	bc_value = extract_float_at(line, 13);
+	if (bc_value >= static_cast<float>(std::numeric_limits<int>::max()))
+		return (std::string("Error: Too large value: ") + line.substr(13));
+
+	if (date < db.begin()->first)
+		return (std::string("Error: Date '") + date + "' is out of range");
+
+	std::map<std::string, float>::iterator found = db.upper_bound(date);
+	if (found != db.begin())
+		found--;
+
+	std::stringstream result;
+	result << bc_value * found->second;
+	return (std::string(date + " => " + line.substr(13) + " = " + result.str()));
+}
+
 // Read input file line by line and print exchange rate
 void BitcoinExchange::getExchangeRate()
 {
@@ -157,41 +182,7 @@ void BitcoinExchange::getExchangeRate()
 		getline(input_file, line);
 		if (line.empty())
 			break;
-		if (line.find('|') != 11 || !parseDate(line, '|'))
-		{
-			// throw std::runtime_error(std::string("Error: Failed to parse line '") + line + "'");
-			std::cout << "Error: Invalid line: '" << line << "'" << std::endl;
-			continue;
-		}
-		
-		std::string date = line.substr(0,10);
-		if (isFutureDate(date))
-		{
-			// throw std::runtime_error(std::string("Error: Date '") + date + "' is in the future");
-			std::cout << "Error: Date '" << date << "' is in the future" << std::endl;
-			continue;
-		}
-
-		float	bc_value = extract_float_at(line, 13);
-		if (bc_value >= static_cast<float>(std::numeric_limits<int>::max()))
-		{
-			// throw std::runtime_error("Error: Too large value");
-			std::cout << "Error: Too large value: " << line.substr(13) << std::endl;
-			continue;
-		}
-
-		if (date < db.begin()->first)
-		{
-			// throw std::runtime_error("Error: Date is out of range");
-			std::cout << "Error: Date '" << date << "' is out of range" << std::endl;
-			continue;
-		}
-
-		std::map<std::string, float>::iterator found = db.upper_bound(date);
-		if (found != db.begin())
-			found--;
-		std::cout << date << " => " << bc_value << " = " << (bc_value) * (found->second) << std::endl; 
-	}
+		std::cout << printExchangeRate(line) << std::endl;}
 }
 
 // Print database contents

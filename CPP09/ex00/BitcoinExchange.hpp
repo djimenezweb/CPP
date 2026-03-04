@@ -21,9 +21,10 @@ class BitcoinExchange
 		std::string						input_filename;
 		std::map<std::string, float>	db;
 
-		void	openDb();
-		bool	parseDate(std::string &line, char delimiter);
-		bool	insert(std::string &line);
+		void		openDb();
+		bool		parseDate(std::string &line, char delimiter);
+		bool		insert(std::string &line);
+		std::string	printExchangeRate(std::string &line);
 
 	public:
 		BitcoinExchange();
