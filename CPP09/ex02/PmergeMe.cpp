@@ -90,18 +90,57 @@ void PmergeMe::sort_by_pairs(std::vector<int> &vector)
 		maxs.push_back(*(it + 1));
 		it += 2;
 	}
+	int unpaired = -1;
 	if (vector.size() % 2 != 0)
-		maxs.push_back(*it);
+	{
+		unpaired = *it;
+		// maxs.push_back(*it);
+	}
 	printSortedPairs(vector);
 	printVector(maxs);
 	printVector(mins);
 	sort_by_pairs(maxs);
+
 	// add the insertion logic after the recursive call
-	std::vector<int> merged;
-	merged.reserve(vector.size());
-	merged.insert(merged.end(), maxs.begin(), maxs.end() );
-	merged.insert(merged.end(), mins.begin(), mins.end() );
-	printVector(merged);
+
+	// Build `chain` with first element from `mins` and all elements from `maxs`
+	// First element from `mins` is paired with `maxs[0]`, so we already know it's <= maxs[0].
+	std::vector<int> chain;
+	chain.push_back(mins[0]);
+	for (std::vector<int>::iterator maxs_it = maxs.begin(); maxs_it < maxs.end(); maxs_it++)
+		chain.push_back(*maxs_it);
+	// std::cout << "Chain: ";
+	// printVector(chain);
+	
+	// Now add the rest of `mins` to chain. We already pushed mins[0] so we start by pushing mins[1], mins[2], etc.
+	// However, we don't just push_back each element, we should insert it using binary search
+	// That means iterating through chain???, find the insertion point and insert.
+	for (std::vector<int>::iterator mins_it = mins.begin() + 1; mins_it < mins.end(); mins_it++)
+	{
+		for (std::vector<int>::iterator chain_it = chain.begin(); chain_it < chain.end(); chain_it++)
+		{
+			if (*mins_it >= *chain_it)
+			{
+				chain.insert(chain_it, *mins_it);
+				break;
+			}
+		}
+	};
+	// And insert unpaired int if it exists using the same binary search:
+	if (unpaired != -1)
+	{
+		for (std::vector<int>::iterator chain_it = chain.begin(); chain_it < chain.end(); chain_it++)
+		{
+			if (unpaired >= *chain_it)
+			{
+				chain.insert(chain_it, unpaired);
+				break;
+			}
+		}
+	}
+	vector = chain;
+	// std::cout << "Chain: ";
+	// printVector(chain);
 }
 
 // Sort
