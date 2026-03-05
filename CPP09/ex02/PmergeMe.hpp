@@ -27,6 +27,7 @@ class PmergeMe
 		void mergeBack(std::vector<int> &vec, std::vector<int> &mins, std::vector<int> &maxs, int unpaired);
 		void sort();
 		void sort_by_pairs(std::vector<int> &vector);
+		std::vector<int> jacobsthal_sequence(int max);
 };
 
 #endif
