@@ -46,8 +46,15 @@ void PmergeMe::initVector()
 	}
 }
 
+// int loop = 0;
+
 void PmergeMe::printVector(std::vector<int> &vector)
 {
+	// if (loop > 7)
+	// {
+	// 	std::cout << std::endl;
+	// 	return;
+	// }
 	std::cout << "{ ";
 	for (size_t i = 0; i < vector.size(); i++)
 	{
@@ -69,32 +76,12 @@ void PmergeMe::printSortedPairs(std::vector<int> &vector)
 	std::cout << "}" << std::endl;
 }
 
-// int loop = 1;
-
-// Return a vector with a Jacobsthal number sequence up to passed maximum.
-// 0, 1, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461, 10923...
-std::vector<int> PmergeMe::jacobsthal_sequence(int max)
-{
-	std::cout << "mins size = " << max << std::endl;
-	std::vector<int> seq;
-	seq.push_back(0);
-	seq.push_back(1);
-	for (int i = 2; i < max; i++)
-	{
-		int number = seq[i - 1] + 2 * seq[i - 2];
-		seq.push_back(number);
-	}
-	std::cout << "J. seq = ";
-	printVector(seq);
-	return (seq);
-}
-
 void PmergeMe::sort_by_pairs(std::vector<int> &vector)
 {
-	// std::cout << " ~ ~ ~ ~ ~ ~ ~ ~ LOOP: " << loop++ << " ~ ~ ~ ~ ~ ~ ~ ~" << std::endl;
+	// std::cout << std::endl << " ~ ~ ~ ~ ~ ~ ~ ~ LOOP: " << loop++ << " ~ ~ ~ ~ ~ ~ ~ ~" << std::endl;
 	if (vector.size() == 1)
 	{
-		// printSortedPairs(vector);
+		printSortedPairs(vector);
 		return;
 	}
 	std::vector<int>::iterator it = vector.begin();
@@ -117,11 +104,12 @@ void PmergeMe::sort_by_pairs(std::vector<int> &vector)
 		unpaired = *it;
 		// maxs.push_back(*it);
 	}
-	// printSortedPairs(vector);
-	// std::cout << " MAXS: ";
-	// printVector(maxs);
-	// std::cout << " mins: ";
-	// printVector(mins);
+	std::cout << " sorted: ";
+	printVector(vector);
+	std::cout << "   MAXS: ";
+	printVector(maxs);
+	std::cout << "   mins: ";
+	printVector(mins);
 	sort_by_pairs(maxs);
 
 	// add the insertion logic after the recursive call
@@ -132,14 +120,14 @@ void PmergeMe::sort_by_pairs(std::vector<int> &vector)
 	chain.push_back(mins[0]);
 	for (std::vector<int>::iterator maxs_it = maxs.begin(); maxs_it < maxs.end(); maxs_it++)
 		chain.push_back(*maxs_it);
-	// std::cout << "Chain: ";
-	// printVector(chain);
+	std::cout << "Chain (1): ";
+	printVector(chain);
 	
 	// Now add the rest of `mins` to chain. We already pushed mins[0] so we start by pushing mins[1], mins[2], etc.
 	// However, we don't just push_back each element, we should insert it using binary search
 	// That means iterating through chain???, find the insertion point and insert.
 
-	std::vector<int> jac_seq = jacobsthal_sequence(mins.size());
+	// std::vector<int> jac_seq = jacobsthal_sequence(mins.size());
 
 	for (std::vector<int>::iterator mins_it = mins.begin() + 1; mins_it < mins.end(); mins_it++)
 	{
@@ -166,14 +154,16 @@ void PmergeMe::sort_by_pairs(std::vector<int> &vector)
 		}
 	}
 	vector = chain;
-	// std::cout << "Chain: ";
-	// printVector(chain);
+	std::cout << "Chain (2): ";
+	printVector(chain);
 }
 
 // Sort
 void PmergeMe::sort()
 {
 	// clock_t t1 = clock();
+
+	jacobsthal_order(15);
 
 	printVector(v);
 	sort_by_pairs(v);

@@ -28,6 +28,7 @@ class PmergeMe
 		void sort();
 		void sort_by_pairs(std::vector<int> &vector);
 		std::vector<int> jacobsthal_sequence(int max);
+		std::vector<int> jacobsthal_order(int size);
 };
 
 #endif
