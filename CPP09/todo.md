@@ -3,9 +3,9 @@
 ## ex00
 
 - Verificar que el cálculo es realmente lo que se pide
-- No entiendo:
-- The program must not stop its execution before having performed the operations on the whole file passed as argument
-- You can use a wrong date
+- Reemplazar float por double ?
+- Impedir notación científica
+- Gestión errores base de datos CSV
 - You can enter a value greater than 1000 or less than 0
 
 Archivo csv:
@@ -20,5 +20,6 @@ Archivo csv:
 
 ## ex02
 
-- ¿Qué hacer con números repetidos?
 - Elegir `unsigned int` o `int`
+- Hacer segundo contenedor
+- Verificar si la medida de los tiempos es correcta
