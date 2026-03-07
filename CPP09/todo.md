@@ -2,6 +2,7 @@
 
 ## ex00
 
+- No parece que sea obligatorio hacerlo con clases (!)
 - Verificar que el cálculo es realmente lo que se pide
 - Reemplazar float por double ?
 - Impedir notación científica
@@ -17,9 +18,11 @@ Archivo csv:
 
 ## ex01
 
+- No parece que sea obligatorio hacerlo con clases (!)
 
 ## ex02
 
+- No parece que sea obligatorio hacerlo con clases (!)
 - Elegir `unsigned int` o `int`
 - Hacer segundo contenedor
 - Verificar si la medida de los tiempos es correcta
