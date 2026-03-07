@@ -6,6 +6,8 @@
 # include <vector>
 # include <algorithm>
 # include <ctime>
+# include <iomanip>
+# include <limits>
 
 class PmergeMe
 {
@@ -14,7 +16,14 @@ class PmergeMe
 		char **argv;
 		std::vector<int> v;
 		PmergeMe();
-		typedef std::vector<int>::iterator vectit;
+
+		// Utils
+		void initVector();
+		void printVector(std::vector<int> &vector);
+
+		// Jacobstahl
+		std::vector<int> jacobsthal_sequence(int max);
+		std::vector<int> jacobsthal_order(int size);
 
 	public:
 		PmergeMe(int argc, char **argv);
@@ -22,15 +31,11 @@ class PmergeMe
 		PmergeMe(const PmergeMe &other);
 		PmergeMe &operator=(const PmergeMe &other);
 
-		void initVector();
-		void printVector(std::vector<int> &vector);
-		void printSortedPairs(std::vector<int> &vector);
-		void mergeBack(std::vector<int> &vec, std::vector<int> &mins, std::vector<int> &maxs, int unpaired);
 		void sort();
-		void sort_by_pairs(std::vector<int> &vector);
-		std::vector<int> jacobsthal_sequence(int max);
-		std::vector<int> jacobsthal_order(int size);
+		void sortVector(std::vector<int> &vector);
+
 		bool isSorted();
+
 };
 
 #endif
