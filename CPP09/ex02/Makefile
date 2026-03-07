@@ -30,8 +30,8 @@ debug: LDFLAGS	+= $(SANITIZE)
 debug: all
 
 run : all
-	./$(NAME) 2 0 6 8 3 1 9 5 4 7
-#	./$(NAME) 11 2 17 0 16 8 6 15 10 3 21 1 18 9 14 19 12 5 4 20 13 7
+#	./$(NAME) 2 0 6 8 3 1 9 5 4 7
+	./$(NAME) 11 2 17 0 16 8 6 15 10 3 21 1 18 9 14 19 12 5 4 20 13 7
 
 test : all
 	./$(NAME) || true

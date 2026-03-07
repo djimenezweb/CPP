@@ -14,6 +14,7 @@ class PmergeMe
 		char **argv;
 		std::vector<int> v;
 		PmergeMe();
+		typedef std::vector<int>::iterator vectit;
 
 	public:
 		PmergeMe(int argc, char **argv);
@@ -29,6 +30,7 @@ class PmergeMe
 		void sort_by_pairs(std::vector<int> &vector);
 		std::vector<int> jacobsthal_sequence(int max);
 		std::vector<int> jacobsthal_order(int size);
+		bool isSorted();
 };
 
 #endif

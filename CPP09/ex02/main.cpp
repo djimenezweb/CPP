@@ -87,18 +87,21 @@ int main(int argc, char* argv[])
 			return (1);
 	}
 
-	std::cout << "Validation OK!" << std::endl << std::endl;
-
 	try
 	{
 		PmergeMe pme(argc, argv);
 		pme.initVector();
 		pme.sort();
+		if (pme.isSorted())
+			std::cout << "Sorted!\n";
+		else
+			std::cout << "NOT SORTED!\n";
 		// std::cout << pme.sort() << std::endl;
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << '\n';
+		return (1);
 	}
 
 	return (0);

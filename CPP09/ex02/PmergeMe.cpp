@@ -29,8 +29,8 @@ PmergeMe::~PmergeMe() {}
 
 void PmergeMe::initVector()
 {
-	int					number;
-	std::string			str;
+	int			number;
+	std::string	str;
 
 	for (int i = 1; i < argc; i++)
 	{
@@ -46,15 +46,18 @@ void PmergeMe::initVector()
 	}
 }
 
-// int loop = 0;
+bool PmergeMe::isSorted()
+{
+	for (size_t i = 0; i < v.size() - 1; i++)
+	{
+		if (v[i] > v[i + 1])
+			return (false);
+	}
+	return (true);
+}
 
 void PmergeMe::printVector(std::vector<int> &vector)
 {
-	// if (loop > 7)
-	// {
-	// 	std::cout << std::endl;
-	// 	return;
-	// }
 	std::cout << "{ ";
 	for (size_t i = 0; i < vector.size(); i++)
 	{
@@ -63,29 +66,16 @@ void PmergeMe::printVector(std::vector<int> &vector)
 	std::cout << "}" << std::endl;
 }
 
-void PmergeMe::printSortedPairs(std::vector<int> &vector)
-{
-	std::cout << "{ ";
-	for (size_t i = 0; i < vector.size(); i++)
-	{
-		if (i % 2 != 0)
-			std::cout << "\033[0m" << vector[i] << "\033[0m" << " ";
-		else
-			std::cout << "\033[33;1m" << vector[i] << "\033[0m" << " ";
-	}
-	std::cout << "}" << std::endl;
-}
-
 void PmergeMe::sort_by_pairs(std::vector<int> &vector)
 {
-	// std::cout << std::endl << " ~ ~ ~ ~ ~ ~ ~ ~ LOOP: " << loop++ << " ~ ~ ~ ~ ~ ~ ~ ~" << std::endl;
+	// Base condition: Recursive call ends if `vector` contains only 1 number
 	if (vector.size() == 1)
-	{
-		printSortedPairs(vector);
 		return;
-	}
-	std::vector<int>::iterator it = vector.begin();
-	std::vector<int>::iterator it_end = vector.end();
+
+	// Sort `vector` by pairs of min & max
+	// Create new vectors `mins` and `maxs` containing the lower or greater numbers
+	PmergeMe::vectit it = vector.begin();
+	PmergeMe::vectit it_end = vector.end();
 	std::vector<int> maxs;
 	std::vector<int> mins;
 	while (it + 1 < it_end)
@@ -98,64 +88,42 @@ void PmergeMe::sort_by_pairs(std::vector<int> &vector)
 		maxs.push_back(*(it + 1));
 		it += 2;
 	}
+
+	// Save number if it was left unpaired
 	int unpaired = -1;
 	if (vector.size() % 2 != 0)
-	{
 		unpaired = *it;
-		// maxs.push_back(*it);
-	}
-	std::cout << " sorted: ";
-	printVector(vector);
-	std::cout << "   MAXS: ";
-	printVector(maxs);
-	std::cout << "   mins: ";
-	printVector(mins);
+
+	// Recursive call
+	std::vector<int> original_maxs = maxs;
 	sort_by_pairs(maxs);
 
-	// add the insertion logic after the recursive call
-
-	// Build `chain` with first element from `mins` and all elements from `maxs`
-	// First element from `mins` is paired with `maxs[0]`, so we already know it's <= maxs[0].
+	// Insertion logic after the recursive call
+	// Build `chain` with all elements from `maxs`
 	std::vector<int> chain;
-	chain.push_back(mins[0]);
-	for (std::vector<int>::iterator maxs_it = maxs.begin(); maxs_it < maxs.end(); maxs_it++)
+	for (PmergeMe::vectit maxs_it = maxs.begin(); maxs_it < maxs.end(); maxs_it++)
 		chain.push_back(*maxs_it);
-	std::cout << "Chain (1): ";
-	printVector(chain);
-	
-	// Now add the rest of `mins` to chain. We already pushed mins[0] so we start by pushing mins[1], mins[2], etc.
-	// However, we don't just push_back each element, we should insert it using binary search
-	// That means iterating through chain???, find the insertion point and insert.
 
-	// std::vector<int> jac_seq = jacobsthal_sequence(mins.size());
-
-	for (std::vector<int>::iterator mins_it = mins.begin() + 1; mins_it < mins.end(); mins_it++)
+	// Now add `mins` to chain. Instead of inserting the numbers one by one (mins[0], mins[1], mins[2], mins[3], etc.)
+	// we insert them in the order dictated by the Jacobsthal sequence: mins[0], mins[1], mins[3], mins[2], mins[5], mins[4], etc.)
+	// However, we don't just push_back each element, we should insert it using binary search.
+	std::vector<int> jacob_order = jacobsthal_order(mins.size());
+	for (PmergeMe::vectit j_it = jacob_order.begin(); j_it < jacob_order.end(); j_it++)
 	{
-		for (std::vector<int>::iterator chain_it = chain.begin(); chain_it < chain.end(); chain_it++)
-		{
-			// std::cout << "mins_it = " << *mins_it << "; chains_it = " << *chain_it << "\n";
-			if (*mins_it <= *chain_it)
-			{
-				chain.insert(chain_it, *mins_it);
-				break;
-			}
-		}
+		PmergeMe::vectit upper_bound = std::find(chain.begin(), chain.end(), original_maxs[*j_it]);
+		PmergeMe::vectit insert_pos = std::lower_bound(chain.begin(), upper_bound + 1, mins[*j_it]);
+		chain.insert(insert_pos, mins[*j_it]);
 	};
-	// And insert unpaired int if it exists using the same binary search:
+
+	// Insert unpaired number if it exists
 	if (unpaired != -1)
 	{
-		for (std::vector<int>::iterator chain_it = chain.begin(); chain_it < chain.end(); chain_it++)
-		{
-			if (unpaired <= *chain_it)
-			{
-				chain.insert(chain_it, unpaired);
-				break;
-			}
-		}
+		PmergeMe::vectit unpaired_pos = std::lower_bound(chain.begin(), chain.end(), unpaired);
+		chain.insert(unpaired_pos, unpaired);
 	}
+
+	// Assign `chain` to `vector`, which in turn is the local copy of `maxs`
 	vector = chain;
-	std::cout << "Chain (2): ";
-	printVector(chain);
 }
 
 // Sort
@@ -163,12 +131,11 @@ void PmergeMe::sort()
 {
 	// clock_t t1 = clock();
 
-	jacobsthal_order(15);
-
+	std::cout << "Before: ";
 	printVector(v);
 	sort_by_pairs(v);
+	std::cout << " After: ";
 	printVector(v);
-
 	// clock_t t2 = clock();
 	// std::cout << std::fixed << ((float)t2 - t1)/CLOCKS_PER_SEC * 1000 << " ms" << std::endl;
 }
