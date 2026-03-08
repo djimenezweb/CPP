@@ -4,6 +4,7 @@
 # include <iostream>
 # include <sstream>
 # include <vector>
+# include <list>
 # include <algorithm>
 # include <ctime>
 # include <iomanip>
@@ -15,11 +16,14 @@ class PmergeMe
 		int argc;
 		char **argv;
 		std::vector<int> v;
+		std::list<int> l;
 		PmergeMe();
 
 		// Utils
 		void initVector();
+		void initList();
 		void printVector(std::vector<int> &vector);
+		void printList(std::list<int> &list);
 
 		// Jacobstahl
 		std::vector<int> jacobsthal_sequence(int max);
@@ -33,9 +37,12 @@ class PmergeMe
 
 		void sort();
 		void sortVector(std::vector<int> &vector);
+		void sortList(std::list<int> &list);
 
-		bool isSorted();
+		bool isVectorSorted();
+		bool isListSorted();
 
+		int &listAt(std::list<int> &list, int n);
 };
 
 #endif

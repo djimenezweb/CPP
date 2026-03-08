@@ -1,5 +1,5 @@
 NAME		:= PmergeMe
-SRCS		:= main.cpp PmergeMe.cpp sort-vector.cpp jacobsthal.cpp utils.cpp
+SRCS		:= main.cpp PmergeMe.cpp sort-vector.cpp sort-list.cpp jacobsthal.cpp utils.cpp
 BUILD		:= build
 OBJS		:= $(addprefix $(BUILD)/, $(SRCS:.cpp=.o))
 CXX			:= c++
@@ -30,8 +30,8 @@ debug: LDFLAGS	+= $(SANITIZE)
 debug: all
 
 run : all
-#	./$(NAME) 2 0 6 8 3 1 9 5 4 7
-	./$(NAME) 11 89 2 17 0 16 8 52 6 15 33 10 24 3 21 98 1 18 9 14 19 12 5 4 71 20 13 7 51 22 23
+	./$(NAME) 2 0 6 8 3 1 9 5 4 7
+#	./$(NAME) 11 89 2 17 0 16 8 52 6 15 33 10 24 3 21 98 1 18 9 14 19 12 5 4 71 20 13 7 51 22 23
 
 test : all
 	./$(NAME) || true

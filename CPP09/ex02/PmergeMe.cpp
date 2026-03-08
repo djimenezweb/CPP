@@ -5,9 +5,7 @@ PmergeMe::PmergeMe() {}
 
 // Parameterized constructor
 PmergeMe::PmergeMe(int argc, char **argv) : argc(argc), argv(argv)
-{
-	initVector();
-}
+{}
 
 // Copy constructor
 PmergeMe::PmergeMe(const PmergeMe &other)
@@ -29,22 +27,36 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &other)
 // Destructor
 PmergeMe::~PmergeMe() {}
 
+void printStats(std::string str, size_t size, double t, bool sorted)
+{
+	std::cout << std::left
+			  << std::setw(18) << str
+			  << std::setw(12) << size
+			  << std::setw(12) << std::fixed << std::setprecision(7) << t
+			  << std::setw(12) << std::boolalpha << sorted
+			  << std::endl;
+}
+
 void PmergeMe::sort()
 {
 	
 	std::cout << "Before:  ";
-	printVector(v);
-
 	clock_t t1 = clock();
+	initVector();
+	printVector(v);
 	sortVector(v);
 	clock_t t2 = clock();
-
-	clock_t t3 = clock();
-	sortVector(v);
-	clock_t t4 = clock();
-
 	std::cout << " After:  ";
 	printVector(v);
+
+	std::cout << "Before:  ";
+	clock_t t3 = clock();
+	initList();
+	printList(l);
+	sortList(l);
+	clock_t t4 = clock();
+	std::cout << " After:  ";
+	printList(l);
 
 	std::cout << std::left
 			  << std::setw(18) << "Container"
@@ -52,16 +64,6 @@ void PmergeMe::sort()
 			  << std::setw(13) << "Time (µs)" // sec, ms, µs ???
 			  << std::setw(12) << "Sorted"
 			  << std::endl;
-	std::cout << std::left
-			  << std::setw(18) << "std::vector<int>"
-			  << std::setw(12) << v.size()
-			  << std::setw(12) << std::fixed << std::setprecision(7) << static_cast<double>(t2 - t1)/CLOCKS_PER_SEC
-			  << std::setw(12) << std::boolalpha << isSorted()
-			  << std::endl;
-	std::cout << std::left
-			  << std::setw(18) << "(other)"
-			  << std::setw(12) << v.size()
-			  << std::setw(12) << std::fixed << std::setprecision(7) << static_cast<double>(t4 - t3)/CLOCKS_PER_SEC
-			  << std::setw(12) << std::boolalpha << isSorted()
-			  << std::endl;
+	printStats("std::vector<int>", v.size(), static_cast<double>(t2 - t1)/CLOCKS_PER_SEC, isVectorSorted());
+	printStats("std::list<int>", l.size(), static_cast<double>(t4 - t3)/CLOCKS_PER_SEC, isListSorted());
 }
