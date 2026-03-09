@@ -49,14 +49,14 @@ void PmergeMe::sort()
 	std::cout << " After:  ";
 	printVector(v);
 
-	std::cout << "Before:  ";
+	// std::cout << "Before:  ";
 	clock_t t3 = clock();
 	initList();
-	printList(l);
+	// printList(l);
 	sortList(l);
 	clock_t t4 = clock();
-	std::cout << " After:  ";
-	printList(l);
+	// std::cout << " After:  ";
+	// printList(l);
 
 	std::cout << std::left
 			  << std::setw(18) << "Container"

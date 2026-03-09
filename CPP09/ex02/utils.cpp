@@ -62,7 +62,7 @@ void PmergeMe::printList(const std::list<int> &list) const
 	std::list<int>::const_iterator it = list.begin();
 	std::list<int>::const_iterator it_end = list.end();
 
-	if (list.size() < 30)
+	if (list.size() < 25)
 	{
 		while (it != it_end)
 		{
@@ -72,15 +72,15 @@ void PmergeMe::printList(const std::list<int> &list) const
 	}
 	else
 	{
-		for (size_t i = 0; i < 10; i++)
+		for (size_t i = 0; i < 6; i++)
 		{
 			std::cout << *it << " ";
 			std::advance(it, 1);
 		}
-		std::cout << " . . .  ";
+		std::cout << "[...] ";
 		it = list.begin();
-		std::advance(it, list.size() - 10);
-		for (size_t i = 0; i < 10; i++)
+		std::advance(it, list.size() - 6);
+		for (size_t i = 0; i < 6; i++)
 		{
 			std::cout << *it << " ";
 			std::advance(it, 1);
@@ -91,17 +91,17 @@ void PmergeMe::printList(const std::list<int> &list) const
 
 void PmergeMe::printVector(const std::vector<int> &vector) const
 {
-	if (vector.size() < 30)
+	if (vector.size() < 25)
 	{
 		for (size_t i = 0; i < vector.size(); i++)
 			std::cout << vector[i] << " ";
 	}
 	else
 	{
-		for (size_t i = 0; i < 10; i++)
+		for (size_t i = 0; i < 6; i++)
 			std::cout << vector[i] << " ";
-		std::cout << " . . .  ";
-		for (size_t i = vector.size() - 10; i < vector.size(); i++)
+		std::cout << "[...] ";
+		for (size_t i = vector.size() - 6; i < vector.size(); i++)
 			std::cout << vector[i] << " ";
 	}
 	std::cout << std::endl;
