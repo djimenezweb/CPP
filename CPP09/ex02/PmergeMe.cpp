@@ -8,18 +8,18 @@ PmergeMe::PmergeMe(int argc, char **argv) : argc(argc), argv(argv)
 {}
 
 // Copy constructor
-PmergeMe::PmergeMe(const PmergeMe &other)
-{
-	// TO DO: Copy values
-	(void)other;
-}
+PmergeMe::PmergeMe(const PmergeMe &other) : argc(other.argc), argv(other.argv), v(other.v), l(other.l)
+{}
 
 // Copy assignment operator
 PmergeMe &PmergeMe::operator=(const PmergeMe &other)
 {
 	if (this != &other)
 	{
-		// TO DO: Copy values
+		argc = other.argc;
+		argv = other.argv;
+		v = other.v;
+		l = other.l;
 	}
 	return (*this);
 }
@@ -61,7 +61,7 @@ void PmergeMe::sort()
 	std::cout << std::left
 			  << std::setw(18) << "Container"
 			  << std::setw(12) << "Elements"
-			  << std::setw(13) << "Time (µs)" // sec, ms, µs ???
+			  << std::setw(13) << "Time (µs)" // TO DO: sec, ms, µs ???
 			  << std::setw(12) << "Sorted"
 			  << std::endl;
 	printStats("std::vector<int>", v.size(), static_cast<double>(t2 - t1)/CLOCKS_PER_SEC, isVectorSorted());

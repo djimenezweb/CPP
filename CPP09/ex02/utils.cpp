@@ -12,22 +12,6 @@ void PmergeMe::initVector()
 		while (ss >> number)
 			v.push_back(number);
 	}
-
-/* 	int			number;
-	std::string	str;
-
-	for (int i = 1; i < argc; i++)
-	{
-		str = argv[i];
-		std::stringstream ss(str);
-		while (!ss.eof())
-		{
-			ss >> number;
-			if (ss.fail())
-				return;
-			v.push_back(number);
-		}
-	} */
 }
 
 void PmergeMe::initList()
@@ -44,7 +28,7 @@ void PmergeMe::initList()
 	}
 }
 
-bool PmergeMe::isVectorSorted()
+bool PmergeMe::isVectorSorted() const
 {
 	for (size_t i = 0; i < v.size() - 1; i++)
 	{
@@ -54,12 +38,12 @@ bool PmergeMe::isVectorSorted()
 	return (true);
 }
 
-bool PmergeMe::isListSorted()
+bool PmergeMe::isListSorted() const
 {
-	std::list<int>::iterator it = l.begin();
-	std::list<int>::iterator it_next = it;
+	std::list<int>::const_iterator it = l.begin();
+	std::list<int>::const_iterator it_next = it;
 	std::advance(it_next, 1);
-	std::list<int>::iterator it_end = l.end();
+	std::list<int>::const_iterator it_end = l.end();
 	while (it_next != it_end)
 	{
 		if (*it > *(it_next))
@@ -73,10 +57,10 @@ bool PmergeMe::isListSorted()
 	return (true);
 }
 
-void PmergeMe::printList(std::list<int> &list)
+void PmergeMe::printList(const std::list<int> &list) const
 {
-	std::list<int>::iterator it = list.begin();
-	std::list<int>::iterator it_end = list.end();
+	std::list<int>::const_iterator it = list.begin();
+	std::list<int>::const_iterator it_end = list.end();
 
 	if (list.size() < 30)
 	{
@@ -105,7 +89,7 @@ void PmergeMe::printList(std::list<int> &list)
 	std::cout << std::endl;
 }
 
-void PmergeMe::printVector(std::vector<int> &vector)
+void PmergeMe::printVector(const std::vector<int> &vector) const
 {
 	if (vector.size() < 30)
 	{

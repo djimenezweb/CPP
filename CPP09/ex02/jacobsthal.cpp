@@ -8,7 +8,7 @@
 // max == 4 -> { 0, 1, 1, 3, 4 }
 // max == 5 -> { 0, 1, 1, 3, 5 }
 // max == 6 -> { 0, 1, 1, 3, 5, 6 }
-std::vector<int> PmergeMe::jacobsthal_sequence(int max)
+std::vector<int> PmergeMe::jacobsthal_sequence(int max) const
 {
 	std::vector<int> seq;
 	seq.push_back(0);
@@ -35,10 +35,10 @@ std::vector<int> PmergeMe::jacobsthal_sequence(int max)
 // [5, 11] -> 11, 10, 9, 8, 7, 6
 // But there are not indices greater or equals than 7 in a 7-element-vector,
 // so we clamp it to the actual size: { 0, 1, 3, 2, 5, 4, 6 }.
-std::vector<int> PmergeMe::jacobsthal_order(int size)
+std::vector<int> PmergeMe::jacobsthal_order(int size) const
 {
 	std::vector<int> vect;
-	// vect.reserve(size);	// LO PONEMOS DE NUEVO? size? size +1?
+	// vect.reserve(size);	// TO DO: LO PONEMOS DE NUEVO? size? size +1?
 	std::vector<int> jacobsthal_seq = jacobsthal_sequence(size);
 	vect.push_back(0);	// Add index 0
 

@@ -17,9 +17,9 @@ bool	are_valid_integers(const std::string &str)
 		if (ss.eof())
 			break ;
 		ss >> number;
-		if (ss.fail() || number < 0 || number > std::numeric_limits<unsigned int>::max())
+		if (ss.fail() || number < 0 || number > std::numeric_limits<int>::max())
 		{
-			std::cerr << "Error: Invalid number " << "\033[31;1m" << std::fixed << std::setprecision(0) << number << "\033[0m" << std::endl
+			std::cerr << ERROR "Invalid number " << "\033[31;1m" << std::fixed << std::setprecision(0) << number << "\033[0m" << std::endl
 					  << std::string(22, ' ') << "\033[31;1m^\033[0m" << std::endl;
 			return (false);
 		}
@@ -32,9 +32,9 @@ bool	are_valid_chars(const std::string &str)
 {
 	for (size_t j = 0; j < str.length(); j++)
 	{
-		if (!isdigit(str[j]) && !isspace(str[j]))
+		if (!isdigit(str[j]) && !isspace(str[j]) && str[j] != '-')
 		{
-			std::cerr << "Error: Invalid argument '" << underline(str, j) << "'" << std::endl
+			std::cerr << ERROR "Invalid argument '" << underline(str, j) << "'" << std::endl
 					  << std::string(25 + j, ' ') << "\033[31;1m^\033[0m" << std::endl;
 			return (false);
 		}
@@ -46,7 +46,7 @@ int main(int argc, char* argv[])
 {
 	if (argc == 1)
 	{
-		std::cerr << "Correct usage: " << argv[0] << " <number1> <number2> ..." << std::endl;
+		std::cerr << ERROR "Correct usage: " << argv[0] << " <number1> <number2> ..." << std::endl;
 		return (1);
 	}
 

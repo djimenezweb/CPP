@@ -1,9 +1,9 @@
 #include "PmergeMe.hpp"
 
 // Subscript operator
-int& PmergeMe::listAt(std::list<int> &list, int n)
+int PmergeMe::listAt(const std::list<int> &list, int n) const
 {
-	std::list<int>::iterator it = list.begin();
+	std::list<int>::const_iterator it = list.begin();
 	std::advance(it, n);
 	return (*it);
 }

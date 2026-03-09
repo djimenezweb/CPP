@@ -10,6 +10,8 @@
 # include <iomanip>
 # include <limits>
 
+# define ERROR	"\033[31;1mError: \033[0m"
+
 class PmergeMe
 {
 	private:
@@ -19,15 +21,22 @@ class PmergeMe
 		std::list<int> l;
 		PmergeMe();
 
-		// Utils
-		void initVector();
-		void initList();
-		void printVector(std::vector<int> &vector);
-		void printList(std::list<int> &list);
+		// Vector
+		void	initVector();
+		void	printVector(const std::vector<int> &vector) const;
+		void	sortVector(std::vector<int> &vector);
+		bool	isVectorSorted() const;
+
+		// List
+		void	initList();
+		void	printList(const std::list<int> &list) const;
+		void	sortList(std::list<int> &list);
+		bool	isListSorted() const;
+		int		listAt(const std::list<int> &list, int n) const;
 
 		// Jacobstahl
-		std::vector<int> jacobsthal_sequence(int max);
-		std::vector<int> jacobsthal_order(int size);
+		std::vector<int>	jacobsthal_sequence(int max) const;
+		std::vector<int>	jacobsthal_order(int size) const;
 
 	public:
 		PmergeMe(int argc, char **argv);
@@ -35,14 +44,7 @@ class PmergeMe
 		PmergeMe(const PmergeMe &other);
 		PmergeMe &operator=(const PmergeMe &other);
 
-		void sort();
-		void sortVector(std::vector<int> &vector);
-		void sortList(std::list<int> &list);
-
-		bool isVectorSorted();
-		bool isListSorted();
-
-		int &listAt(std::list<int> &list, int n);
+		void	sort();
 };
 
 #endif
