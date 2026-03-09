@@ -5,6 +5,8 @@
 # include <stack>
 # include <exception>
 
+# define ERROR	"\033[31;1mError: \033[0m"
+
 class RPN
 {
 	private:

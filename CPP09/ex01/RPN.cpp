@@ -55,7 +55,7 @@ void RPN::operate(char c)
 	case ('/'):
 	{
 		if (a == 0)
-			throw (std::runtime_error("Error: Can't divide between 0"));
+			throw (std::runtime_error(ERROR "Can't divide between 0"));
 		stack.push(b / a);
 		break;
 	}
@@ -79,12 +79,12 @@ double RPN::calc()
 			operate(expr[i]);
 	}
 	if (stack.size() != 1)
-		throw (std::runtime_error("Error: Missing operator (+, -, *, /)"));
+		throw (std::runtime_error(ERROR "Missing operator (+, -, *, /)"));
 	return (stack.top());
 }
 
 RPN::UnexpectedTokenException::UnexpectedTokenException(char c) throw() :
-	message(std::string("Error: Unexpected token '") + c + "'")
+	message(std::string(ERROR "Unexpected token '") + c + "'")
 {}
 
 const char* RPN::UnexpectedTokenException::what() const throw()

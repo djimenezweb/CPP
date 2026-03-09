@@ -48,17 +48,17 @@ run : all
 	@echo "15 (expected)\n"
 	./$(NAME) "3 2 /"
 	@echo "1.5 (expected)\n"
-	./$(NAME) "3 0 /"
+	./$(NAME) "3 0 /" || true
 	@echo "Error (expected)\n"
-	./$(NAME) "(1 + 1)"
+	./$(NAME) "(1 + 1)" || true
 	@echo "Error (expected)\n"
-	./$(NAME) "1 + 2"
+	./$(NAME) "1 + 2" || true
 	@echo "Error (expected)\n"
-	./$(NAME) "1 2 + 2"
+	./$(NAME) "1 2 + 2" || true
 	@echo "Error (expected)\n"
-	./$(NAME) "7 7* 7 -"
+	./$(NAME) "7 7* 7 -" || true
 	@echo "Error (expected)\n"
-	./$(NAME) "2 -1"
+	./$(NAME) "2 -1" || true
 	@echo "Error (expected)\n"
 
 -include $(OBJS:.o=.d)
