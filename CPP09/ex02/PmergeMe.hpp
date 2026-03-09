@@ -36,7 +36,7 @@ class PmergeMe
 
 		// Jacobstahl
 		std::vector<int>	jacobsthal_sequence(int max) const;
-		std::vector<int>	jacobsthal_order(int size) const;
+		std::vector<int>	jacobsthal_order(size_t size) const;
 
 	public:
 		PmergeMe(int argc, char **argv);
