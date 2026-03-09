@@ -38,7 +38,7 @@ std::vector<int> PmergeMe::jacobsthal_sequence(int max) const
 std::vector<int> PmergeMe::jacobsthal_order(int size) const
 {
 	std::vector<int> vect;
-	// vect.reserve(size);	// TO DO: LO PONEMOS DE NUEVO? size? size +1?
+	vect.reserve(size);
 	std::vector<int> jacobsthal_seq = jacobsthal_sequence(size);
 	vect.push_back(0);	// Add index 0
 

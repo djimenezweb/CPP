@@ -27,43 +27,31 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &other)
 // Destructor
 PmergeMe::~PmergeMe() {}
 
-void printStats(std::string str, size_t size, double t, bool sorted)
+void printStats(std::string str, size_t size, double t)
 {
-	std::cout << std::left
-			  << std::setw(18) << str
-			  << std::setw(12) << size
-			  << std::setw(12) << std::fixed << std::setprecision(7) << t
-			  << std::setw(12) << std::boolalpha << sorted
-			  << std::endl;
+	std::cout << "Time to process a range of "
+			  << size << " elements with " << str << " : "
+			  << std::fixed << std::setprecision(6) << t
+			  << " s" << std::endl;
 }
 
 void PmergeMe::sort()
 {
-	
-	std::cout << "Before:  ";
-	clock_t t1 = clock();
+	clock_t t_start = clock();
 	initVector();
+	std::cout << "Before:  ";
 	printVector(v);
 	sortVector(v);
-	clock_t t2 = clock();
+	clock_t t_vector = clock() - t_start;
+	
+	t_start = clock();
+	initList();
+	sortList(l);
+	clock_t t_list = clock() - t_start;
+
 	std::cout << " After:  ";
 	printVector(v);
 
-	// std::cout << "Before:  ";
-	clock_t t3 = clock();
-	initList();
-	// printList(l);
-	sortList(l);
-	clock_t t4 = clock();
-	// std::cout << " After:  ";
-	// printList(l);
-
-	std::cout << std::left
-			  << std::setw(18) << "Container"
-			  << std::setw(12) << "Elements"
-			  << std::setw(13) << "Time (µs)" // TO DO: sec, ms, µs ???
-			  << std::setw(12) << "Sorted"
-			  << std::endl;
-	printStats("std::vector<int>", v.size(), static_cast<double>(t2 - t1)/CLOCKS_PER_SEC, isVectorSorted());
-	printStats("std::list<int>", l.size(), static_cast<double>(t4 - t3)/CLOCKS_PER_SEC, isListSorted());
+	printStats("std::vector<int>", v.size(), static_cast<double>(t_vector)/CLOCKS_PER_SEC);
+	printStats("std::list<int>  ", l.size(), static_cast<double>(t_list)/CLOCKS_PER_SEC);
 }

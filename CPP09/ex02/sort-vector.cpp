@@ -12,6 +12,8 @@ void PmergeMe::sortVector(std::vector<int> &vector)
 	std::vector<int>::iterator it_end = vector.end();
 	std::vector<int> maxs;
 	std::vector<int> mins;
+	maxs.reserve(vector.size() / 2);
+	mins.reserve(vector.size() / 2);
 	while (it + 1 < it_end)
 	{
 		if (*it > *(it + 1))
@@ -34,6 +36,7 @@ void PmergeMe::sortVector(std::vector<int> &vector)
 
 	// After recursive call, build `chain` with all elements from `maxs`
 	std::vector<int> chain;
+	chain.reserve((maxs.size() * 2) + 1);
 	for (std::vector<int>::iterator maxs_it = maxs.begin(); maxs_it < maxs.end(); maxs_it++)
 		chain.push_back(*maxs_it);
 
