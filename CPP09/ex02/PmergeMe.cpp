@@ -31,8 +31,8 @@ void printStats(std::string str, size_t size, double t)
 {
 	std::cout << "Time to process a range of "
 			  << size << " elements with " << str << " : "
-			  << std::fixed << std::setprecision(6) << t
-			  << " s" << std::endl;
+			  << std::fixed << std::setprecision(3) << t / CLOCKS_PER_SEC * 1000.0 << " ms"
+			  << std::endl;
 }
 
 void PmergeMe::sort()
@@ -52,6 +52,6 @@ void PmergeMe::sort()
 	std::cout << " After:  ";
 	printVector(v);
 
-	printStats("std::vector<int>", v.size(), static_cast<double>(t_vector)/CLOCKS_PER_SEC);
-	printStats("std::list<int>  ", l.size(), static_cast<double>(t_list)/CLOCKS_PER_SEC);
+	printStats("std::vector<int>", v.size(), static_cast<double>(t_vector));
+	printStats("std::list<int>  ", l.size(), static_cast<double>(t_list));
 }
