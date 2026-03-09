@@ -52,6 +52,11 @@ void PmergeMe::sort()
 	std::cout << " After:  ";
 	printVector(v);
 
-	printStats("std::vector<int>", v.size(), static_cast<double>(t_vector));
-	printStats("std::list<int>  ", l.size(), static_cast<double>(t_list));
+	if (isVectorSorted() && isListSorted())
+	{
+		printStats("std::vector<int>", v.size(), static_cast<double>(t_vector));
+		printStats("std::list<int>  ", l.size(), static_cast<double>(t_list));
+	}
+	else
+		std::cout << "Not sorted!" << std::endl;
 }

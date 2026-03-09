@@ -45,7 +45,7 @@ void PmergeMe::sortVector(std::vector<int> &vector)
 	std::vector<int> jacob_order = jacobsthal_order(mins.size());
 	for (std::vector<int>::iterator j_it = jacob_order.begin(); j_it < jacob_order.end(); j_it++)
 	{
-		std::vector<int>::iterator upper_bound = std::find(chain.begin(), chain.end(), original_maxs[*j_it]);
+		std::vector<int>::iterator upper_bound = std::lower_bound(chain.begin(), chain.end(), original_maxs[*j_it]);
 		std::vector<int>::iterator insert_pos = std::lower_bound(chain.begin(), upper_bound + 1, mins[*j_it]);
 		chain.insert(insert_pos, mins[*j_it]);
 	};
