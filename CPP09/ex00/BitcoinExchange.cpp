@@ -7,12 +7,12 @@ BitcoinExchange::BitcoinExchange()
 }
 
 // Parameterized constructor
-BitcoinExchange::BitcoinExchange(char *str) : input_filename(str)
+BitcoinExchange::BitcoinExchange(const char *str) : input_filename(str)
 {
 	openDb();
 	input_file.open(str);
 	if (input_file.fail())
-		throw std::runtime_error(std::string("Failed to open input file: '") + str + "'");
+		throw std::runtime_error(std::string(ERROR "Failed to open input file: '") + str + "'");
 }
 
 // Copy constructor
@@ -22,7 +22,7 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange &other) :
 {
 	input_file.open(other.input_filename.c_str());
 	if (input_file.fail())
-		throw std::runtime_error(std::string("Failed to open input file: '") + input_filename + "'");
+		throw std::runtime_error(std::string(ERROR "Failed to open input file: '") + input_filename + "'");
 }
 
 // Copy assignment operator
@@ -30,11 +30,10 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other)
 {
 	if (this != &other)
 	{
-		input_filename = other.input_filename;
 		db = other.db;
 		input_file.open(other.input_filename.c_str());
 		if (input_file.fail())
-			throw std::runtime_error(std::string("Failed to open input file: '") + input_filename + "'");
+			throw std::runtime_error(std::string(ERROR "Failed to open input file: '") + input_filename + "'");
 	}
 	return (*this);
 }

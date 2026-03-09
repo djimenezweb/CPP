@@ -1,7 +1,7 @@
 #include "BitcoinExchange.hpp"
 
 // Return true if date is later than today's
-bool	BitcoinExchange::isFutureDate(std::string date)
+bool	BitcoinExchange::isFutureDate(const std::string &date) const
 {
 	std::time_t now = std::time(0);
 	std::tm *tm = std::localtime(&now);
@@ -10,8 +10,7 @@ bool	BitcoinExchange::isFutureDate(std::string date)
 	return (date > today);
 }
 
-// Save parsed values into time structure
-// and check if date has been parsed correctly
+// Save parsed values into time structure and check if date has been parsed correctly
 bool	validateDate(int &year, int &month, int &day)
 {
 	if (year < 1000)
@@ -26,7 +25,7 @@ bool	validateDate(int &year, int &month, int &day)
 }
 
 // Load line into stream and extract values
-bool	BitcoinExchange::parseDate(std::string &line, char delimiter)
+bool	BitcoinExchange::parseDate(const std::string &line, char delimiter) const
 {
 	int		year, month, day;
 	char	delim1, delim2, delim3;
@@ -40,8 +39,6 @@ bool	BitcoinExchange::parseDate(std::string &line, char delimiter)
 			return (false);
 		if (delim1 != '-' || delim2 != '-' || delim3 != delimiter)
 			return (false);
-/* 		if (bc_value < 0)
-			return (false); */
 		return (validateDate(year, month, day));
 	}
 	return (false);
