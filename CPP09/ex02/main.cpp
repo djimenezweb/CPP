@@ -53,6 +53,11 @@ int main(int argc, char* argv[])
 	for (int i = 1; i < argc; i++)
 	{
 		std::string	str = argv[i];
+		if (str.empty())
+		{
+			std::cerr << ERROR "Correct usage: " << argv[0] << " <number1> <number2> ..." << std::endl;
+			return (1);
+		}
 		if (!are_valid_chars(str))
 			return (1);
 		if (!are_valid_integers(str))

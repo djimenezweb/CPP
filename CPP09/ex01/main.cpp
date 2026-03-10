@@ -11,7 +11,7 @@ int main(int argc, char* argv[])
 	try
 	{
 		RPN calculator(argv[1]);
-		std::cout << calculator.calc() << std::endl;
+		std::cout << std::fixed << calculator.calc() << std::endl;
 	}
 	catch(const std::exception& e)
 	{

@@ -37,7 +37,7 @@ std::string BitcoinExchange::printExchangeRate(const std::string &line) const
 		found--;
 
 	std::stringstream result;
-	result << bc_value * found->second;
+	result << std::fixed << bc_value * found->second;
 	return (std::string(date + " => " + line.substr(13) + " = " + result.str()));
 }
 
@@ -54,5 +54,5 @@ void BitcoinExchange::getExchangeRate()
 		getline(input_file, line);
 		if (line.empty())
 			continue;
-		std::cout << std::fixed << printExchangeRate(line) << std::endl;}
+		std::cout << printExchangeRate(line) << std::endl;}
 }
