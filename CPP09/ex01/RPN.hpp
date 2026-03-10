@@ -13,9 +13,9 @@ class RPN
 		std::string			expr;
 		std::stack<double>	stack;
 		void operate(char c);
+		RPN();
 
 	public:
-		RPN();
 		RPN(std::string args);
 		~RPN();
 		RPN(const RPN &other);

@@ -1,10 +1,10 @@
 #include "BitcoinExchange.hpp"
 
-// Extract float value from a string starting at the specified position
-float BitcoinExchange::extract_float_at(const std::string &str, size_t i) const
+// Extract double value from a string starting at the specified position
+double BitcoinExchange::extract_double_at(const std::string &str, size_t i) const
 {
 	std::stringstream ss(str.substr(i));
-	float value;
+	double value;
 	ss >> value;
 	return (value);
 }
@@ -23,16 +23,16 @@ std::string BitcoinExchange::printExchangeRate(const std::string &line) const
 	if (isFutureDate(date))
 		return (std::string(ERROR "Date '") + date + "' is in the future");
 
-	float	bc_value = extract_float_at(line, 13);
+	double	bc_value = extract_double_at(line, 13);
 	if (bc_value < MIN_VALUE)
 		return (std::string(ERROR "Invalid negative value: ") + line.substr(13));
-	if (bc_value >= MAX_VALUE)
+	if (bc_value > MAX_VALUE)
 		return (std::string(ERROR "Too large value: ") + line.substr(13));
 
 	if (date < db.begin()->first)
 		return (std::string(ERROR "Date '") + date + "' is out of range");
 
-	std::map<std::string, float>::const_iterator found = db.upper_bound(date);
+	std::map<std::string, double>::const_iterator found = db.upper_bound(date);
 	if (found != db.begin())
 		found--;
 

@@ -29,12 +29,10 @@ void	BitcoinExchange::openDb()
 // Insert date & value into database
 bool	BitcoinExchange::insert(const std::string &line)
 {
-	float	bc_value = extract_float_at(line, 11);
-	if (bc_value > static_cast<float>(std::numeric_limits<int>::max()))
-		throw std::runtime_error(ERROR "Too large value");
+	double	bc_value = extract_double_at(line, 11);
 
-	std::pair<std::map<std::string,float>::iterator,bool> return_value;
-	return_value = db.insert(std::pair<std::string,float>(line.substr(0, 10), bc_value));
+	std::pair<std::map<std::string,double>::iterator,bool> return_value;
+	return_value = db.insert(std::pair<std::string,double>(line.substr(0, 10), bc_value));
 	if (!return_value.second)
 		throw std::runtime_error(ERROR "Duplicated date");
 	return (return_value.second);
@@ -46,8 +44,8 @@ void	BitcoinExchange::printDb() const
 	if (db.empty())
 		throw std::runtime_error(ERROR "Database is empty");
 
-	std::map<std::string, float>::const_iterator it = db.begin();
-	std::map<std::string, float>::const_iterator it_end = db.end();
+	std::map<std::string, double>::const_iterator it = db.begin();
+	std::map<std::string, double>::const_iterator it_end = db.end();
 
 	while (it != it_end)
 	{

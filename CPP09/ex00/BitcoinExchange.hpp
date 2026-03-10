@@ -22,7 +22,7 @@ class BitcoinExchange
 		std::ifstream					db_file;
 		std::ifstream					input_file;
 		const std::string				input_filename;
-		std::map<std::string, float>	db;
+		std::map<std::string, double>	db;
 
 		BitcoinExchange();
 
@@ -31,7 +31,7 @@ class BitcoinExchange
 		bool		isFutureDate(const std::string &date) const;
 		bool		parseDate(const std::string &line, char delimiter) const;
 		std::string	printExchangeRate(const std::string &line) const;
-		float		extract_float_at(const std::string &str, size_t i) const;
+		double		extract_double_at(const std::string &str, size_t i) const;
 
 	public:
 		BitcoinExchange(const char *str);

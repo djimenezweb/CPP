@@ -34,7 +34,7 @@ bool	BitcoinExchange::parseDate(const std::string &line, char delimiter) const
 	std::stringstream ss(line);
 	if (ss >> year >> delim1 >> month >> delim2 >> day >> delim3 >> bc_value)
 	{
-		ss >> std::ws;	// Remove trailing whitespace
+		ss >> std::ws;
 		if (!ss.eof())
 			return (false);
 		if (delim1 != '-' || delim2 != '-' || delim3 != delimiter)
