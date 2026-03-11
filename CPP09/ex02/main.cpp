@@ -42,6 +42,20 @@ bool	are_valid_chars(const std::string &str)
 	return (true);
 }
 
+// Return `true` if argument is made up of whitespace only
+bool	is_ws_only(const std::string &str)
+{
+	size_t i = 0;
+	while (i < str.length() && isspace(str[i]))
+		i++;
+	if (i == str.length())
+	{
+		std::cerr << ERROR "Invalid empty argument" << std::endl;
+		return (true);
+	}
+	return (false);
+}
+
 int main(int argc, char* argv[])
 {
 	if (argc == 1)
@@ -53,11 +67,8 @@ int main(int argc, char* argv[])
 	for (int i = 1; i < argc; i++)
 	{
 		std::string	str = argv[i];
-		if (str.empty())
-		{
-			std::cerr << ERROR "Correct usage: " << argv[0] << " <number1> <number2> ..." << std::endl;
+		if (is_ws_only(str))
 			return (1);
-		}
 		if (!are_valid_chars(str))
 			return (1);
 		if (!are_valid_integers(str))

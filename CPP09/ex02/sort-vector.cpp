@@ -34,29 +34,29 @@ void PmergeMe::sortVector(std::vector<int> &vector)
 	// Recursive call
 	sortVector(maxs);
 
-	// After recursive call, build `chain` with all elements from `maxs`
-	std::vector<int> chain;
-	chain.reserve((maxs.size() * 2) + 1);
+	// After recursive call, build `sorted` with all elements from `maxs`
+	std::vector<int> sorted;
+	sorted.reserve((maxs.size() * 2) + 1);
 	for (std::vector<int>::iterator maxs_it = maxs.begin(); maxs_it < maxs.end(); maxs_it++)
-		chain.push_back(*maxs_it);
+		sorted.push_back(*maxs_it);
 
-	// Insert `mins` to `chain`. Instead of inserting the numbers one by one (mins[0], mins[1], mins[2] ...)
+	// Insert `mins` to `sorted`. Instead of inserting the numbers one by one (mins[0], mins[1], mins[2] ...)
 	// we insert them in the order dictated by the Jacobsthal sequence: mins[0], mins[1], mins[3], mins[2], mins[5], mins[4] ...)
 	std::vector<int> jacob_order = jacobsthal_order(mins.size());
 	for (std::vector<int>::iterator j_it = jacob_order.begin(); j_it < jacob_order.end(); j_it++)
 	{
-		std::vector<int>::iterator upper_bound = std::lower_bound(chain.begin(), chain.end(), original_maxs[*j_it]);
-		std::vector<int>::iterator insert_pos = std::lower_bound(chain.begin(), upper_bound + 1, mins[*j_it]);
-		chain.insert(insert_pos, mins[*j_it]);
+		std::vector<int>::iterator upper_bound = std::lower_bound(sorted.begin(), sorted.end(), original_maxs[*j_it]);
+		std::vector<int>::iterator insert_pos = std::lower_bound(sorted.begin(), upper_bound + 1, mins[*j_it]);
+		sorted.insert(insert_pos, mins[*j_it]);
 	};
 
 	// Insert unpaired number if any
 	if (unpaired != -1)
 	{
-		std::vector<int>::iterator unpaired_pos = std::lower_bound(chain.begin(), chain.end(), unpaired);
-		chain.insert(unpaired_pos, unpaired);
+		std::vector<int>::iterator unpaired_pos = std::lower_bound(sorted.begin(), sorted.end(), unpaired);
+		sorted.insert(unpaired_pos, unpaired);
 	}
 
-	// Assign `chain` to `vector`, which in turn is the local copy of `maxs`
-	vector = chain;
+	// Assign `sorted` to `vector`, which in turn is the local copy of `maxs`
+	vector = sorted;
 }

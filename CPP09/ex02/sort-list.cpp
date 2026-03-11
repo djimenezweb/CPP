@@ -40,23 +40,23 @@ void PmergeMe::sortList(std::list<int> &list)
 
 	sortList(maxs);
 
-	std::list<int> chain;
+	std::list<int> sorted;
 	for (std::list<int>::iterator maxs_it = maxs.begin(); maxs_it != maxs.end(); maxs_it++)
-		chain.push_back(*maxs_it);
+		sorted.push_back(*maxs_it);
 
 	std::vector<int> jacob_order = jacobsthal_order(mins.size());
 	for (std::vector<int>::iterator j_it = jacob_order.begin(); j_it < jacob_order.end(); j_it++)
 	{
-		std::list<int>::iterator upper_bound = std::find(chain.begin(), chain.end(), listAt(original_maxs, *j_it));
-		std::list<int>::iterator insert_pos = std::lower_bound(chain.begin(), ++upper_bound, listAt(mins, *j_it));
-		chain.insert(insert_pos, listAt(mins, *j_it));
+		std::list<int>::iterator upper_bound = std::find(sorted.begin(), sorted.end(), listAt(original_maxs, *j_it));
+		std::list<int>::iterator insert_pos = std::lower_bound(sorted.begin(), ++upper_bound, listAt(mins, *j_it));
+		sorted.insert(insert_pos, listAt(mins, *j_it));
 	};
 
 	if (unpaired != -1)
 	{
-		std::list<int>::iterator unpaired_pos = std::lower_bound(chain.begin(), chain.end(), unpaired);
-		chain.insert(unpaired_pos, unpaired);
+		std::list<int>::iterator unpaired_pos = std::lower_bound(sorted.begin(), sorted.end(), unpaired);
+		sorted.insert(unpaired_pos, unpaired);
 	}
 
-	list = chain;
+	list = sorted;
 }
